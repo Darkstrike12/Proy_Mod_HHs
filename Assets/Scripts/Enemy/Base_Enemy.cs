@@ -5,12 +5,16 @@ using UnityEngine;
 public class Base_Enemy : MonoBehaviour
 {
     [Header("Enemy Description")]
-    [SerializeField] string[] EnemyType;
-    [SerializeField] string[] EnemyCategory;
+    //[SerializeField] string[] EnemyType;
+    //[SerializeField] string[] EnemyCategory;
+    [SerializeField] EnemyMaterials[] EnemyMaterial;
+    [SerializeField] EnemyCategories EnemyCategory;
 
     [Header("Enemy Movement")]
     [SerializeField] int MovementInX;
+    [SerializeField] bool RandomX;
     [SerializeField] int MovementInY;
+    [SerializeField] bool RandomY;
     [SerializeField] float MovementTime;
 
     [Header("Enemy Stats")]
@@ -27,5 +31,23 @@ public class Base_Enemy : MonoBehaviour
     void EnemyDefeated()
     {
 
+    }
+
+    public enum EnemyMaterials
+    {
+        None,
+        Papel,
+        Metal,
+        Petroleo,
+        Plastico
+    }
+
+    public enum EnemyCategories
+    {
+        None,
+        Viviente,
+        Andante,
+        Consiente,
+        Autoconsciente
     }
 }
