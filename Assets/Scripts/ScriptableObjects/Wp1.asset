@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: WP1
   DisplayImage: {fileID: 0}
+  DisplayDescription: 
   BaseDamage: 0
   BaseUseCost: 0
   BaseReloadTime: 0
   BaseAtackRangeInX: 0
   BaseAtackRangeInY: 0
-  AffectedEnemyMaterials: 01000000
+  AffectAllMaterials: 0
+  AffectedEnemyMaterials: 00000000
+  AffectAllCategories: 0
   AffectedEnemyCategories: 00000000

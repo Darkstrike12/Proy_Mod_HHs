@@ -7,18 +7,23 @@ using static Base_Enemy;
 public class WeaponData : ScriptableObject
 {
     [Header("Display")]
-    [SerializeField] public string DisplayName;
-    [SerializeField] Sprite DisplayImage;
-    [SerializeField] string DisplayDescription;
+    public string DisplayName;
+    public Sprite DisplayImage;
+    [TextArea]
+    public string DisplayDescription;
 
     [Header("Weapon Stats")]
-    [SerializeField] int BaseDamage;
-    [SerializeField] int BaseUseCost;
-    [SerializeField] float BaseReloadTime;
-    [SerializeField] int BaseAtackRangeInX;
-    [SerializeField] int BaseAtackRangeInY;
+    public int BaseDamage;
+    public int BaseUseCost;
+    public float BaseReloadTime;
+    [Space(20)]
+    public int BaseAtackRangeInX;
+    public int BaseAtackRangeInY;
 
     [Header("Weapon Efectiveness")]
-    [SerializeField] public EnemyMaterials[] AffectedEnemyMaterials;
-    [SerializeField] public EnemyCategories[] AffectedEnemyCategories;
+    public bool AffectAllMaterials;
+    public EnemyMaterials[] AffectedEnemyMaterials;
+    [Space]
+    public bool AffectAllCategories;
+    public EnemyCategories[] AffectedEnemyCategories;
 }
