@@ -6,7 +6,10 @@ using static Base_Enemy;
 [CreateAssetMenu(menuName = "Scriptable Objects/New Weapon")]
 public class WeaponData : ScriptableObject
 {
-    [Header("Display")]
+    [Header("Internal Data")]
+    public int WeaponID;
+
+    [Header("Display Data")]
     public string DisplayName;
     public Sprite DisplayImage;
     [TextArea]

@@ -21,6 +21,6 @@ public class MousePosition2D : MonoBehaviour
         mouseWorldPosition.z = 0f;
         Vector3Int GridPosition = grid.WorldToCell(mouseWorldPosition);
         //MousePointer.transform.position = mouseWorldPosition;
-        MousePointer.transform.position = grid.CellToWorld(GridPosition);
+        MousePointer.transform.position = grid.CellToWorld(GridPosition) + (grid.cellSize/2);
     }
 }

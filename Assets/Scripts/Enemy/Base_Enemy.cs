@@ -8,20 +8,18 @@ public class Base_Enemy : MonoBehaviour
     [Header("Enemy Description")]
     [SerializeField] EnemyMaterials[] EnemyMaterial;
     public EnemyMaterials[] enemyMaterial { get { return EnemyMaterial; } }
-    //[SerializeField] List<EnemyMaterials> Material;
     [SerializeField] EnemyCategories EnemyCategory;
     public EnemyCategories enemyCategory { get { return EnemyCategory; } }
 
     [Header("Enemy Movement")]
-    [SerializeField] bool RandomX;
-    [SerializeField] int MovementInX;
-    [SerializeField] bool RandomY;
-    [SerializeField] int MovementInY;
+    [SerializeField] bool RandomMoveInX;
+    [SerializeField] bool RandomMoveInY;
+    [SerializeField] Vector3Int Movement;
     [SerializeField] float MovementTime;
 
     [Header("Enemy Stats")]
     [SerializeField] int HitPoints;
-    [SerializeField] int PointsGiven;
+    [SerializeField] int ReciclePointsGiven;
     [SerializeField] bool AllowDamage;
 
     //Internal Variables

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e7f4a5667d78d4eb2706f30e993662, type: 3}
   m_Name: Enging_1
   m_EditorClassIdentifier: 
+  EndingID: 0
   EngingName: 
   endingType: 0
   EndingSprite: {fileID: 0}
+  EndingText: 
