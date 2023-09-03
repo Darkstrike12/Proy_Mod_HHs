@@ -13,6 +13,9 @@ public class EnemyData : ScriptableObject
     public bool RandomMoveInX;
     public bool RandomMoveInY;
     public Vector3Int MovementVector;
+    [Space]
+    public bool RandomMovementTime;
+    public Vector2Int RandomMovementTimeRange;
     public float MovementTime;
 
     [Header("Enemy Stats")]

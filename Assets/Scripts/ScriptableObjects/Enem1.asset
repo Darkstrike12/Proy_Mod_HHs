@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyMaterial: 00000000
   EnemyCategory: 0
-  RandomMoveInX: 1
-  RandomMoveInY: 1
-  MovementVector: {x: -4, y: 2, z: 0}
+  RandomMoveInX: 0
+  RandomMoveInY: 0
+  MovementVector: {x: 4, y: 2, z: 0}
+  RandomMovementTime: 0
+  RandomMovementTimeRange: {x: 0, y: 0}
   MovementTime: 2
   MaxHitPoints: 0
   ReciclePointsGiven: 0

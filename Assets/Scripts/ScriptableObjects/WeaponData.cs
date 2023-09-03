@@ -20,8 +20,7 @@ public class WeaponData : ScriptableObject
     public int BaseUseCost;
     public float BaseReloadTime;
     [Space(20)]
-    public int BaseAtackRangeInX;
-    public int BaseAtackRangeInY;
+    public Vector2Int AtackRange;
 
     [Header("Weapon Efectiveness")]
     public bool AffectAllMaterials;
