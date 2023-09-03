@@ -9,15 +9,19 @@ public class Base_Weapon : MonoBehaviour
     [Header("Weapon Data")]
     [SerializeField] public WeaponData weaponDataSO;
 
-    [Header("Weapon Behaviour")]
+    [Header("Weapon Behaviour Variables")]
     [SerializeField] bool IsInstantKill;
     public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] bool UseSpecialEffect;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
-        if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
+            if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
+
+        }
     }
 
     public virtual void WeaponSpecialEffect(Base_Enemy enemy)
@@ -32,8 +36,8 @@ public class Base_Weapon : MonoBehaviour
     {
         if(!weaponDataSO.AffectAllMaterials || !weaponDataSO.AffectAllCategories)
         {
-            var AffectedByMaterial = weaponDataSO.AffectedEnemyMaterials.Intersect(enemy.enemyMaterial);
-            bool AffectedByCategory = weaponDataSO.AffectedEnemyCategories.Contains(enemy.enemyCategory);
+            var AffectedByMaterial = weaponDataSO.AffectedEnemyMaterials.Intersect(enemy.EnemyData.EnemyMaterial);
+            bool AffectedByCategory = weaponDataSO.AffectedEnemyCategories.Contains(enemy.EnemyData.EnemyCategory);
             if ((AffectedByMaterial.Count() > 0 || weaponDataSO.AffectAllMaterials) && (AffectedByCategory || weaponDataSO.AffectAllCategories)) return true;
             else return false;
         }

@@ -25,8 +25,8 @@ public class WeaponData : ScriptableObject
 
     [Header("Weapon Efectiveness")]
     public bool AffectAllMaterials;
-    public EnemyMaterials[] AffectedEnemyMaterials;
+    public EnemyData.EnemyMaterials[] AffectedEnemyMaterials;
     [Space]
     public bool AffectAllCategories;
-    public EnemyCategories[] AffectedEnemyCategories;
+    public EnemyData.EnemyCategories[] AffectedEnemyCategories;
 }
