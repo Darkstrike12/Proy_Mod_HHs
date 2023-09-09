@@ -11,6 +11,7 @@ public class Enemy_Idle : StateMachineBehaviour
     {
         Enemy = animator.GetComponent<Base_Enemy>();
         Enemy.StartCoroutine(Enemy.MoveEnemy());
+        //Enemy.MoveEnemyAs();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

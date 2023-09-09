@@ -20,7 +20,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Stats")]
     public int MaxHitPoints;
-    public int ReciclePointsGiven;
+    public int RecyclePointsGiven;
 
     public enum EnemyMaterials
     {

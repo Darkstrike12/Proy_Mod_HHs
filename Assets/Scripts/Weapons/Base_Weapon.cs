@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Scripting;
 using static Base_Enemy;
 
 public class Base_Weapon : MonoBehaviour
@@ -22,6 +23,7 @@ public class Base_Weapon : MonoBehaviour
             if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
 
         }
+        Destroy(gameObject);
     }
 
     public virtual void WeaponSpecialEffect(Base_Enemy enemy)
