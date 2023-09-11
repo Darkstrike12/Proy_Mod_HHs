@@ -20,5 +20,5 @@ MonoBehaviour:
   RandomMovementTime: 0
   RandomMovementTimeRange: {x: 0, y: 0}
   MovementTime: 2
-  MaxHitPoints: 0
-  ReciclePointsGiven: 0
+  MaxHitPoints: 4
+  RecyclePointsGiven: 4

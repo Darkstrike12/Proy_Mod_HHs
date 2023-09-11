@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Scripting;
-using static Base_Enemy;
 
 public class Base_Weapon : MonoBehaviour
 {
     [Header("Weapon Data")]
-    [SerializeField] public WeaponData weaponDataSO;
+    [SerializeField] WeaponData weaponDataSO;
+    public WeaponData WeaponDataSO { get { return weaponDataSO; } set { weaponDataSO = value; } }
 
     [Header("Weapon Behaviour Variables")]
     [SerializeField] bool IsInstantKill;
     public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] bool UseSpecialEffect;
+
+    private void Start()
+    {
+        //eventManager = new EventManager();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,7 +26,6 @@ public class Base_Weapon : MonoBehaviour
         {
             collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
             if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
-
         }
         Destroy(gameObject);
     }

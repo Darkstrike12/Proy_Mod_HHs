@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponSpawner : MonoBehaviour
 {
@@ -11,65 +13,43 @@ public class WeaponSpawner : MonoBehaviour
     [SerializeField] GameObject WeaponPrefab;
     [SerializeField] Camera SceneCamera;
     [SerializeField] float LaunchSpeed = 1f;
-    [SerializeField] GameObject MouseIndicator;
 
     //Internal Variables
     GameObject CurrentWeapon;
-    WeaponState weaponState;
+    bool IsWeaponSelected;
+
+    [Header("Events")]
+    public UnityEvent OnWeaponSelected;
+    public UnityEvent OnWeaponUsed;
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponState = WeaponState.Choosing;
-        CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
+        //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //switch (weaponState)
-        //{
-        //    case WeaponState.Choosing:
-        //        CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
-        //        if (Input.GetMouseButtonDown(0))
-        //        {
-        //            weaponState = WeaponState.Standby;
-        //            print("Weapon Chosen");
-        //        }
-        //        break;
-
-        //    case WeaponState.Standby:
-        //        FaceToMouse();
-        //        if (Input.GetMouseButtonDown(0))
-        //        {
-        //            LaunchWeapon();
-        //            weaponState = WeaponState.Shoot;
-        //        }
-        //        break;
-
-        //    case WeaponState.Shoot:
-        //        weaponState = WeaponState.Choosing;
-        //        break;
-        //}
-        FaceToMouse();
+        if (IsWeaponSelected) WeaponFaceToMouse();
         if (Input.GetMouseButtonDown(0))
         {
-            LaunchWeapon();
+            OnWeaponUsed.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
+            OnWeaponSelected.Invoke();
         }
     }
 
-    enum WeaponState
+    public void SelectWeapon()
     {
-        Choosing,
-        Standby,
-        Shoot,
+        CurrentWeapon = null;
+        CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
+        IsWeaponSelected = true;
     }
 
-    private void FaceToMouse()
+    public void WeaponFaceToMouse()
     {
         Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition) - CurrentWeapon.transform.position;
         float Angle = MathF.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
@@ -77,13 +57,14 @@ public class WeaponSpawner : MonoBehaviour
         CurrentWeapon.transform.rotation = Rotation;
     }
 
-    private void FaceToMousePointer()
+    public void WeaponFaceToPointer(Transform Pointer)
     {
-        CurrentWeapon.transform.right = MouseIndicator.transform.position - CurrentWeapon.transform.position;
+        CurrentWeapon.transform.right = Pointer.transform.position - CurrentWeapon.transform.position;
     }
 
-    private void LaunchWeapon()
+    public void LaunchWeapon()
     {
+        IsWeaponSelected = false;
         Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();
         Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
         WeaponRB.velocity = new Vector2(WeaponRB.velocity.x + LaunchSpeed, WeaponRB.velocity.y + LaunchSpeed) * WeaponRB.transform.right;

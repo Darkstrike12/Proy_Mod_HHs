@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using static Base_Enemy;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/New Weapon")]
 public class WeaponData : ScriptableObject
 {
+    [Header("WeaponPrefab")]
+    [SerializeField] GameObject weapon;
+
     [Header("Internal Data")]
     public int WeaponID;
 
@@ -28,4 +31,9 @@ public class WeaponData : ScriptableObject
     [Space]
     public bool AffectAllCategories;
     public EnemyData.EnemyCategories[] AffectedEnemyCategories;
+
+    public void AssignWeaponData()
+    {
+        weapon.GetComponent<Base_Weapon>().WeaponDataSO = this;
+    }
 }
