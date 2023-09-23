@@ -13,9 +13,12 @@ public class Base_Enemy : MonoBehaviour
 
     [Header("External References")]
     [SerializeField] Grid grid;
+    public Grid Grid { set => grid = value; }
 
     [Header("Behaviour Variables")]
     [SerializeField] public bool AllowDamage;
+    [SerializeField] bool RandomMoveInX;
+    [SerializeField] bool RandomMoveInY;
     [SerializeField] float MovementDuration;
     [SerializeField] bool JitterY;
     [SerializeField] AnimationCurve MovementCurve;
@@ -42,11 +45,22 @@ public class Base_Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GridTile")
+        if (collision.gameObject.tag != "GridTile")
         {
-            StopCoroutine(MoveEnemy());
-            print("Tile");
+            print("Tile exit");
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //print("Exit Tile");
+    }
+
+    //Constructor
+    public Base_Enemy(Grid gridRef, EnemyData enemyDataRef)
+    {
+        grid = gridRef;
+        enemyData = enemyDataRef;
     }
 
     public void TakeDamage(Base_Weapon weapon)
@@ -73,10 +87,10 @@ public class Base_Enemy : MonoBehaviour
         Vector3 TargetPosition;
         float TimeElapsed;
 
-        var RandomMoveInX = enemyData.RandomMoveInX ? MovementLimit.x = Random.Range(0, enemyData.MovementVector.x + 1) : MovementLimit.x = enemyData.MovementVector.x;
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, enemyData.MovementVector.x + 1) : MovementLimit.x = enemyData.MovementVector.x;
 
         InitialPosition = transform.position;
-        TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + new Vector3Int(-MovementLimit.x, 0, 0);
+        TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
 
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration)
@@ -87,9 +101,9 @@ public class Base_Enemy : MonoBehaviour
         }
         transform.position = TargetPosition;
         
-        var UseRandomMoveInY = enemyData.RandomMoveInY ? MovementLimit.y = Random.Range(0, enemyData.MovementVector.y + 1) : MovementLimit.y = enemyData.MovementVector.y;
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, enemyData.MovementVector.y + 1) : MovementLimit.y = enemyData.MovementVector.y;
         InitialPosition = transform.position;
-        var UseJitterY = JitterY ? TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + JitterAxis(MovementLimit) : TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + new Vector3Int(0, MovementLimit.y, 0);
+        var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterAxis(MovementLimit) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
 
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration)
@@ -132,10 +146,10 @@ public class Base_Enemy : MonoBehaviour
         Vector3 TargetPosition;
         float TimeElapsed;
 
-        var RandomMoveInX = enemyData.RandomMoveInX ? MovementLimit.x = Random.Range(0, enemyData.MovementVector.x + 1) : MovementLimit.x = enemyData.MovementVector.x;
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, enemyData.MovementVector.x + 1) : MovementLimit.x = enemyData.MovementVector.x;
 
         InitialPosition = transform.position;
-        TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + new Vector3Int(-MovementLimit.x, 0, 0);
+        TargetPosition = InitialPosition  + new Vector3Int(-MovementLimit.x, 0, 0);
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration)
         {
@@ -145,10 +159,10 @@ public class Base_Enemy : MonoBehaviour
         }
         transform.position = TargetPosition;
 
-        var UseRandomMoveInY = enemyData.RandomMoveInY ? MovementLimit.y = Random.Range(0, enemyData.MovementVector.y + 1) : MovementLimit.y = enemyData.MovementVector.y;
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, enemyData.MovementVector.y + 1) : MovementLimit.y = enemyData.MovementVector.y;
 
         InitialPosition = transform.position;
-        var UseJitterY = JitterY ? TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + JitterAxis(MovementLimit) : TargetPosition = grid.WorldToCell(InitialPosition) + (grid.cellSize / 2) + new Vector3Int(0, MovementLimit.y, 0);
+        var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterAxis(MovementLimit) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
 
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration)
@@ -162,7 +176,7 @@ public class Base_Enemy : MonoBehaviour
         animator.SetBool("IsMoving", false);
     }
 
-    bool IsAviableTile()
+    bool IsTileAviable()
     {
         return true;
     }

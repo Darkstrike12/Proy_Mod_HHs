@@ -19,7 +19,8 @@ public class GridMoveTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) )
         {
-            transform.position = grid.WorldToCell(transform.position) + (grid.cellSize / 2) + Move;
+            //transform.position = grid.WorldToCell(transform.position) + (grid.cellSize / 2) + Move;
+            transform.position += Move;
         }
     }
 }

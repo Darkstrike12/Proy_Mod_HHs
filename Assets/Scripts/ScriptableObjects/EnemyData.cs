@@ -8,18 +8,21 @@ public class EnemyData : ScriptableObject
     [Header("Enemy Prefab")]
     [SerializeField] GameObject enemy;
 
+    [Header("Display Data")]
+    public string DisplayName;
+    public Sprite DisplayImage;
+    [TextArea]
+    public string DisplayDescription;
+
     [Header("Enemy Description")]
     public EnemyMaterials[] EnemyMaterial;
     public EnemyCategories EnemyCategory;
 
     [Header("Enemy Movement")]
-    public bool RandomMoveInX;
-    public bool RandomMoveInY;
     public Vector3Int MovementVector;
     [Space]
-    public bool RandomMovementTime;
-    public Vector2Int RandomMovementTimeRange;
     public float MovementTime;
+    public float[] MovementTimeRange;
 
     [Header("Enemy Stats")]
     public int MaxHitPoints;

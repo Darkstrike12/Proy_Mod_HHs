@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour
         {
             for(int y = 0; y < height; y++)
             {
-                var SpawnedTile = Instantiate(TilePrefab, grid.WorldToCell(TilePrefab.transform.position) + (grid.cellSize / 2) +  new Vector3(x,y,0), Quaternion.identity);
+                var SpawnedTile = Instantiate(TilePrefab, grid.transform.position + (grid.cellSize / 2) +  new Vector3(x,y,0), Quaternion.identity);
                 SpawnedTile.name = $"Tile {x} {y}";
                 SpawnedTile.transform.parent = transform;
             }

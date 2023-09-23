@@ -15,15 +15,9 @@ public class GridTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
         if (enemy != null)
         {
             print("Enemy Found");
         }
     }
-
 }

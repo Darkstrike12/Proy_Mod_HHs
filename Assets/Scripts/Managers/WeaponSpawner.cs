@@ -26,13 +26,14 @@ public class WeaponSpawner : MonoBehaviour
     void Start()
     {
         //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
+        IsWeaponSelected = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (IsWeaponSelected) WeaponFaceToMouse();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && IsWeaponSelected)
         {
             OnWeaponUsed.Invoke();
         }
@@ -44,7 +45,8 @@ public class WeaponSpawner : MonoBehaviour
 
     public void SelectWeapon()
     {
-        CurrentWeapon = null;
+        //CurrentWeapon = null;
+        Destroy(CurrentWeapon);
         CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
         IsWeaponSelected = true;
     }
