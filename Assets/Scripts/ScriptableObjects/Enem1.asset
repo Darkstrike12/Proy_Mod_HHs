@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
   m_Name: Enem1
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7076135802495003942, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
   DisplayName: 
   DisplayImage: {fileID: 0}
   DisplayDescription: 
   EnemyMaterial: 00000000
   EnemyCategory: 0
-  MovementVector: {x: 4, y: 2, z: 0}
-  MovementTime: 2
+  MovementVector: {x: 4, y: -1, z: 0}
+  MovementTime: 0.5
   MovementTimeRange: []
   MaxHitPoints: 4
   RecyclePointsGiven: 4

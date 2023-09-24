@@ -22,10 +22,16 @@ public class Base_Weapon : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        //if(collision.gameObject.tag == "Enemy")
+        //{
+        //    collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
+        //    if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
+        //}
+
+        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         {
-            collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
-            if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
+            Enem.TakeDamage(this);
+            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
         }
         Destroy(gameObject);
     }

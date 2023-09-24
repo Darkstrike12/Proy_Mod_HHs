@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/New Enemy")]
 public class EnemyData : ScriptableObject
 {
-    [Header("Enemy Prefab")]
-    [SerializeField] GameObject enemy;
+    //[Header("Enemy Prefab")]
+    //[SerializeField] GameObject enemy;
 
     [Header("Display Data")]
     public string DisplayName;
@@ -28,10 +28,10 @@ public class EnemyData : ScriptableObject
     public int MaxHitPoints;
     public int RecyclePointsGiven;
 
-    public void AssignEnemyData()
-    {
-        enemy.GetComponent<Base_Enemy>().EnemyData = this;
-    }
+    //public void AssignEnemyData()
+    //{
+    //    enemy.GetComponent<Base_Enemy>().EnemyData = this;
+    //}
 
     public enum EnemyMaterials
     {
