@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 7648982264665000023}
   - component: {fileID: 7648982264665000020}
   - component: {fileID: 5847661679269930686}
+  - component: {fileID: 5859082943099265071}
   m_Layer: 0
   m_Name: TileBase
   m_TagString: GridTile
@@ -158,6 +159,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5859082943099265071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648982264665000022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35d3de4a90b9a49ba5c989af5c538e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &7648982264738973807
 GameObject:
   m_ObjectHideFlags: 0

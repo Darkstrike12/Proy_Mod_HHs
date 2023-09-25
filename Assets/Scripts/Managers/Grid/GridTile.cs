@@ -15,9 +15,19 @@ public class GridTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy != null)
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out Base_Enemy enem))
         {
-            print("Enemy Found");
+            enemy = enem;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        enemy = null;
     }
 }

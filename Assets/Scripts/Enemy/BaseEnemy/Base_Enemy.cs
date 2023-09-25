@@ -150,7 +150,7 @@ public class Base_Enemy : MonoBehaviour
         int JitterAxis;
         Vector3Int JitterVector;
 
-        JitterAxis = Random.Range(2, 3) % 2;
+        JitterAxis = Random.Range(1, 11) % 2;
         switch (JitterAxis)
         {
             case 0:
@@ -197,48 +197,49 @@ public class Base_Enemy : MonoBehaviour
         }
         transform.position = TargetPosition;
 
-        if(enemyData.MovementVector.y != 0)
+        //if(enemyData.MovementVector.y != 0)
+        //{
+            
+        //}
+
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y) + 1) : MovementLimit.y = enemyData.MovementVector.y;
+
+        InitialPosition = transform.position;
+        if (JitterY)
         {
-            var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y) + 1) : MovementLimit.y = enemyData.MovementVector.y;
-
-            InitialPosition = transform.position;
-            //if(JitterY)
-            //{
-            //    TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex);
-            //}
-            //else
-            //{
-            //    TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0); 
-            //    JitterIndex = GetYAxisLimitIndex(MovementLimit);
-            //}
-            var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0); JitterIndex = GetYAxisLimitIndex(MovementLimit);
-            print(JitterIndex);
-
-            while (!IsTileAviable(TargetPosition))
-            {
-                switch (JitterIndex)
-                {
-                    case 0:
-                        TargetPosition -= Vector3.up;
-                        break;
-                    case 1:
-                        TargetPosition += Vector3.up;
-                        break;
-                    default:
-                        TargetPosition -= Vector3.up;
-                        break;
-                }
-            }
-
-            TimeElapsed = 0f;
-            while (TimeElapsed < MovementDuration)
-            {
-                transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementCurve.Evaluate(TimeElapsed / MovementDuration));
-                TimeElapsed += Time.deltaTime;
-                yield return null;
-            }
-            transform.position = TargetPosition;
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex);
         }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+            JitterIndex = GetYAxisLimitIndex(MovementLimit);
+        }
+        //var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0); //JitterIndex = GetYAxisLimitIndex(MovementLimit);
+
+        while (!IsTileAviable(TargetPosition))
+        {
+            switch (JitterIndex)
+            {
+                case 0:
+                    TargetPosition -= Vector3.up;
+                    break;
+                case 1:
+                    TargetPosition += Vector3.up;
+                    break;
+                default:
+                    TargetPosition -= Vector3.up;
+                    break;
+            }
+        }
+
+        TimeElapsed = 0f;
+        while (TimeElapsed < MovementDuration)
+        {
+            transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementCurve.Evaluate(TimeElapsed / MovementDuration));
+            TimeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = TargetPosition;
 
         animator.SetBool("IsMoving", false);
     }
@@ -246,6 +247,33 @@ public class Base_Enemy : MonoBehaviour
     bool IsTileAviable(Vector2 TargetPos)
     {
         return Physics2D.OverlapCircle(TargetPos, 0.15f);
+        //if (Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent(out GridTile tile))
+        //{
+        //    if (tile.enemy == null)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+    }
+
+    bool ChechkForEnemy(Vector2 TargetPos)
+    {
+        if (Physics2D.OverlapCircle(TargetPos, 0.15f).CompareTag("Enemy"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     int GetYAxisLimitIndex(Vector3 Vector)
