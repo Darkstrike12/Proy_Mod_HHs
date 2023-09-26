@@ -14,7 +14,7 @@ PrefabInstance:
     - target: {fileID: 8014547067184715244, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1599650784, guid: e4c19fc97b3379f44ba954842bd20350, type: 3}
+      objectReference: {fileID: 523285390, guid: e4c19fc97b3379f44ba954842bd20350, type: 3}
     - target: {fileID: 8014547067184715244, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -28,6 +28,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715244, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715244, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7ab67ca8a7f9e5e4b9cf37f5b9075d0f, type: 2}
@@ -37,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92,16 +96,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: idleBH
+      value: 
+      objectReference: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: JitterY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: movingBH
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ba16dbb23bf33843bef3f98089cf4e4, type: 2}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 355d5ca0f5d479741afbd5ebc709b6e4, type: 2}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: alterStateBH
+      value: 
+      objectReference: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementAnimationCurve.m_Curve.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurve.m_Curve.Array.data[0].inSlope
@@ -110,6 +130,34 @@ PrefabInstance:
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurve.m_Curve.Array.data[0].outSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementAnimationCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementAnimationCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementAnimationCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementAnimationCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715250, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: ff7a1e8b62d267f4192c0c4233f06c83, type: 2}
+    - target: {fileID: 8014547067184715251, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715251, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
@@ -126,7 +174,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7076135802495003942}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

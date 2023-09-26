@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/New Weapon")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Weapon/Data/New Basic Weapon")]
 public class WeaponData : ScriptableObject
 {
     [Header("WeaponPrefab")]

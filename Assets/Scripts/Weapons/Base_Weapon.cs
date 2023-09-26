@@ -15,25 +15,38 @@ public class Base_Weapon : MonoBehaviour
     public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] bool UseSpecialEffect;
 
+
+    //Internal Referemces
+    Rigidbody2D rb;
+
     private void Start()
     {
-        //eventManager = new EventManager();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if(collision.gameObject.tag == "Enemy")
-        //{
-        //    collision.gameObject.GetComponent<Base_Enemy>().TakeDamage(this);
-        //    if (UseSpecialEffect) WeaponSpecialEffect(collision.gameObject.GetComponent<Base_Enemy>());
-        //}
-
+        
         if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         {
+            Destroy(gameObject);
+            //rb.velocity = Vector3.zero;
             Enem.TakeDamage(this);
             if (UseSpecialEffect) WeaponSpecialEffect(Enem);
         }
-        Destroy(gameObject);
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
+        {
+            Destroy(gameObject);
+            //rb.velocity = Vector3.zero;
+            Enem.TakeDamage(this);
+            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+        }
     }
 
     public virtual void WeaponSpecialEffect(Base_Enemy enemy)

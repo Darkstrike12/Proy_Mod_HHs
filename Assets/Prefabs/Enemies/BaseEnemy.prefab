@@ -107,30 +107,33 @@ MonoBehaviour:
   RandomMoveInY: 0
   MovementDuration: 2
   JitterY: 0
-  MovementCurve:
+  MovementAnimationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  idleBH: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
+  movingBH: {fileID: 11400000, guid: 9ba16dbb23bf33843bef3f98089cf4e4, type: 2}
+  alterStateBH: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
 --- !u!95 &8014547067184715250
 Animator:
   serializedVersion: 5
@@ -175,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &8607919538509705208
 Rigidbody2D:
