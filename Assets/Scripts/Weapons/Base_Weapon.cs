@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,26 +27,36 @@ public class Base_Weapon : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
-        {
-            Destroy(gameObject);
-            //rb.velocity = Vector3.zero;
-            Enem.TakeDamage(this);
-            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-        }
-        
+        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
+        //{
+        //    Destroy(gameObject);
+        //    //rb.velocity = Vector3.zero;
+        //    Enem.TakeDamage(this);
+        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
+        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
+        //{
+        //    Destroy(gameObject);
+        //    //rb.velocity = Vector3.zero;
+        //    Enem.TakeDamage(this);
+        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+        //}
+
+        if(collision.gameObject.TryGetComponent(out GridTile Tile))
         {
-            Destroy(gameObject);
-            //rb.velocity = Vector3.zero;
-            Enem.TakeDamage(this);
-            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+            if(Tile.enemy != null)
+            {
+                Base_Enemy Enemy = Tile.enemy;
+
+                print("Enemy Hit");
+                Enemy.TakeDamage(this);
+                if (UseSpecialEffect) WeaponSpecialEffect(Enemy);
+                Destroy(gameObject);
+            }
         }
     }
 

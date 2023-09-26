@@ -20,13 +20,28 @@ public class GridTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Base_Enemy enem))
+        if (collision.gameObject.TryGetComponent(out Base_Enemy enem))
         {
             enemy = enem;
+            //print("Enter Trigeer");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
+    {
+        enemy = null;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Base_Enemy enem))
+        {
+            enemy = enem;
+            print("Enter Coliision");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
         enemy = null;
     }

@@ -164,7 +164,8 @@ public class Base_Enemy : MonoBehaviour
 
         if (Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent(out GridTile tile))
         {
-            if (tile.enemy == null)
+            Base_Enemy enem = tile.enemy;
+            if (enem == null)
             {
                 return true;
             }

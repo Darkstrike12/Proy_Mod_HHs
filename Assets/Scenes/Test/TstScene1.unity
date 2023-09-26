@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826880635891160880, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_BodyType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8826880635891160880, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_Constraints
