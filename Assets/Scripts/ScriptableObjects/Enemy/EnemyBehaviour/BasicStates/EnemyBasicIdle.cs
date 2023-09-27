@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyBaicIdle", menuName = "Scriptable Objects/Enemy/Enemy State Behaviour/Idle/BasicIdle")]
+[CreateAssetMenu(fileName = "EnemyBasicIdle", menuName = "Scriptable Objects/Enemy/Enemy State Behaviour/Idle/BasicIdle")]
 public class EnemyBasicIdle : EnemyIdleBH
 {
     public override void OnIdleEnter()

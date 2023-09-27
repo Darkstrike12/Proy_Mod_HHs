@@ -645,11 +645,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbedf0b760c9c048874bbad28de672e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 8
-  TilePrefab: {fileID: 7648982263252676601, guid: b0ab9d13dc24cc44eb962db18f1d0631, type: 3}
-  FinishTilePrefab: {fileID: 4217847476786919980, guid: a7e8d66d865b1bb439522ef21958fb72, type: 3}
-  grid: {fileID: 0}
+  width: 16
+  height: 6
+  GridTilePF: {fileID: 7648982263252676601, guid: b0ab9d13dc24cc44eb962db18f1d0631, type: 3}
+  FinishTilePF: {fileID: 4217847476786919980, guid: a7e8d66d865b1bb439522ef21958fb72, type: 3}
+  EnemySpawnTilePF: {fileID: 989306319765649563, guid: f4fb812f712e82c488f9b2b9d1a06825, type: 3}
+  BarrierTilePF: {fileID: 4899679219037525856, guid: 6f6467a98851cb54c925be19f59346c2, type: 3}
+  Player: {fileID: 971190803}
 --- !u!1 &1496385839
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,11 +845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 6.59
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.47
+      value: 3.49
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -885,21 +887,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_1 Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7076135802495003942, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: grid
       value: 
       objectReference: {fileID: 1408618464}
+    - target: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+      propertyPath: JitterX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+      propertyPath: takeDamageBH
+      value: 
+      objectReference: {fileID: 11400000, guid: 40becd817e3740e4997bc519ca29545d, type: 2}
+    - target: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+      propertyPath: MovementDuration.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003963, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_IsTrigger
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8826880635891160880, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8826880635891160880, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
-      propertyPath: m_Constraints
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}

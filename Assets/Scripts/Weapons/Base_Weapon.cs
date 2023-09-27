@@ -13,7 +13,7 @@ public class Base_Weapon : MonoBehaviour
 
     [Header("Weapon Behaviour Variables")]
     [SerializeField] bool IsInstantKill;
-    public bool isInstaKill { get { return IsInstantKill; } }
+    //public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] bool UseSpecialEffect;
 
 
@@ -29,35 +29,33 @@ public class Base_Weapon : MonoBehaviour
     {
         //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         //{
-        //    Destroy(gameObject);
-        //    //rb.velocity = Vector3.zero;
-        //    Enem.TakeDamage(this);
+        //    Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
         //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+        //    Destroy(gameObject);
         //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
-        //{
-        //    Destroy(gameObject);
-        //    //rb.velocity = Vector3.zero;
-        //    Enem.TakeDamage(this);
-        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-        //}
-
-        if(collision.gameObject.TryGetComponent(out GridTile Tile))
+        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         {
-            if(Tile.enemy != null)
-            {
-                Base_Enemy Enemy = Tile.enemy;
-
-                print("Enemy Hit");
-                Enemy.TakeDamage(this);
-                if (UseSpecialEffect) WeaponSpecialEffect(Enemy);
-                Destroy(gameObject);
-            }
+            Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
+            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+            Destroy(gameObject);
         }
+
+        //if (collision.gameObject.TryGetComponent(out GridTile Tile))
+        //{
+        //    if (Tile.enemy != null)
+        //    {
+        //        Base_Enemy Enemy = Tile.enemy;
+
+        //        print("Enemy Hit");
+        //        Enemy.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
+        //        if (UseSpecialEffect) WeaponSpecialEffect(Enemy);
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 
     public virtual void WeaponSpecialEffect(Base_Enemy enemy)

@@ -6,19 +6,17 @@ public class GridTile : MonoBehaviour
 {
     public Base_Enemy enemy;
 
-    // Start is called before the first frame update
     void Start()
     {
         enemy = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void GetEnemy(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Base_Enemy enem))
         {
@@ -27,9 +25,31 @@ public class GridTile : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected bool IsEnemyOnTile(Collider2D collision)
+    {
+        if(collision.TryGetComponent(out Base_Enemy enemy))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected void ClearEnemy()
     {
         enemy = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GetEnemy(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ClearEnemy();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

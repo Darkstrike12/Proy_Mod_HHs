@@ -2,33 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Grid))]
 public class GridManager : MonoBehaviour
 {
     [SerializeField] int width, height;
-    [SerializeField] GameObject TilePrefab;
-    [SerializeField] GameObject FinishTilePrefab;
-    [SerializeField] Grid grid;
+
+    [Header("Tiles")]
+    [SerializeField] GameObject GridTilePF;
+    [SerializeField] GameObject FinishTilePF;
+    [SerializeField] GameObject EnemySpawnTilePF;
+    [SerializeField] GameObject BarrierTilePF;
+
+    [Header("External")]
+    [SerializeField] Transform Player;
+
+    Grid grid;
 
     private void Start()
     {
         grid = GetComponent<Grid>();
         GenerateGrid();
+        Player.position = new Vector3(transform.position.x - 1, height/2);
     }
 
     void GenerateGrid()
     {
         for (int x = 0; x < width; x++)
         {
-            for(int y = 0; y < height; y++)
-            {
-                var SpawnedTile = Instantiate(TilePrefab, grid.transform.position + (grid.cellSize / 2) +  new Vector3(x,y,0), Quaternion.identity);
-                SpawnedTile.name = $"Tile {x} {y}";
-                SpawnedTile.transform.parent = transform;
+            SpawnTile(BarrierTilePF, new Vector3(x, height, 0));
 
-                var FinihSpawnedTile = Instantiate(FinishTilePrefab, grid.transform.position + (grid.cellSize / 2) + new Vector3(0, y, 0) - Vector3.right, Quaternion.identity);
-                FinihSpawnedTile.name = $"Finish Tile {x}";
-                FinihSpawnedTile.transform.parent = transform;
+            SpawnTile(BarrierTilePF, new Vector3(x, -1, 0));
+
+            for (int y = 0; y < height; y++)
+            {
+                SpawnTile(GridTilePF, new Vector3(x, y, 0));
+
+                SpawnTile(FinishTilePF, new Vector3(-1, y, 0));
+
+                SpawnTile(EnemySpawnTilePF, new Vector3(width, y, 0));
             }
+
         }
+    }
+
+    void SpawnTile(GameObject TilePrefab, Vector3 SpawnPosition)
+    {
+        var SpawnedTile = Instantiate(TilePrefab, grid.transform.position + (grid.cellSize / 2) + SpawnPosition, Quaternion.identity);
+        SpawnedTile.transform.parent = transform;
+        SpawnedTile.name = $"{SpawnedTile.name} : {SpawnPosition.x}, {SpawnPosition.y}";
     }
 }
