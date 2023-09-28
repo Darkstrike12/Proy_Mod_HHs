@@ -27,22 +27,22 @@ public class Base_Weapon : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
-        //{
-        //    Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
-        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-        //    Destroy(gameObject);
-        //}
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         {
             Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
             if (UseSpecialEffect) WeaponSpecialEffect(Enem);
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
+        //{
+        //    Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
+        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+        //    Destroy(gameObject);
+        //}
 
         //if (collision.gameObject.TryGetComponent(out GridTile Tile))
         //{

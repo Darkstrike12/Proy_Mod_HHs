@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Base_Enemy : MonoBehaviour
@@ -14,6 +12,8 @@ public class Base_Enemy : MonoBehaviour
     [Header("External References")]
     [SerializeField] Grid grid;
     public Grid Grid { get => grid ; set => grid = value; }
+
+    #region Behavior Variables
 
     [Header("Behaviour Variables")]
     [SerializeField] public bool AllowDamage;
@@ -29,6 +29,10 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] AnimationCurve MovementAnimationCurveX;
     [SerializeField] AnimationCurve MovementAnimationCurveY;
 
+    #endregion
+
+    #region States Behaviour
+
     [Header("States Behaviour")]
     [SerializeField] EnemyIdleBH idleBH;
     public EnemyIdleBH IdleBH { get => idleBH; }
@@ -42,8 +46,10 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] EnemyTakeDamageBH takeDamageBH;
     public EnemyTakeDamageBH TakeDamageBH { get => takeDamageBH;}
 
-    [SerializeField] EnemyDeathBH deathBH;
-    public EnemyDeathBH DeathBH { get => deathBH;}
+    //[SerializeField] EnemyDeathBH deathBH;
+    //public EnemyDeathBH DeathBH { get => deathBH;}
+
+    #endregion
 
     //Internal Variables
     int CurrentHitPoints;
@@ -108,7 +114,7 @@ public class Base_Enemy : MonoBehaviour
 
     #region JitterAxys
 
-    protected virtual Vector3Int JitterYAxis(Vector3Int MovementVector, out int JitterIndex)
+    protected virtual Vector3Int JitterYAxis(Vector3Int MovementVector)
     {
         int JitterAxis;
         Vector3Int JitterVector;
@@ -126,12 +132,11 @@ public class Base_Enemy : MonoBehaviour
                 JitterVector = MovementVector;
                 break;
         }
-        JitterIndex = JitterAxis;
 
         return JitterVector;
     }
 
-    protected virtual Vector3Int JitterXAxis(Vector3Int MovementVector, out int JitterIndex)
+    protected virtual Vector3Int JitterXAxis(Vector3Int MovementVector)
     {
         int JitterAxis;
         Vector3Int JitterVector;
@@ -149,7 +154,6 @@ public class Base_Enemy : MonoBehaviour
                 JitterVector = MovementVector;
                 break;
         }
-        JitterIndex = JitterAxis;
 
         return JitterVector;
     }
@@ -170,9 +174,21 @@ public class Base_Enemy : MonoBehaviour
         return AxysLimiterIndex;
     }
 
-    protected virtual bool IsTileAviable(Vector2 TargetPos)
+    protected virtual bool IsTileAviable(Vector3 TargetPos)
     {
         return !Physics2D.OverlapCircle(TargetPos, 0.15f);
+
+        //return Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized);
+        //Gizmos.DrawSphere(TargetPos, 0.15f);
+        //if (Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized))
+        //{
+        //    print(Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized));
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
 
         //if (Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent(out GridTile tile))
         //{
@@ -190,6 +206,28 @@ public class Base_Enemy : MonoBehaviour
         //{
         //    return false;
         //}
+
+        //Vector3 CurrentPos = InitialPos;
+
+        //switch(AxysIndex)
+        //{
+        //    case 0:
+        //        while(CurrentPos.x <= TargetPos.x)
+        //        {
+        //            CurrentPos += Vector3.right;
+        //            return !Physics2D.OverlapCircle(CurrentPos, 0.15f);
+        //        }
+        //        break;
+        //    case 1:
+        //        while (CurrentPos.y <= TargetPos.y)
+        //        {
+        //            CurrentPos += Vector3.up;
+        //            return !Physics2D.OverlapCircle(CurrentPos, 0.15f);
+        //        }
+        //        break;
+        //}
+        //return false;
+
     }
 
     public virtual IEnumerator MoveEnemy(float MovementTime)
@@ -199,6 +237,8 @@ public class Base_Enemy : MonoBehaviour
 
         Vector3 InitialPosition;
         Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
         float TimeElapsed;
         int JitterIndex = 0;
 
@@ -209,7 +249,7 @@ public class Base_Enemy : MonoBehaviour
         InitialPosition = transform.position;
         if (JitterX)
         {
-            TargetPosition = InitialPosition + JitterXAxis(MovementLimit, out JitterIndex);
+            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
         }
         else
         {
@@ -217,22 +257,36 @@ public class Base_Enemy : MonoBehaviour
             //JitterIndex = GetAxisLimitIndex(MovementLimit.x);
         }
 
-        while (!IsTileAviable(TargetPosition))
+        //UnityEngine.Debug.DrawRay(InitialPosition, TargetPosition * 5f, Color.green);
+
+        //while (!IsTileAviable(InitialPosition, TargetPosition))
+        //{
+        //    switch (JitterIndex)
+        //    {
+        //        case 0:
+        //            TargetPosition -= Vector3.right;
+        //            break;
+        //        case 1:
+        //            TargetPosition += Vector3.right;
+        //            break;
+        //        default:
+        //            TargetPosition -= Vector3.right;
+        //            break;
+        //    }
+        //}
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
         {
-            
-            switch(JitterIndex)
-            {
-                case 0:
-                    TargetPosition -= Vector3.right;
-                    break;
-                case 1:
-                    TargetPosition += Vector3.right;
-                    break;
-                default:
-                    TargetPosition -= Vector3.right;
-                    break;
-            }
+            CurrentPos += MovementDirection;
         }
+        while (!IsTileAviable(CurrentPos))
+        {
+            CurrentPos -= MovementDirection;
+        }
+
+        TargetPosition = CurrentPos;
 
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration.x)
@@ -252,7 +306,7 @@ public class Base_Enemy : MonoBehaviour
         InitialPosition = transform.position;
         if (JitterY)
         {
-            TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex);
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
         }
         else
         {
@@ -260,24 +314,38 @@ public class Base_Enemy : MonoBehaviour
             JitterIndex = GetAxisLimitIndex(MovementLimit.y);
         }
         //var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0); //JitterIndex = GetYAxisLimitIndex(MovementLimit);
-        
+
         //print(IsTileAviable(TargetPosition));
-        while (!IsTileAviable(TargetPosition))
+        //while (!IsTileAviable(TargetPosition))
+        //{
+        //    switch (JitterIndex)
+        //    {
+        //        case 0:
+        //            TargetPosition -= Vector3.up;
+        //            break;
+        //        case 1:
+        //            TargetPosition += Vector3.up;
+        //            break;
+        //        default:
+        //            TargetPosition -= Vector3.up;
+        //            break;
+        //    }
+        //    //print(IsTileAviable(TargetPosition));
+        //}
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        print(MovementDirection);
+        CurrentPos = InitialPosition + MovementDirection;
+        while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
         {
-            switch (JitterIndex)
-            {
-                case 0:
-                    TargetPosition -= Vector3.up;
-                    break;
-                case 1:
-                    TargetPosition += Vector3.up;
-                    break;
-                default:
-                    TargetPosition -= Vector3.up;
-                    break;
-            }
-            //print(IsTileAviable(TargetPosition));
+            CurrentPos += MovementDirection;
         }
+        while (!IsTileAviable(CurrentPos))
+        {
+            CurrentPos -= MovementDirection;
+        }
+
+        TargetPosition = CurrentPos;
 
         TimeElapsed = 0f;
         while (TimeElapsed < MovementDuration.y)
