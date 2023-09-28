@@ -31,8 +31,8 @@ public class Base_Weapon : MonoBehaviour
         {
             Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
             if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

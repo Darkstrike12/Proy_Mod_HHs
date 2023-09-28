@@ -244,7 +244,7 @@ public class Base_Enemy : MonoBehaviour
 
         #region Movement In X
 
-        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x) + 1) : MovementLimit.x = enemyData.MovementVector.x;
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
 
         InitialPosition = transform.position;
         if (JitterX)
@@ -301,7 +301,7 @@ public class Base_Enemy : MonoBehaviour
 
         #region Movement In Y
 
-        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y) + 1) : MovementLimit.y = enemyData.MovementVector.y;
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
 
         InitialPosition = transform.position;
         if (JitterY)
