@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7648982263252676598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GridTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7648982264665000023}
   - component: {fileID: 7648982264665000020}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TileBase
   m_TagString: GridTile
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7648982264738973804}
   - component: {fileID: 7648982264738973805}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TileTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

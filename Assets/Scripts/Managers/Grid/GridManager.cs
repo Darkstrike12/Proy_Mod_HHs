@@ -15,14 +15,28 @@ public class GridManager : MonoBehaviour
 
     [Header("External")]
     [SerializeField] Transform Player;
+    [SerializeField] Transform EnemySpawner;
 
-    Grid grid;
+    //Internal
+    Grid gridCompnent;
 
     private void Start()
     {
-        grid = GetComponent<Grid>();
+        gridCompnent = GetComponent<Grid>();
         GenerateGrid();
+
         Player.position = new Vector3(transform.position.x - 1, height/2);
+        EnemySpawner.position = new Vector3(width, height - 1) + (gridCompnent.cellSize / 2);
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return new Vector2Int(width, height);
+    }
+
+    public Vector3 GridCellCenter()
+    {
+        return Vector3.zero + (gridCompnent.cellSize / 2);
     }
 
     void GenerateGrid()
@@ -47,7 +61,7 @@ public class GridManager : MonoBehaviour
 
     void SpawnTile(GameObject TilePrefab, Vector3 SpawnPosition)
     {
-        var SpawnedTile = Instantiate(TilePrefab, grid.transform.position + (grid.cellSize / 2) + SpawnPosition, Quaternion.identity);
+        var SpawnedTile = Instantiate(TilePrefab, gridCompnent.transform.position + (gridCompnent.cellSize / 2) + SpawnPosition, Quaternion.identity);
         SpawnedTile.transform.parent = transform;
         SpawnedTile.name = $"{SpawnedTile.name} : {SpawnPosition.x}, {SpawnPosition.y}";
     }

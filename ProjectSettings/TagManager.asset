@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - GridTile
   - GameGrid
+  - ExitTile
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
-  - 
-  - 
+  - ColliderGrid
+  - NoColliderGrid
+  - Weapons
   - 
   - 
   - 

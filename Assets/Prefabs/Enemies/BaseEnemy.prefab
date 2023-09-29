@@ -102,7 +102,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 0}
   grid: {fileID: 0}
-  AllowDamage: 0
+  DetectedLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  AllowDamage: 1
   RandomMoveInX: 0
   RandomMoveInY: 0
   MovementDuration: {x: 1, y: 1}
@@ -159,6 +162,7 @@ MonoBehaviour:
   idleBH: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
   movingBH: {fileID: 11400000, guid: 9ba16dbb23bf33843bef3f98089cf4e4, type: 2}
   alterStateBH: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
+  takeDamageBH: {fileID: 11400000, guid: 40becd817e3740e4997bc519ca29545d, type: 2}
 --- !u!95 &8014547067184715250
 Animator:
   serializedVersion: 5

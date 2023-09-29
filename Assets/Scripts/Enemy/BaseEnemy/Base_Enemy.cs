@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class Base_Enemy : MonoBehaviour
 
     [Header("External References")]
     [SerializeField] Grid grid;
-    public Grid Grid { get => grid ; set => grid = value; }
+    public Grid Grid { get => grid; set => grid = value; }
+    [SerializeField] LayerMask DetectedLayers;
 
     #region Behavior Variables
 
@@ -38,13 +40,13 @@ public class Base_Enemy : MonoBehaviour
     public EnemyIdleBH IdleBH { get => idleBH; }
 
     [SerializeField] EnemyMovingBH movingBH;
-    public EnemyMovingBH MovingBH { get => movingBH;}
+    public EnemyMovingBH MovingBH { get => movingBH; }
 
     [SerializeField] EnemyAlterStateBH alterStateBH;
     public EnemyAlterStateBH AlterStateBH { get => alterStateBH; }
 
     [SerializeField] EnemyTakeDamageBH takeDamageBH;
-    public EnemyTakeDamageBH TakeDamageBH { get => takeDamageBH;}
+    public EnemyTakeDamageBH TakeDamageBH { get => takeDamageBH; }
 
     //[SerializeField] EnemyDeathBH deathBH;
     //public EnemyDeathBH DeathBH { get => deathBH;}
@@ -56,7 +58,8 @@ public class Base_Enemy : MonoBehaviour
     Vector3Int MovementLimit;
 
     //Internal References
-    Animator animator;
+    Animator enemAnimator;
+    public Animator GetAnimator() { return enemAnimator; }
 
     private void Start()
     {
@@ -65,7 +68,7 @@ public class Base_Enemy : MonoBehaviour
         alterStateBH.Initialize(this);
         takeDamageBH.Initialize(this);
 
-        animator = GetComponent<Animator>();
+        enemAnimator = GetComponent<Animator>();
 
         CurrentHitPoints = enemyData.MaxHitPoints;
         transform.position = grid.WorldToCell(transform.position) + (grid.cellSize / 2);
@@ -94,17 +97,20 @@ public class Base_Enemy : MonoBehaviour
 
     public void TakeDamage(int DamageTaken, bool IsInstantKill)
     {
-        animator.SetTrigger("TookDamage");
-        CurrentHitPoints -= DamageTaken;
-        if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
-
+        if (AllowDamage)
+        {
+            enemAnimator.SetTrigger("TookDamage");
+            CurrentHitPoints -= DamageTaken;
+            if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
+        }
+        
         //var damage = weapon.weaponDataSO.AffectedEnemyMaterials.Intersect(EnemyMaterial);
     }
 
     public virtual void EnemyDefeated()
     {
-        animator.SetTrigger("IsDefeated");
         StopAllCoroutines();
+        enemAnimator.SetTrigger("IsDefeated");
         Destroy(gameObject);
     }
 
@@ -176,71 +182,42 @@ public class Base_Enemy : MonoBehaviour
 
     protected virtual bool IsTileAviable(Vector3 TargetPos)
     {
-        return !Physics2D.OverlapCircle(TargetPos, 0.15f);
+        return !Physics2D.OverlapCircle(TargetPos, 0.15f, DetectedLayers);
 
-        //return Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized);
-        //Gizmos.DrawSphere(TargetPos, 0.15f);
-        //if (Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized))
+        //List<Collider2D> colliders = new List<Collider2D>();
+        //Physics2D.OverlapCircle(TargetPos, 0.15f, contactFilter2D, colliders);
+        //if (colliders.Count > 0)
         //{
-        //    print(Physics2D.Raycast(InitialPos, (TargetPos - InitialPos).normalized));
         //    return true;
         //}
         //else
         //{
+        //    colliders.Clear();
         //    return false;
         //}
 
-        //if (Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent(out GridTile tile))
+        //Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent<ExitTile>(out ExitTile exitTile);
+        //if (exitTile != null)
         //{
-        //    Base_Enemy enem = tile.enemy;
-        //    if (enem == null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
+        //    return true;
         //}
-        //else
+        //else if (Physics2D.OverlapCircle(TargetPos, 0.15f))
         //{
         //    return false;
         //}
-
-        //Vector3 CurrentPos = InitialPos;
-
-        //switch(AxysIndex)
-        //{
-        //    case 0:
-        //        while(CurrentPos.x <= TargetPos.x)
-        //        {
-        //            CurrentPos += Vector3.right;
-        //            return !Physics2D.OverlapCircle(CurrentPos, 0.15f);
-        //        }
-        //        break;
-        //    case 1:
-        //        while (CurrentPos.y <= TargetPos.y)
-        //        {
-        //            CurrentPos += Vector3.up;
-        //            return !Physics2D.OverlapCircle(CurrentPos, 0.15f);
-        //        }
-        //        break;
-        //}
-        //return false;
-
+        //else { return true; }
     }
 
     public virtual IEnumerator MoveEnemy(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
-        animator.SetBool("IsMoving", true);
+        enemAnimator.SetBool("IsMoving", true);
 
         Vector3 InitialPosition;
         Vector3 TargetPosition;
         Vector3 MovementDirection;
         Vector3 CurrentPos;
         float TimeElapsed;
-        int JitterIndex = 0;
 
         #region Movement In X
 
@@ -254,38 +231,45 @@ public class Base_Enemy : MonoBehaviour
         else
         {
             TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
-            //JitterIndex = GetAxisLimitIndex(MovementLimit.x);
         }
-
-        //UnityEngine.Debug.DrawRay(InitialPosition, TargetPosition * 5f, Color.green);
-
-        //while (!IsTileAviable(InitialPosition, TargetPosition))
-        //{
-        //    switch (JitterIndex)
-        //    {
-        //        case 0:
-        //            TargetPosition -= Vector3.right;
-        //            break;
-        //        case 1:
-        //            TargetPosition += Vector3.right;
-        //            break;
-        //        default:
-        //            TargetPosition -= Vector3.right;
-        //            break;
-        //    }
-        //}
 
         MovementDirection = (TargetPosition - InitialPosition).normalized;
         CurrentPos = InitialPosition + MovementDirection;
-        while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+        switch (MovementDirection.x)
         {
-            CurrentPos += MovementDirection;
-        }
-        while (!IsTileAviable(CurrentPos))
-        {
-            CurrentPos -= MovementDirection;
-        }
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
         TargetPosition = CurrentPos;
 
         TimeElapsed = 0f;
@@ -311,40 +295,45 @@ public class Base_Enemy : MonoBehaviour
         else
         {
             TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
-            JitterIndex = GetAxisLimitIndex(MovementLimit.y);
         }
-        //var UseJitterY = JitterY ? TargetPosition = InitialPosition + JitterYAxis(MovementLimit, out JitterIndex) : TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0); //JitterIndex = GetYAxisLimitIndex(MovementLimit);
-
-        //print(IsTileAviable(TargetPosition));
-        //while (!IsTileAviable(TargetPosition))
-        //{
-        //    switch (JitterIndex)
-        //    {
-        //        case 0:
-        //            TargetPosition -= Vector3.up;
-        //            break;
-        //        case 1:
-        //            TargetPosition += Vector3.up;
-        //            break;
-        //        default:
-        //            TargetPosition -= Vector3.up;
-        //            break;
-        //    }
-        //    //print(IsTileAviable(TargetPosition));
-        //}
 
         MovementDirection = (TargetPosition - InitialPosition).normalized;
-        print(MovementDirection);
         CurrentPos = InitialPosition + MovementDirection;
-        while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+        switch (MovementDirection.y)
         {
-            CurrentPos += MovementDirection;
-        }
-        while (!IsTileAviable(CurrentPos))
-        {
-            CurrentPos -= MovementDirection;
-        }
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
         TargetPosition = CurrentPos;
 
         TimeElapsed = 0f;
@@ -358,19 +347,12 @@ public class Base_Enemy : MonoBehaviour
 
         #endregion
 
-        animator.SetBool("IsMoving", false);
+        enemAnimator.SetBool("IsMoving", false);
     }
 
-    bool ChechkForEnemy(Vector2 TargetPos)
+    public virtual IEnumerator OverrideMoveEnemy()
     {
-        if (Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent(out Base_Enemy enem))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        yield return null;
     }
 
     #endregion

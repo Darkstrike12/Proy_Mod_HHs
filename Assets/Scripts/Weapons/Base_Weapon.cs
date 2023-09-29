@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 public class Base_Weapon : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Base_Weapon : MonoBehaviour
     [SerializeField] bool IsInstantKill;
     //public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] bool UseSpecialEffect;
+    [SerializeField] float DestroyDelay;
 
 
     //Internal Referemces
@@ -31,8 +31,13 @@ public class Base_Weapon : MonoBehaviour
         {
             Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
             if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject, DestroyDelay);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

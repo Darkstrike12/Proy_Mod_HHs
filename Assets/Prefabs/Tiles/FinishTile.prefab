@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7379243041225259145}
   - component: {fileID: 4267431148735224978}
   - component: {fileID: 3525252254439284966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FinishTile
   m_TagString: GridTile
   m_Icon: {fileID: 0}
@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  DestryDelay: 1
+  DestryDelay: 0.4

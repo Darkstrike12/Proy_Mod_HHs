@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4745441711970642372}
   - component: {fileID: 6949320809933992960}
   - component: {fileID: 6449742233059021632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemySpawnTile
   m_TagString: GridTile
   m_Icon: {fileID: 0}

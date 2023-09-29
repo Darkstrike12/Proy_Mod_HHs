@@ -41,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 6.52
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.47
+      value: 5.45
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8014547067184715246, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Name
-      value: Enemy_1 Variant
+      value: Enemy_1 Variant (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715246, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Layer
@@ -112,6 +112,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 355d5ca0f5d479741afbd5ebc709b6e4, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: AllowDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: alterStateBH
       value: 
       objectReference: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
@@ -121,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.y

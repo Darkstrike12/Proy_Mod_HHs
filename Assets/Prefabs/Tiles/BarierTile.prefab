@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4899679219037525869}
   - component: {fileID: 4899679219037525858}
   - component: {fileID: 4899679219037525859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BarierTile
   m_TagString: GridTile
   m_Icon: {fileID: 0}

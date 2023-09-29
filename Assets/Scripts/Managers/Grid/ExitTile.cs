@@ -8,7 +8,7 @@ public class ExitTile : GridTile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(IsEnemyOnTile(collision))
+        if(IsEnemyOnTile(collision, out Base_Enemy enemy))
         {
             Destroy(collision.gameObject, DestryDelay);
         }

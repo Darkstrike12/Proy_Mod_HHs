@@ -8,6 +8,7 @@ public class EnemyBasicTakeDamage : EnemyTakeDamageBH
     public override void OnTakeDamageEnter()
     {
         Enemy.StopAllCoroutines();
+        Enemy.GetAnimator().SetBool("IsMoving", false);
         Enemy.transform.position = Enemy.Grid.WorldToCell(Enemy.transform.position) + (Enemy.Grid.cellSize / 2);
     }
 }

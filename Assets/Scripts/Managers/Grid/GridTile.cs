@@ -25,14 +25,16 @@ public class GridTile : MonoBehaviour
         }
     }
 
-    protected bool IsEnemyOnTile(Collider2D collision)
+    protected bool IsEnemyOnTile(Collider2D collision, out Base_Enemy Enem)
     {
         if(collision.TryGetComponent(out Base_Enemy enemy))
         {
+            Enem = enemy;
             return true;
         }
         else
         {
+            Enem = null;  
             return false;
         }
     }
