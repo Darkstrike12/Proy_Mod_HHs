@@ -59,14 +59,23 @@ public class Base_Enemy : MonoBehaviour
 
     //Internal References
     Animator enemAnimator;
-    public Animator GetAnimator() { return enemAnimator; }
+    public Animator EnemAnimator { get => enemAnimator; }
 
-    private void Start()
+    private void Awake()
     {
         idleBH.Initialize(this);
         movingBH.Initialize(this);
         alterStateBH.Initialize(this);
         takeDamageBH.Initialize(this);
+
+    }
+
+    private void Start()
+    {
+        //idleBH.Initialize(this);
+        //movingBH.Initialize(this);
+        //alterStateBH.Initialize(this);
+        //takeDamageBH.Initialize(this);
 
         enemAnimator = GetComponent<Animator>();
 
@@ -79,12 +88,19 @@ public class Base_Enemy : MonoBehaviour
 
     }
 
+    #region Intialize
+
     //Constructor
-    //public Base_Enemy(Grid gridRef, EnemyData enemyDataRef)
-    //{
-    //    grid = gridRef;
-    //    enemyData = enemyDataRef;
-    //}
+    public Base_Enemy(Grid gridRef, EnemyData enemyDataRef)
+    {
+        grid = gridRef;
+        enemyData = enemyDataRef;
+    }
+
+    public Base_Enemy(Grid gridRef)
+    {
+        grid = gridRef;
+    }
 
     //Init
     public void InitEnemy(Grid gridRef, EnemyData enemyDataRef)
@@ -92,6 +108,13 @@ public class Base_Enemy : MonoBehaviour
         grid = gridRef;
         enemyData = enemyDataRef;
     }
+
+    public void InitEnemy(Grid gridRef)
+    {
+        grid = gridRef;
+    }
+
+    #endregion
 
     #region Enemy Damage Calculation
 
@@ -166,46 +189,23 @@ public class Base_Enemy : MonoBehaviour
 
     #endregion
 
-    protected int GetAxisLimitIndex(float VectorAxys)
-    {
-        int AxysLimiterIndex;
-        if (VectorAxys > 0)
-        {
-            AxysLimiterIndex = 0;
-        }
-        else
-        {
-            AxysLimiterIndex = 1;
-        }
-        return AxysLimiterIndex;
-    }
+    //protected int GetAxisLimitIndex(float VectorAxys)
+    //{
+    //    int AxysLimiterIndex;
+    //    if (VectorAxys > 0)
+    //    {
+    //        AxysLimiterIndex = 0;
+    //    }
+    //    else
+    //    {
+    //        AxysLimiterIndex = 1;
+    //    }
+    //    return AxysLimiterIndex;
+    //}
 
     protected virtual bool IsTileAviable(Vector3 TargetPos)
     {
         return !Physics2D.OverlapCircle(TargetPos, 0.15f, DetectedLayers);
-
-        //List<Collider2D> colliders = new List<Collider2D>();
-        //Physics2D.OverlapCircle(TargetPos, 0.15f, contactFilter2D, colliders);
-        //if (colliders.Count > 0)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        //    colliders.Clear();
-        //    return false;
-        //}
-
-        //Physics2D.OverlapCircle(TargetPos, 0.15f).TryGetComponent<ExitTile>(out ExitTile exitTile);
-        //if (exitTile != null)
-        //{
-        //    return true;
-        //}
-        //else if (Physics2D.OverlapCircle(TargetPos, 0.15f))
-        //{
-        //    return false;
-        //}
-        //else { return true; }
     }
 
     public virtual IEnumerator MoveEnemy(float MovementTime)
@@ -349,6 +349,145 @@ public class Base_Enemy : MonoBehaviour
 
         enemAnimator.SetBool("IsMoving", false);
     }
+
+    //public virtual IEnumerator MoveEnemy()
+    //{
+    //    Vector3 InitialPosition;
+    //    Vector3 TargetPosition;
+    //    Vector3 MovementDirection;
+    //    Vector3 CurrentPos;
+    //    float TimeElapsed;
+
+    //    #region Movement In X
+
+    //    var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
+
+    //    InitialPosition = transform.position;
+    //    if (JitterX)
+    //    {
+    //        TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
+    //    }
+    //    else
+    //    {
+    //        TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
+    //    }
+
+    //    MovementDirection = (TargetPosition - InitialPosition).normalized;
+    //    CurrentPos = InitialPosition + MovementDirection;
+    //    switch (MovementDirection.x)
+    //    {
+    //        case 1:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+
+    //        case -1:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+
+    //        default:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+    //    }
+    //    TargetPosition = CurrentPos;
+
+    //    TimeElapsed = 0f;
+    //    while (TimeElapsed < MovementDuration.x)
+    //    {
+    //        transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveX.Evaluate(TimeElapsed / MovementDuration.x));
+    //        TimeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    transform.position = TargetPosition;
+
+    //    #endregion
+
+    //    #region Movement In Y
+
+    //    var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+
+    //    InitialPosition = transform.position;
+    //    if (JitterY)
+    //    {
+    //        TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
+    //    }
+    //    else
+    //    {
+    //        TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+    //    }
+
+    //    MovementDirection = (TargetPosition - InitialPosition).normalized;
+    //    CurrentPos = InitialPosition + MovementDirection;
+    //    switch (MovementDirection.y)
+    //    {
+    //        case 1:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+
+    //        case -1:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+
+    //        default:
+    //            while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+    //            {
+    //                CurrentPos += MovementDirection;
+    //            }
+    //            while (!IsTileAviable(CurrentPos))
+    //            {
+    //                CurrentPos -= MovementDirection;
+    //            }
+    //            break;
+    //    }
+    //    TargetPosition = CurrentPos;
+
+    //    TimeElapsed = 0f;
+    //    while (TimeElapsed < MovementDuration.y)
+    //    {
+    //        transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveY.Evaluate(TimeElapsed / MovementDuration.y));
+    //        TimeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    transform.position = TargetPosition;
+
+    //    #endregion
+
+    //    enemAnimator.SetBool("IsMoving", false);
+    //}
 
     public virtual IEnumerator OverrideMoveEnemy()
     {

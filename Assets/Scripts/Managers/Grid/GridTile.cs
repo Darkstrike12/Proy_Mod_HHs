@@ -16,6 +16,18 @@ public class GridTile : MonoBehaviour
         
     }
 
+    //protected t GetObjectOnTile<t>(Collider2D collision)
+    //{
+    //    if(collision.gameObject.TryGetComponent(out t Obj))
+    //    {
+    //        return Obj;
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
+
     protected void GetEnemy(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Base_Enemy enem))

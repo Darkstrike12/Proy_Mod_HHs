@@ -235,8 +235,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTime: 2
-  enemy: {fileID: 0}
+  MaxEnemyCount: 2
+  enemy: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
   grid: {fileID: 1408618466}
+  OnEnemySpawned:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 450593877}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: SpawnEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!212 &450593878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -987,6 +1003,10 @@ PrefabInstance:
     - target: {fileID: 7076135802495003942, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_Name
       value: Enemy_1 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076135802495003942, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: grid

@@ -39,6 +39,11 @@ public class GridManager : MonoBehaviour
         return Vector3.zero + (gridCompnent.cellSize / 2);
     }
 
+    public Grid GetGridCompnent()
+    {
+        return gridCompnent;
+    }
+
     void GenerateGrid()
     {
         for (int x = 0; x < width; x++)
