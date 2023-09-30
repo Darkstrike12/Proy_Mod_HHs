@@ -67,6 +67,7 @@ public class EnemySpawner : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + grid.GridCellCenter().y, 0f);
         Base_Enemy EnemySpawned = Instantiate(enemy, transform.position + Vector3.left, Quaternion.identity);
+        //EnemySpawned.transform.parent = transform;
         EnemySpawned.InitEnemy(grid.GetGridCompnent());
         CurrentEnemyCount++;
     }

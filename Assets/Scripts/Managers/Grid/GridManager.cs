@@ -29,6 +29,8 @@ public class GridManager : MonoBehaviour
         EnemySpawner.position = new Vector3(width, height - 1) + (gridCompnent.cellSize / 2);
     }
 
+    #region Getters
+
     public Vector2Int GetGridSize()
     {
         return new Vector2Int(width, height);
@@ -43,6 +45,8 @@ public class GridManager : MonoBehaviour
     {
         return gridCompnent;
     }
+
+    #endregion
 
     void GenerateGrid()
     {

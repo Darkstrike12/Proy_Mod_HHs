@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: JitterY
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: movingBH

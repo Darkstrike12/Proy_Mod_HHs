@@ -22,8 +22,8 @@ public class Base_Enemy : MonoBehaviour
     [Space]
     public Vector2 MovementDuration;
     [Space]
-    [SerializeField] bool JitterY;
     [SerializeField] bool JitterX;
+    [SerializeField] bool JitterY;
     [Space]
     public AnimationCurve MovementAnimationCurveX;
     public AnimationCurve MovementAnimationCurveY;
@@ -85,6 +85,11 @@ public class Base_Enemy : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        EnemySpawner.Instance.CurrentEnemyCount--;
+    }
+
     #region Intialize
 
     //Constructor
@@ -132,7 +137,6 @@ public class Base_Enemy : MonoBehaviour
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
         Destroy(gameObject);
-        EnemySpawner.Instance.CurrentEnemyCount--;
     }
 
     #endregion
