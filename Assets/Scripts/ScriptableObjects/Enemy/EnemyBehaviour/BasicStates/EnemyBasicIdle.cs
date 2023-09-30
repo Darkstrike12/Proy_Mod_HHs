@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyBasicIdle", menuName = "Scriptable Objects/Enemy/Enemy State Behaviour/Idle/BasicIdle")]
 public class EnemyBasicIdle : EnemyIdleBH
 {
-    //float currentTime;
-
     public override void OnIdleEnter()
     {
         Enemy.EnemAnimator.ResetTrigger("TookDamage");
-        //currentTime = 0;
-        if(Enemy.Grid != null)
+        if (Enemy.Grid != null)
         {
-            //Debug.Log("Grid found", Enemy);
-            //Enemy.StopAllCoroutines();
+            Enemy.StopAllCoroutines();
             Enemy.transform.position = Enemy.Grid.WorldToCell(Enemy.transform.position) + (Enemy.Grid.cellSize / 2);
-            Enemy.StartCoroutine(Enemy.MoveEnemy(Enemy.EnemyData.MovementTime));
+            Enemy.MoveCoroutine = Enemy.StartCoroutine(Enemy.MoveEnemyCR(Enemy.EnemyData.MovementTime));
         }
         else
         {
@@ -24,14 +21,4 @@ public class EnemyBasicIdle : EnemyIdleBH
             Destroy(Enemy);
         }
     }
-
-    //public override void OnIdleUpdate()
-    //{
-    //    currentTime += Time.deltaTime;
-    //    if(currentTime > Enemy.EnemyData.MovementTime)
-    //    {
-    //        Enemy.GetAnimator().SetBool("IsMoving", true);
-    //        Enemy.StartCoroutine(Enemy.MoveEnemy());
-    //    }
-    //}
 }

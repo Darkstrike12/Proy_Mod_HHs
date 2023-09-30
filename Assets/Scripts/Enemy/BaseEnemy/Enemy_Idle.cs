@@ -10,8 +10,9 @@ public class Enemy_Idle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Enemy = animator.GetComponent<Base_Enemy>();
+        //Enemy.IdleBH.Initialize(Enemy);
         //Enemy.StopAllCoroutines();
-        //Enemy.StartCoroutine(Enemy.MoveEnemy(Enemy.EnemyData.MovementTime));
+        //Enemy.StartCoroutine(Enemy.MoveEnemyCR(Enemy.EnemyData.MovementTime));
         //Enemy.MoveEnemyAs();
         Enemy.IdleBH.OnIdleEnter();
     }

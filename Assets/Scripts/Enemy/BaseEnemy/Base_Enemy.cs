@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Base_Enemy : MonoBehaviour
@@ -23,13 +20,13 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] bool RandomMoveInX;
     [SerializeField] bool RandomMoveInY;
     [Space]
-    [SerializeField] Vector2 MovementDuration;
+    public Vector2 MovementDuration;
     [Space]
     [SerializeField] bool JitterY;
     [SerializeField] bool JitterX;
     [Space]
-    [SerializeField] AnimationCurve MovementAnimationCurveX;
-    [SerializeField] AnimationCurve MovementAnimationCurveY;
+    public AnimationCurve MovementAnimationCurveX;
+    public AnimationCurve MovementAnimationCurveY;
 
     #endregion
 
@@ -37,16 +34,16 @@ public class Base_Enemy : MonoBehaviour
 
     [Header("States Behaviour")]
     [SerializeField] EnemyIdleBH idleBH;
-    public EnemyIdleBH IdleBH { get => idleBH; }
+    public EnemyIdleBH IdleBH { get; private set; }
 
     [SerializeField] EnemyMovingBH movingBH;
-    public EnemyMovingBH MovingBH { get => movingBH; }
+    public EnemyMovingBH MovingBH { get; private set; }
 
     [SerializeField] EnemyAlterStateBH alterStateBH;
-    public EnemyAlterStateBH AlterStateBH { get => alterStateBH; }
+    public EnemyAlterStateBH AlterStateBH { get; private set; }
 
     [SerializeField] EnemyTakeDamageBH takeDamageBH;
-    public EnemyTakeDamageBH TakeDamageBH { get => takeDamageBH; }
+    public EnemyTakeDamageBH TakeDamageBH { get; private set; }
 
     //[SerializeField] EnemyDeathBH deathBH;
     //public EnemyDeathBH DeathBH { get => deathBH;}
@@ -56,6 +53,7 @@ public class Base_Enemy : MonoBehaviour
     //Internal Variables
     int CurrentHitPoints;
     Vector3Int MovementLimit;
+    public Coroutine MoveCoroutine;
 
     //Internal References
     Animator enemAnimator;
@@ -63,19 +61,18 @@ public class Base_Enemy : MonoBehaviour
 
     private void Awake()
     {
-        idleBH.Initialize(this);
-        movingBH.Initialize(this);
-        alterStateBH.Initialize(this);
-        takeDamageBH.Initialize(this);
-
+        IdleBH = Instantiate(idleBH);
+        MovingBH = Instantiate(movingBH);
+        AlterStateBH = Instantiate(alterStateBH);
+        TakeDamageBH = Instantiate(takeDamageBH);
     }
 
     private void Start()
     {
-        //idleBH.Initialize(this);
-        //movingBH.Initialize(this);
-        //alterStateBH.Initialize(this);
-        //takeDamageBH.Initialize(this);
+        IdleBH.Initialize(this);
+        MovingBH.Initialize(this);
+        AlterStateBH.Initialize(this);
+        TakeDamageBH.Initialize(this);
 
         enemAnimator = GetComponent<Animator>();
 
@@ -135,6 +132,7 @@ public class Base_Enemy : MonoBehaviour
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
         Destroy(gameObject);
+        EnemySpawner.Instance.CurrentEnemyCount--;
     }
 
     #endregion
@@ -208,7 +206,7 @@ public class Base_Enemy : MonoBehaviour
         return !Physics2D.OverlapCircle(TargetPos, 0.15f, DetectedLayers);
     }
 
-    public virtual IEnumerator MoveEnemy(float MovementTime)
+    public virtual IEnumerator MoveEnemyCR(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
         enemAnimator.SetBool("IsMoving", true);
@@ -350,148 +348,543 @@ public class Base_Enemy : MonoBehaviour
         enemAnimator.SetBool("IsMoving", false);
     }
 
-    //public virtual IEnumerator MoveEnemy()
-    //{
-    //    Vector3 InitialPosition;
-    //    Vector3 TargetPosition;
-    //    Vector3 MovementDirection;
-    //    Vector3 CurrentPos;
-    //    float TimeElapsed;
+    public virtual IEnumerator MoveEnemyCR()
+    {
+        Vector3 InitialPosition;
+        Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
+        float TimeElapsed;
 
-    //    #region Movement In X
+        #region Movement In X
 
-    //    var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
 
-    //    InitialPosition = transform.position;
-    //    if (JitterX)
-    //    {
-    //        TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
-    //    }
-    //    else
-    //    {
-    //        TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
-    //    }
+        InitialPosition = transform.position;
+        if (JitterX)
+        {
+            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
+        }
 
-    //    MovementDirection = (TargetPosition - InitialPosition).normalized;
-    //    CurrentPos = InitialPosition + MovementDirection;
-    //    switch (MovementDirection.x)
-    //    {
-    //        case 1:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.x)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
-    //        case -1:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
-    //        default:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
-    //    }
-    //    TargetPosition = CurrentPos;
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
 
-    //    TimeElapsed = 0f;
-    //    while (TimeElapsed < MovementDuration.x)
-    //    {
-    //        transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveX.Evaluate(TimeElapsed / MovementDuration.x));
-    //        TimeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    transform.position = TargetPosition;
+        TimeElapsed = 0f;
+        while (TimeElapsed < MovementDuration.x)
+        {
+            transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveX.Evaluate(TimeElapsed / MovementDuration.x));
+            TimeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = TargetPosition;
 
-    //    #endregion
+        #endregion
 
-    //    #region Movement In Y
+        #region Movement In Y
 
-    //    var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
 
-    //    InitialPosition = transform.position;
-    //    if (JitterY)
-    //    {
-    //        TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
-    //    }
-    //    else
-    //    {
-    //        TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
-    //    }
+        InitialPosition = transform.position;
+        if (JitterY)
+        {
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+        }
 
-    //    MovementDirection = (TargetPosition - InitialPosition).normalized;
-    //    CurrentPos = InitialPosition + MovementDirection;
-    //    switch (MovementDirection.y)
-    //    {
-    //        case 1:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.y)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
-    //        case -1:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
 
-    //        default:
-    //            while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
-    //            {
-    //                CurrentPos += MovementDirection;
-    //            }
-    //            while (!IsTileAviable(CurrentPos))
-    //            {
-    //                CurrentPos -= MovementDirection;
-    //            }
-    //            break;
-    //    }
-    //    TargetPosition = CurrentPos;
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
 
-    //    TimeElapsed = 0f;
-    //    while (TimeElapsed < MovementDuration.y)
-    //    {
-    //        transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveY.Evaluate(TimeElapsed / MovementDuration.y));
-    //        TimeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    transform.position = TargetPosition;
+        TimeElapsed = 0f;
+        while (TimeElapsed < MovementDuration.y)
+        {
+            transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementAnimationCurveY.Evaluate(TimeElapsed / MovementDuration.y));
+            TimeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = TargetPosition;
 
-    //    #endregion
+        #endregion
 
-    //    enemAnimator.SetBool("IsMoving", false);
-    //}
+        enemAnimator.SetBool("IsMoving", false);
+    }
+
+    public virtual void MoveEnemy()
+    {
+        Vector3 InitialPosition;
+        Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
+
+        #region Movement In X
+
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
+
+        InitialPosition = transform.position;
+        if (JitterX)
+        {
+            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.x)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        StartCoroutine(LerpEmenyToTarget(InitialPosition, TargetPosition, MovementDuration.x, MovementAnimationCurveX));
+
+        #endregion
+
+        #region Movement In Y
+
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+
+        InitialPosition = transform.position;
+        if (JitterY)
+        {
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.y)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        StartCoroutine(LerpEmenyToTarget(InitialPosition, TargetPosition, MovementDuration.y, MovementAnimationCurveY));
+
+        #endregion
+
+        enemAnimator.SetBool("IsMoving", false);
+    }
+
+    public virtual void MovementVecotrs(out Vector3 MovementForX, out Vector3 MovementForY)
+    {
+        Vector3 InitialPosition;
+        Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
+
+        #region Decide For x
+
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
+
+        InitialPosition = transform.position;
+        if (JitterX)
+        {
+            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.x)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        MovementForX = TargetPosition;
+
+        #endregion
+
+        #region Decide For Y
+
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+
+        InitialPosition = transform.position;
+        if (JitterY)
+        {
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.y)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        MovementForY = TargetPosition;
+
+        #endregion
+    }
+
+    public virtual void MovementVectorX(out Vector3 MovementForX)
+    {
+        Vector3 InitialPosition;
+        Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
+
+        #region Decide For x
+
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
+
+        InitialPosition = transform.position;
+        if (JitterX)
+        {
+            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.x)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        MovementForX = TargetPosition;
+
+        #endregion
+    }
+
+    public virtual void MovementVectorY(out Vector3 MovementForY)
+    {
+        Vector3 InitialPosition;
+        Vector3 TargetPosition;
+        Vector3 MovementDirection;
+        Vector3 CurrentPos;
+
+        #region Decide For Y
+
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+
+        InitialPosition = transform.position;
+        if (JitterY)
+        {
+            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
+        }
+        else
+        {
+            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
+        }
+
+        MovementDirection = (TargetPosition - InitialPosition).normalized;
+        CurrentPos = InitialPosition + MovementDirection;
+        switch (MovementDirection.y)
+        {
+            case 1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            case -1:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+
+            default:
+                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
+                {
+                    CurrentPos += MovementDirection;
+                }
+                while (!IsTileAviable(CurrentPos))
+                {
+                    CurrentPos -= MovementDirection;
+                }
+                break;
+        }
+        TargetPosition = CurrentPos;
+
+        MovementForY = TargetPosition;
+
+        #endregion
+    }
+
+    public virtual IEnumerator LerpEmenyToTarget(Vector3 InitialPos, Vector3 TargetPos, float LerpDuration, AnimationCurve animationCurve)
+    {
+        float TimeElapsed;
+        TimeElapsed = 0f;
+        while (TimeElapsed < LerpDuration)
+        {
+            transform.position = Vector3.Lerp(InitialPos, TargetPos, animationCurve.Evaluate(TimeElapsed / LerpDuration));
+            TimeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = TargetPos;
+    }
 
     public virtual IEnumerator OverrideMoveEnemy()
     {
         yield return null;
+    }
+
+    public IEnumerator WaitForSeconds(float Time)
+    {
+        yield return new WaitForSeconds(Time);
+        enemAnimator.SetBool("IsMoving", true);
     }
 
     #endregion

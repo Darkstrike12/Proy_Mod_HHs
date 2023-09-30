@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
     [Header("Variables")]
     [SerializeField] float SpawnTime;
     [SerializeField] int MaxEnemyCount;
@@ -21,9 +23,20 @@ public class EnemySpawner : MonoBehaviour
     //Internal Variables
     Vector2Int GridSize;
     float CurrentSpawnTime;
-    int CurrentEnemyCount;
+    public int CurrentEnemyCount;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         GridSize = grid.GetGridSize();
@@ -32,20 +45,19 @@ public class EnemySpawner : MonoBehaviour
         CurrentEnemyCount = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //CurrentSpawnTime += Time.deltaTime;
-        //if (CurrentSpawnTime > SpawnTime)
-        //{
-        //    if(CurrentEnemyCount < MaxEnemyCount)
-        //    {
-        //        OnEnemySpawned.Invoke();
-        //    }
-        //    CurrentSpawnTime = 0f;
-        //}
+        CurrentSpawnTime += Time.deltaTime;
+        if (CurrentSpawnTime > SpawnTime)
+        {
+            if (CurrentEnemyCount < MaxEnemyCount)
+            {
+                OnEnemySpawned.Invoke();
+            }
+            CurrentSpawnTime = 0f;
+        }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             OnEnemySpawned.Invoke();
         }
@@ -56,7 +68,6 @@ public class EnemySpawner : MonoBehaviour
         transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + grid.GridCellCenter().y, 0f);
         Base_Enemy EnemySpawned = Instantiate(enemy, transform.position + Vector3.left, Quaternion.identity);
         EnemySpawned.InitEnemy(grid.GetGridCompnent());
-        //EnemySpawned = null;
         CurrentEnemyCount++;
     }
 
