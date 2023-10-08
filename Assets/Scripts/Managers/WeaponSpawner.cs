@@ -8,6 +8,9 @@ public class WeaponSpawner : MonoBehaviour
     [SerializeField] Transform SpawnPosition;
     [SerializeField] GameObject WeaponPrefab;
     [SerializeField] Camera SceneCamera;
+    [SerializeField] MousePosition2D MousePosition;
+
+    [Header("Behaviour Varaibles")]
     [SerializeField] float LaunchSpeed = 1f;
 
     //Internal Variables
@@ -41,13 +44,13 @@ public class WeaponSpawner : MonoBehaviour
 
     public void SelectWeapon()
     {
-        //CurrentWeapon = null;
         Destroy(CurrentWeapon);
+        //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition.position, Quaternion.identity);
         CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
         IsWeaponSelected = true;
     }
 
-    public void WeaponFaceToMouse()
+    void WeaponFaceToMouse()
     {
         Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition) - CurrentWeapon.transform.position;
         float Angle = MathF.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
@@ -63,8 +66,10 @@ public class WeaponSpawner : MonoBehaviour
     public void LaunchWeapon()
     {
         IsWeaponSelected = false;
+        MousePosition.SetSelectedTile();
         Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();
-        Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
+        //CurrentWeapon.GetComponent<Base_Weapon>().SetHitPoint(MousePosition.GetMousePointerPosition());
+        //Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
         WeaponRB.velocity = new Vector2(WeaponRB.velocity.x + LaunchSpeed, WeaponRB.velocity.y + LaunchSpeed) * WeaponRB.transform.right;
     }
 }

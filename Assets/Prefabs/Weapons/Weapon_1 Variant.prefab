@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: DestroyDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: weaponDataSO
       value: 
       objectReference: {fileID: 11400000, guid: 24af77f6ea9a47e439b7a264a27d1b2c, type: 2}

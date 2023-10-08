@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Base_Weapon : MonoBehaviour
 {
     [Header("Weapon Data")]
@@ -16,31 +18,25 @@ public class Base_Weapon : MonoBehaviour
     [SerializeField] bool UseSpecialEffect;
     [SerializeField] float DestroyDelay;
 
+    [SerializeField] UnityEvent Hit;
 
     //Internal Referemces
-    Rigidbody2D rb;
+    Rigidbody2D rigidBody;
+
+    //Internal Variables
+    Vector3 HitPosition;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
-        {
-            Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
-            if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject, DestroyDelay);
-        }
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
         //{
@@ -48,22 +44,42 @@ public class Base_Weapon : MonoBehaviour
         //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
         //    Destroy(gameObject);
         //}
-
-        //if (collision.gameObject.TryGetComponent(out GridTile Tile))
+        //else
         //{
-        //    if (Tile.enemy != null)
-        //    {
-        //        Base_Enemy Enemy = Tile.enemy;
-
-        //        print("Enemy Hit");
-        //        Enemy.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
-        //        if (UseSpecialEffect) WeaponSpecialEffect(Enemy);
-        //        Destroy(gameObject);
-        //    }
+        //    Destroy(gameObject, DestroyDelay);
         //}
+        
     }
 
-    public virtual void WeaponSpecialEffect(Base_Enemy enemy)
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AtackRange.x, weaponDataSO.AtackRange.y));
+    }
+
+    public void SetHitPoint(Vector3 Point)
+    {
+        HitPosition = Point;
+    }
+
+    public void WeaponHit(Vector3 hitPoint)
+    {
+        rigidBody.bodyType = RigidbodyType2D.Static;
+        Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AtackRange, 0f);
+        HitPosition = hitPoint;
+        foreach (Collider2D col in Colliders)
+        {
+            if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
+            {
+                Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
+                if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+                //Destroy(gameObject);
+            }
+        }
+        Destroy(gameObject, DestroyDelay);
+    }
+
+    protected virtual void WeaponSpecialEffect(Base_Enemy enemy)
     {
         if (IsWeaponEffective(enemy))
         {
@@ -71,7 +87,7 @@ public class Base_Weapon : MonoBehaviour
         }
     }
 
-    private bool IsWeaponEffective(Base_Enemy enemy)
+    protected bool IsWeaponEffective(Base_Enemy enemy)
     {
         if(!weaponDataSO.AffectAllMaterials || !weaponDataSO.AffectAllCategories)
         {

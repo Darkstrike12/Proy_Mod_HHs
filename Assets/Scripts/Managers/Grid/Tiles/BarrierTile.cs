@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BarrierTile : GridTile
 {
-    [SerializeField] float DestryDelay;
+    [SerializeField] float DestroyDelay;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsEnemyOnTile(collision, out Base_Enemy enemy))
         {
-            Destroy(collision.gameObject, DestryDelay);
+            Destroy(collision.gameObject, DestroyDelay);
         }
     }
 }

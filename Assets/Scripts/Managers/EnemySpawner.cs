@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public static EnemySpawner Instance;
-
     [Header("Variables")]
     [SerializeField] float SpawnTime;
     [SerializeField] int MaxEnemyCount;
@@ -24,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     Vector2Int GridSize;
     float CurrentSpawnTime;
     public int CurrentEnemyCount;
+
+    public static EnemySpawner Instance;
 
     private void Awake()
     {

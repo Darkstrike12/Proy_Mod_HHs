@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    public Base_Enemy enemy;
+    //public Base_Enemy enemy { get; protected set; }
+    bool IsTileSelected;
 
     void Start()
     {
-        enemy = null;
+
     }
 
     void Update()
@@ -16,26 +17,21 @@ public class GridTile : MonoBehaviour
         
     }
 
-    //protected t GetObjectOnTile<t>(Collider2D collision)
+    //private void OnMouseDown()
     //{
-    //    if(collision.gameObject.TryGetComponent(out t Obj))
-    //    {
-    //        return Obj;
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }
+    //    IsTileSelected = true;
+    //    print(IsTileSelected);
     //}
 
-    protected void GetEnemy(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Base_Enemy enem))
-        {
-            enemy = enem;
-            //print("Enter Trigeer");
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.TryGetComponent(out Base_Weapon weapon) && IsTileSelected)
+    //    {
+    //        weapon.WeaponHit(transform.position);
+    //        IsTileSelected = false;
+    //        print(IsTileSelected);
+    //    }
+    //}
 
     protected bool IsEnemyOnTile(Collider2D collision, out Base_Enemy Enem)
     {
@@ -51,32 +47,15 @@ public class GridTile : MonoBehaviour
         }
     }
 
-    protected void ClearEnemy()
-    {
-        enemy = null;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GetEnemy(collision);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        ClearEnemy();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Base_Enemy enem))
-        {
-            enemy = enem;
-            print("Enter Coliision");
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        enemy = null;
-    }
+    //protected bool IsWeaponOnTile(Collider2D collision)
+    //{
+    //    if (collision.TryGetComponent(out Base_Weapon weapon))
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 }
