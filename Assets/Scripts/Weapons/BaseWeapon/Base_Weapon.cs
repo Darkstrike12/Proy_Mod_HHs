@@ -18,20 +18,23 @@ public class Base_Weapon : MonoBehaviour
     [SerializeField] bool UseSpecialEffect;
     [SerializeField] float DestroyDelay;
 
+    //Events
     [SerializeField] UnityEvent Hit;
 
     //Internal Referemces
-    Rigidbody2D rigidBody;
+    public Rigidbody2D RigidBody { get; protected set; }
 
     //Internal Variables
     Vector3 HitPosition;
 
-    private void Start()
+    #region Unity Functions
+
+    protected virtual void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        RigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         
     }
@@ -57,14 +60,16 @@ public class Base_Weapon : MonoBehaviour
         Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AtackRange.x, weaponDataSO.AtackRange.y));
     }
 
+    #endregion
+
     public void SetHitPoint(Vector3 Point)
     {
         HitPosition = Point;
     }
 
-    public void WeaponHit(Vector3 hitPoint)
+    public virtual void WeaponHitWhTl(Vector3 hitPoint)
     {
-        rigidBody.bodyType = RigidbodyType2D.Static;
+        RigidBody.bodyType = RigidbodyType2D.Static;
         Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AtackRange, 0f);
         HitPosition = hitPoint;
         foreach (Collider2D col in Colliders)

@@ -44,11 +44,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1245869613
+    locked: 0
   - name: Grid
     uniqueID: 2781743267
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 1877451695
+    locked: 0
+  - name: Weapon
+    uniqueID: 1338405897
     locked: 0
   - name: Foreground
     uniqueID: 1831643455

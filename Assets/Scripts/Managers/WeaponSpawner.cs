@@ -6,7 +6,7 @@ public class WeaponSpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Transform SpawnPosition;
-    [SerializeField] GameObject WeaponPrefab;
+    [SerializeField] Base_Weapon WeaponPrefab;
     [SerializeField] Camera SceneCamera;
     [SerializeField] MousePosition2D MousePosition;
 
@@ -14,21 +14,21 @@ public class WeaponSpawner : MonoBehaviour
     [SerializeField] float LaunchSpeed = 1f;
 
     //Internal Variables
-    GameObject CurrentWeapon;
+    Base_Weapon CurrentWeapon;
     bool IsWeaponSelected;
 
     [Header("Events")]
     public UnityEvent OnWeaponSelected;
     public UnityEvent OnWeaponUsed;
 
-    // Start is called before the first frame update
+    #region UnityFunctions
+
     void Start()
     {
         //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
         IsWeaponSelected = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (IsWeaponSelected) WeaponFaceToMouse();
@@ -41,6 +41,8 @@ public class WeaponSpawner : MonoBehaviour
             OnWeaponSelected.Invoke();
         }
     }
+
+    #endregion
 
     public void SelectWeapon()
     {
@@ -65,11 +67,16 @@ public class WeaponSpawner : MonoBehaviour
 
     public void LaunchWeapon()
     {
-        IsWeaponSelected = false;
-        MousePosition.SetSelectedTile();
-        Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();
-        //CurrentWeapon.GetComponent<Base_Weapon>().SetHitPoint(MousePosition.GetMousePointerPosition());
+        if (EnemySpawner.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
+        {
+            IsWeaponSelected = false;
+            MousePosition.SetSelectedTile();
+            CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
+            EnemySpawner.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
+        }
+
+        //Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();
         //Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
-        WeaponRB.velocity = new Vector2(WeaponRB.velocity.x + LaunchSpeed, WeaponRB.velocity.y + LaunchSpeed) * WeaponRB.transform.right;
+        //WeaponRB.velocity = new Vector2(WeaponRB.velocity.x + LaunchSpeed, WeaponRB.velocity.y + LaunchSpeed) * WeaponRB.transform.right;
     }
 }

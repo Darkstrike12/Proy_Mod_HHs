@@ -1,29 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Variables")]
-    [SerializeField] float SpawnTime;
+    [SerializeField] float SpawnDelay;
+    [SerializeField] int InitialRecyclePoints;
     [SerializeField] int MaxEnemyCount;
 
-    [Header("Enemys To Spawn")]
+    [Header("Enemies To Spawn")]
     [SerializeField] Base_Enemy enemy;
 
     [Header("External References")]
     [SerializeField] GridManager grid;
+    [SerializeField] TextMeshProUGUI RecyclePointsCounter;
 
     [Header("Events")]
     public UnityEvent OnEnemySpawned;
 
     //Internal Variables
     Vector2Int GridSize;
-    float CurrentSpawnTime;
+    float CurrentSpawnDelay;
     public int CurrentEnemyCount;
+    public int CurrentRecyclePoints;
 
+    //SingletonInstance
     public static EnemySpawner Instance;
+
+    #region UnityFunctions
 
     private void Awake()
     {
@@ -41,20 +48,23 @@ public class EnemySpawner : MonoBehaviour
     {
         GridSize = grid.GetGridSize();
 
-        CurrentSpawnTime = 0f;
+        CurrentSpawnDelay = 0f;
+        CurrentRecyclePoints = InitialRecyclePoints;
         CurrentEnemyCount = 0;
     }
 
     void Update()
     {
-        CurrentSpawnTime += Time.deltaTime;
-        if (CurrentSpawnTime > SpawnTime)
+        RecyclePointsCounter.text = CurrentRecyclePoints.ToString();
+
+        CurrentSpawnDelay += Time.deltaTime;
+        if (CurrentSpawnDelay > SpawnDelay)
         {
             if (CurrentEnemyCount < MaxEnemyCount)
             {
                 OnEnemySpawned.Invoke();
             }
-            CurrentSpawnTime = 0f;
+            CurrentSpawnDelay = 0f;
         }
 
         if (Input.GetKeyDown(KeyCode.F1))
@@ -62,6 +72,8 @@ public class EnemySpawner : MonoBehaviour
             OnEnemySpawned.Invoke();
         }
     }
+
+    #endregion
 
     public void SpawnEnemy()
     {
