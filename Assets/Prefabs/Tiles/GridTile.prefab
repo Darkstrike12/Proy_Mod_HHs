@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7648982263252676598}
-  m_Layer: 7
+  - component: {fileID: 2840593727957666938}
+  m_Layer: 8
   m_Name: GridTile
-  m_TagString: Untagged
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +34,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2840593727957666938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648982263252676601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7c8cfe2c9e2bb4e99a53dd99d045a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TopSprites:
+  - {fileID: 1970137207, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -1532410444, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 1276604321, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -1298743208, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 945234499, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 1777274737, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 226999930, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -670487932, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  BaseSprites:
+  - {fileID: -228678940, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 1748578885, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -2048702862, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -1848244285, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 593791134, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -1326828522, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: -246711147, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  - {fileID: 776826808, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
+  TileTop: {fileID: 0}
+  TileBase: {fileID: 0}
 --- !u!1 &7648982264665000022
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +76,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7648982264665000023}
   - component: {fileID: 7648982264665000020}
-  m_Layer: 7
+  - component: {fileID: 626938372811041489}
+  - component: {fileID: 3325471322848388644}
+  m_Layer: 8
   m_Name: TileBase
   m_TagString: GridTile
   m_Icon: {fileID: 0}
@@ -107,7 +142,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.19032574, g: 0.58212507, b: 0.8584906, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,6 +152,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &626938372811041489
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648982264665000022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &3325471322848388644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648982264665000022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35d3de4a90b9a49ba5c989af5c538e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7648982264738973807
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7648982264738973804}
   - component: {fileID: 7648982264738973805}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TileTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,8 +215,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7648982264738973807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6336, z: 0}
-  m_LocalScale: {x: 1, y: 0.26728973, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7648982263252676598}
@@ -191,7 +264,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9056604, g: 0.8229384, b: 0.26059094, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

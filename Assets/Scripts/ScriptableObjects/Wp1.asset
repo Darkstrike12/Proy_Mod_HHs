@@ -20,7 +20,7 @@ MonoBehaviour:
   BaseDamage: 2
   BaseUseCost: 1
   BaseReloadTime: 3
-  AtackRange: {x: 0, y: 0}
+  AtackRange: {x: 1, y: 1}
   AffectAllMaterials: 0
   AffectedEnemyMaterials: 00000000
   AffectAllCategories: 0

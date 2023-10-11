@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Enemy/Data/New Basic Enemy")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Enemy/Data/New Enemy Data")]
 public class EnemyData : ScriptableObject
 {
     //[Header("Enemy Prefab")]

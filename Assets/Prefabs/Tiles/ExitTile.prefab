@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4267431148735224978}
   - component: {fileID: 3525252254439284966}
   m_Layer: 8
-  m_Name: FinishTile
+  m_Name: ExitTile
   m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
