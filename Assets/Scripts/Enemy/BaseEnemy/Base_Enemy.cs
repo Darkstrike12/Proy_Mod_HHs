@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] Grid grid;
     public Grid Grid { get => grid; set => grid = value; }
     [SerializeField] LayerMask DetectedLayers;
+    [SerializeField] EventReference TestOneSshot;
 
     #region Behavior Variables
 
@@ -131,6 +133,7 @@ public class Base_Enemy : MonoBehaviour
         if (AllowDamage)
         {
             enemAnimator.SetTrigger("TookDamage");
+            RuntimeManager.PlayOneShot(TestOneSshot, transform.position);
             CurrentHitPoints -= DamageTaken;
             if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
         }
