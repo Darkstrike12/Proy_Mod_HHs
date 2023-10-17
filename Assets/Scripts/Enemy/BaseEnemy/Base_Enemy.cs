@@ -92,8 +92,7 @@ public class Base_Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        EnemySpawner.Instance.CurrentEnemyCount--;
-        EnemySpawner.Instance.CurrentRecyclePoints += enemyData.RecyclePointsGiven;
+        
     }
 
     #endregion
@@ -143,6 +142,8 @@ public class Base_Enemy : MonoBehaviour
     {
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
+        EnemySpawner.Instance.CurrentEnemyCount--;
+        EnemySpawner.Instance.CurrentRecyclePoints += enemyData.RecyclePointsGiven;
         Destroy(gameObject);
     }
 
