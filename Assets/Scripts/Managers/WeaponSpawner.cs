@@ -67,12 +67,12 @@ public class WeaponSpawner : MonoBehaviour
 
     public void LaunchWeapon()
     {
-        if (EnemySpawner.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
+        if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
         {
             IsWeaponSelected = false;
             MousePosition.SetSelectedTile();
             CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
-            EnemySpawner.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
+            GameManager.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
         }
 
         //Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();

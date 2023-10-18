@@ -1,4 +1,3 @@
-using FMODUnity;
 using System.Collections;
 using UnityEngine;
 
@@ -6,27 +5,26 @@ using UnityEngine;
 public class Base_Enemy : MonoBehaviour
 {
     [Header("Enemy Data")]
-    [SerializeField] EnemyData enemyData;
+    [SerializeField] protected EnemyData enemyData;
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
 
     [Header("External References")]
-    [SerializeField] Grid grid;
+    [SerializeField] protected Grid grid;
     public Grid Grid { get => grid; set => grid = value; }
-    [SerializeField] LayerMask DetectedLayers;
-    [SerializeField] EventReference TestOneSshot;
+    [SerializeField] protected LayerMask DetectedLayers;
 
     #region Behavior Variables
 
     [Header("Behaviour Variables")]
     [SerializeField] public bool AllowDamage;
     [Space]
-    [SerializeField] bool RandomMoveInX;
-    [SerializeField] bool RandomMoveInY;
+    [SerializeField] protected bool RandomMoveInX;
+    [SerializeField] protected bool RandomMoveInY;
     [Space]
     public Vector2 MovementDuration;
     [Space]
-    [SerializeField] bool JitterX;
-    [SerializeField] bool JitterY;
+    [SerializeField] protected bool JitterX;
+    [SerializeField] protected bool JitterY;
     [Space]
     public AnimationCurve MovementCurveX;
     public AnimationCurve MovementCurveY;
@@ -36,17 +34,17 @@ public class Base_Enemy : MonoBehaviour
     #region States Behaviour
 
     [Header("States Behaviour")]
-    [SerializeField] EnemyIdleBH idleBH;
-    public EnemyIdleBH IdleBH { get; private set; }
+    [SerializeField] protected EnemyIdleBH idleBH;
+    public EnemyIdleBH IdleBH { get; protected set; }
 
-    [SerializeField] EnemyMovingBH movingBH;
-    public EnemyMovingBH MovingBH { get; private set; }
+    [SerializeField] protected EnemyMovingBH movingBH;
+    public EnemyMovingBH MovingBH { get; protected set; }
 
-    [SerializeField] EnemyAlterStateBH alterStateBH;
-    public EnemyAlterStateBH AlterStateBH { get; private set; }
+    [SerializeField] protected EnemyAlterStateBH alterStateBH;
+    public EnemyAlterStateBH AlterStateBH { get; protected set; }
 
-    [SerializeField] EnemyTakeDamageBH takeDamageBH;
-    public EnemyTakeDamageBH TakeDamageBH { get; private set; }
+    [SerializeField] protected EnemyTakeDamageBH takeDamageBH;
+    public EnemyTakeDamageBH TakeDamageBH { get; protected set; }
 
     //[SerializeField] EnemyDeathBH deathBH;
     //public EnemyDeathBH DeathBH { get => deathBH;}
@@ -54,12 +52,12 @@ public class Base_Enemy : MonoBehaviour
     #endregion
 
     //Internal Variables
-    int CurrentHitPoints;
-    Vector3Int MovementLimit;
+    protected int CurrentHitPoints;
+    protected Vector3Int MovementLimit;
     public Coroutine MoveCoroutine;
 
     //Internal References
-    Animator enemAnimator;
+    protected Animator enemAnimator;
     public Animator EnemAnimator { get => enemAnimator; }
 
     #region Unity Functions
@@ -92,7 +90,7 @@ public class Base_Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        
+        EnemySpawner.Instance.UpdateStatsOnEnemyDestroyed();
     }
 
     #endregion
@@ -100,16 +98,16 @@ public class Base_Enemy : MonoBehaviour
     #region Intialize
 
     //Constructor
-    public Base_Enemy(Grid gridRef, EnemyData enemyDataRef)
-    {
-        grid = gridRef;
-        enemyData = enemyDataRef;
-    }
+    //public Base_Enemy(Grid gridRef, EnemyData enemyDataRef)
+    //{
+    //    grid = gridRef;
+    //    enemyData = enemyDataRef;
+    //}
 
-    public Base_Enemy(Grid gridRef)
-    {
-        grid = gridRef;
-    }
+    //public Base_Enemy(Grid gridRef)
+    //{
+    //    grid = gridRef;
+    //}
 
     //Init
     public void InitEnemy(Grid gridRef, EnemyData enemyDataRef)
@@ -132,18 +130,17 @@ public class Base_Enemy : MonoBehaviour
         if (AllowDamage)
         {
             enemAnimator.SetTrigger("TookDamage");
-            RuntimeManager.PlayOneShot(TestOneSshot, transform.position);
             CurrentHitPoints -= DamageTaken;
             if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
         }
     }
 
-    public virtual void EnemyDefeated()
+    protected virtual void EnemyDefeated()
     {
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
-        EnemySpawner.Instance.CurrentEnemyCount--;
-        EnemySpawner.Instance.CurrentRecyclePoints += enemyData.RecyclePointsGiven;
+        EnemySpawner.Instance.UpdateStatsOnEnemyDefrated();
+        GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
         Destroy(gameObject);
     }
 
@@ -198,20 +195,6 @@ public class Base_Enemy : MonoBehaviour
     }
 
     #endregion
-
-    //protected int GetAxisLimitIndex(float VectorAxys)
-    //{
-    //    int AxysLimiterIndex;
-    //    if (VectorAxys > 0)
-    //    {
-    //        AxysLimiterIndex = 0;
-    //    }
-    //    else
-    //    {
-    //        AxysLimiterIndex = 1;
-    //    }
-    //    return AxysLimiterIndex;
-    //}
 
     protected virtual bool IsTileAviable(Vector3 TargetPos)
     {
