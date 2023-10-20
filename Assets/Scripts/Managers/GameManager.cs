@@ -62,10 +62,10 @@ public class GameManager : MonoBehaviour
 
         switch (intensityIndicator)
         {
-            case float i when i > 0f && i < 30f:
+            case float i when i > 0f && i < 20f:
                 CurrentLevelState = LevelState.Soft;
                 break;
-            case float i when i > 30f && i < 80f:
+            case float i when i > 20f && i < 80f:
                 CurrentLevelState = LevelState.Medium;
                 break;
             case float i when i > 80f && i < 100f:
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public enum LevelState
     {
+        Start,
         Soft,
         Medium,
         Hard,

@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{1fed79e4-b982-41f2-88ed-72dfd33dc0de}</destination>
+			<destination>{e931d1fc-5dfe-4831-8e56-cad62ed0b56a}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{328e961b-6cbe-4e31-bdc8-69675f4a921a}</destination>
@@ -68,7 +68,11 @@
 			<destination>{757da919-3ced-4548-81f7-0f5701f4f90d}</destination>
 		</relationship>
 	</object>
-	<object class="Timeline" id="{6194cf28-5bdf-42ad-9a6d-00bdbef680e8}" />
+	<object class="Timeline" id="{6194cf28-5bdf-42ad-9a6d-00bdbef680e8}">
+		<property name="isProxyEnabled">
+			<value>false</value>
+		</property>
+	</object>
 	<object class="ParameterProxy" id="{692b0452-ca76-446d-9792-587fc56e4a9a}">
 		<relationship name="modules">
 			<destination>{b03771eb-1b80-4e55-b339-a25dcf6c5c1f}</destination>
@@ -97,6 +101,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{3215c647-e92c-4ac7-8231-dfbe76c6bb94}" />
 	<object class="EventSound" id="{b03771eb-1b80-4e55-b339-a25dcf6c5c1f}">
+		<relationship name="modulators">
+			<destination>{eb43ffc4-5f4e-4218-b27e-45c78d7bd5e0}</destination>
+		</relationship>
 		<relationship name="event">
 			<destination>{91290a3f-024f-4a67-bdbd-5656530b352f}</destination>
 		</relationship>
@@ -144,12 +151,47 @@
 	</object>
 	<object class="MixerBusPanner" id="{9f60732f-c07d-45f5-8928-868ff4212b09}" />
 	<object class="MixerBusFader" id="{6f32f4b0-dcd3-4cc0-8178-375cd9369e8b}" />
+	<object class="ADSRModulator" id="{eb43ffc4-5f4e-4218-b27e-45c78d7bd5e0}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>1600</value>
+		</property>
+		<property name="attackShape">
+			<value>-0.215306789</value>
+		</property>
+		<property name="holdTime">
+			<value>42000</value>
+		</property>
+		<property name="decayTime">
+			<value>60000</value>
+		</property>
+		<property name="releaseTime">
+			<value>724.358887</value>
+		</property>
+		<property name="releaseShape">
+			<value>0.317696065</value>
+		</property>
+		<property name="finalValue">
+			<value>-76.1481476</value>
+		</property>
+	</object>
 	<object class="ADSRModulator" id="{e2f4bf28-c86f-40ae-a0a2-1936b43c3237}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
 		</property>
 		<property name="initialValue">
 			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>0</value>
+		</property>
+		<property name="attackShape">
+			<value>0.728825212</value>
 		</property>
 		<property name="holdTime">
 			<value>0</value>
@@ -158,7 +200,10 @@
 			<value>40</value>
 		</property>
 		<property name="releaseTime">
-			<value>1200</value>
+			<value>2000</value>
+		</property>
+		<property name="releaseShape">
+			<value>-0.550516486</value>
 		</property>
 		<property name="finalValue">
 			<value>-80</value>
@@ -172,7 +217,10 @@
 			<value>-80</value>
 		</property>
 		<property name="attackTime">
-			<value>800</value>
+			<value>500</value>
+		</property>
+		<property name="attackShape">
+			<value>0.271852642</value>
 		</property>
 		<property name="holdTime">
 			<value>0</value>
@@ -181,7 +229,10 @@
 			<value>0</value>
 		</property>
 		<property name="releaseTime">
-			<value>800</value>
+			<value>2000</value>
+		</property>
+		<property name="releaseShape">
+			<value>-0.317696095</value>
 		</property>
 		<property name="finalValue">
 			<value>-76.1481476</value>

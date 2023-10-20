@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -82,6 +81,8 @@ public class EnemySpawner : MonoBehaviour
 
     Base_Enemy SelectEnemyToSpawn()
     {
+        Base_Enemy selectedEnemy;
+
         switch (GameManager.Instance.CurrentLevelState)
         {
             case GameManager.LevelState.Soft:
@@ -101,6 +102,60 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return aviableEnemiesToSpawn[0];
+
+        void SelectEnemyBasedOnPorcentage(float LivingChance, float WalkingChance, float ConsientChance, float SelfconscientChance)
+        {
+            EnemyData.EnemyCategories selectedCategory = EnemyData.EnemyCategories.None;
+
+            EnemyData.EnemyCategories[] catogoriesForSpawn = { EnemyData.EnemyCategories.Viviente,
+                EnemyData.EnemyCategories.Andante,
+                EnemyData.EnemyCategories.Consiente, 
+                EnemyData.EnemyCategories.Autoconsciente };
+
+            float[] wheights = { LivingChance, WalkingChance, ConsientChance, SelfconscientChance };
+            float accumulatedWheights = 0;
+
+            foreach (float w in wheights)
+            {
+                accumulatedWheights += w;
+            }
+
+            float randNumber = Random.Range(0, accumulatedWheights);
+            float runningTotal = 0;
+
+            for (int i = 0; i < wheights.Length; i++)
+            {
+                runningTotal += wheights[i];
+                if (randNumber < runningTotal)
+                {
+                    selectedCategory = catogoriesForSpawn[i];
+                    print($"Cateogry to spawn {selectedCategory}");
+                }
+            }
+
+            //switch (randNumber)
+            //{
+            //    case float val when val > 0 && val < LivingChance:
+            //        selectedCategory = EnemyData.EnemyCategories.Viviente;
+            //        break;
+            //    case float val when val > LivingChance && val < WalkingChance:
+            //        selectedCategory = EnemyData.EnemyCategories.Andante;
+            //        break;
+            //    case float val when val > WalkingChance && val < ConsientChance:
+            //        selectedCategory = EnemyData.EnemyCategories.Andante;
+            //        break;
+            //    case float val when val > ConsientChance && val < SelfconscientChance:
+            //        selectedCategory = EnemyData.EnemyCategories.Andante;
+            //        break;
+            //    default:
+            //        selectedCategory = EnemyData.EnemyCategories.None;
+            //        break;
+            //}
+
+            IEnumerable<Base_Enemy> enemySpawnPool = aviableEnemiesToSpawn.Where(e => e.EnemyData.EnemyCategory == selectedCategory);
+
+            //return enemySpawnPool[Random.Range(0, enemySpawnPool.Count)];
+        }
     }
 
     public void SpawnEnemy()
