@@ -18,5 +18,9 @@ public class EndingData : ScriptableObject
     public enum EndingType
     {
         None,
+        Horrible,
+        Malo,
+        Regular,
+        Bueno
     }
 }

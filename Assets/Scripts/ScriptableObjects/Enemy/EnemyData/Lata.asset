@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
+  m_Name: Lata
+  m_EditorClassIdentifier: 
+  DisplayName: Lata Viviente
+  DisplayImage: {fileID: 0}
+  DisplayDescription: "Latas de diferentes marcas que han adquirido piernas y \r\nbrazos
+    delgados, un par de ojos de brillo rojo y una mentalidad un poco soci\xF3pata."
+  EnemyMaterial: 02000000
+  EnemyCategory: 1
+  MovementVector: {x: 1, y: 0, z: 0}
+  MovementTime: 1
+  MovementTimeRange: []
+  MaxHitPoints: 8
+  RecyclePointsGiven: 8

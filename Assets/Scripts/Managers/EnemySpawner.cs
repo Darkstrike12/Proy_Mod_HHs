@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<Base_Enemy> aviableEnemiesToSpawn;
 
     [Header("External References")]
-    [SerializeField] GridManager grid;
+    [SerializeField] GridManager gridManager;
 
     [Header("Events")]
     public UnityEvent OnEnemySpawned;
@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        GridSize = grid.GetGridSize();
+        GridSize = gridManager.GetGridSize();
 
         CurrentSpawnDelay = 0f;
         CurrentEnemyCount = 0;
@@ -68,7 +68,9 @@ public class EnemySpawner : MonoBehaviour
 
     #endregion
 
-    public void UpdateStatsOnEnemyDefrated()
+    #region Update Stats
+
+    public void UpdateStatsOnEnemyDefeated()
     {
         CurrentEnemyCount--;
         DefeatedEnemyCount++;
@@ -78,6 +80,10 @@ public class EnemySpawner : MonoBehaviour
     {
         CurrentEnemyCount--;
     }
+
+    #endregion
+
+    #region Spawn Enemy
 
     Base_Enemy SelectEnemyToSpawn()
     {
@@ -160,11 +166,12 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + grid.GridCellCenter().y, 0f);
+        transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
         Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
         //EnemySpawned.transform.parent = transform;
-        EnemySpawned.InitEnemy(grid.GetGridCompnent());
+        EnemySpawned.InitEnemy(gridManager.Grid);
         CurrentEnemyCount++;
     }
 
+    #endregion
 }

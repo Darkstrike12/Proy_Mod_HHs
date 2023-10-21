@@ -47,7 +47,6 @@ public class WeaponSpawner : MonoBehaviour
     public void SelectWeapon()
     {
         Destroy(CurrentWeapon);
-        //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition.position, Quaternion.identity);
         CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
         IsWeaponSelected = true;
     }
@@ -69,10 +68,13 @@ public class WeaponSpawner : MonoBehaviour
     {
         if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
         {
-            IsWeaponSelected = false;
-            MousePosition.SetSelectedTile();
-            CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
-            GameManager.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
+            if (MousePosition.IsMousePointerOverGameGrid())
+            {
+                IsWeaponSelected = false;
+                MousePosition.SetSelectedTile();
+                CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
+                GameManager.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
+            }
         }
 
         //Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();

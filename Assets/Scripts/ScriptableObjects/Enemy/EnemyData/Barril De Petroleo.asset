@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
+  m_Name: Barril De Petroleo
+  m_EditorClassIdentifier: 
+  DisplayName: Barril De Petroleo Consciente
+  DisplayImage: {fileID: 0}
+  DisplayDescription: "Un barril lleno de petr\xF3leo que se desbordo Creando piernas
+    \ry brazos que a veces se desprenden.\n\nHabilidad: Si el enemigo pasas la l\xEDnea
+    del jugador el nivel terminara con \run final horrible.\r"
+  EnemyMaterial: 0300000002000000
+  EnemyCategory: 3
+  MovementVector: {x: 3, y: 3, z: 0}
+  MovementTime: 0
+  MovementTimeRange:
+  - 3
+  - 6
+  MaxHitPoints: 12
+  RecyclePointsGiven: 2

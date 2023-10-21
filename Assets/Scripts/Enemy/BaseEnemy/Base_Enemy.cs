@@ -6,7 +6,7 @@ public class Base_Enemy : MonoBehaviour
 {
     [Header("Enemy Data")]
     [SerializeField] protected EnemyData enemyData;
-    public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+    public EnemyData EnemyData { get => enemyData; }
 
     [Header("External References")]
     [SerializeField] protected Grid grid;
@@ -125,7 +125,7 @@ public class Base_Enemy : MonoBehaviour
 
     #region Enemy Damage Calculation
 
-    public void TakeDamage(int DamageTaken, bool IsInstantKill)
+    public virtual void TakeDamage(int DamageTaken, bool IsInstantKill)
     {
         if (AllowDamage)
         {
@@ -139,7 +139,7 @@ public class Base_Enemy : MonoBehaviour
     {
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
-        EnemySpawner.Instance.UpdateStatsOnEnemyDefrated();
+        EnemySpawner.Instance.UpdateStatsOnEnemyDefeated();
         GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
         Destroy(gameObject);
     }
@@ -201,7 +201,7 @@ public class Base_Enemy : MonoBehaviour
         return !Physics2D.OverlapCircle(TargetPos, 0.15f, DetectedLayers);
     }
 
-    public virtual IEnumerator MoveEnemyCR(float MovementTime)
+    public virtual IEnumerator MoveCR(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
         enemAnimator.SetBool("IsMoving", true);
@@ -341,145 +341,6 @@ public class Base_Enemy : MonoBehaviour
         #endregion
 
         enemAnimator.SetBool("IsMoving", false);
-    }
-
-    public virtual IEnumerator MoveEnemyCR()
-    {
-        Vector3 InitialPosition;
-        Vector3 TargetPosition;
-        Vector3 MovementDirection;
-        Vector3 CurrentPos;
-        float TimeElapsed;
-
-        #region Movement In X
-
-        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
-
-        InitialPosition = transform.position;
-        if (JitterX)
-        {
-            TargetPosition = InitialPosition + JitterXAxis(MovementLimit);
-        }
-        else
-        {
-            TargetPosition = InitialPosition + new Vector3Int(-MovementLimit.x, 0, 0);
-        }
-
-        MovementDirection = (TargetPosition - InitialPosition).normalized;
-        CurrentPos = InitialPosition + MovementDirection;
-        switch (MovementDirection.x)
-        {
-            case 1:
-                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-
-            case -1:
-                while (IsTileAviable(CurrentPos) && CurrentPos.x > TargetPosition.x)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-
-            default:
-                while (IsTileAviable(CurrentPos) && CurrentPos.x < TargetPosition.x)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-        }
-        TargetPosition = CurrentPos;
-
-        TimeElapsed = 0f;
-        while (TimeElapsed < MovementDuration.x)
-        {
-            transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementCurveX.Evaluate(TimeElapsed / MovementDuration.x));
-            TimeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = TargetPosition;
-
-        #endregion
-
-        #region Movement In Y
-
-        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
-
-        InitialPosition = transform.position;
-        if (JitterY)
-        {
-            TargetPosition = InitialPosition + JitterYAxis(MovementLimit);
-        }
-        else
-        {
-            TargetPosition = InitialPosition + new Vector3Int(0, MovementLimit.y, 0);
-        }
-
-        MovementDirection = (TargetPosition - InitialPosition).normalized;
-        CurrentPos = InitialPosition + MovementDirection;
-        switch (MovementDirection.y)
-        {
-            case 1:
-                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-
-            case -1:
-                while (IsTileAviable(CurrentPos) && CurrentPos.y > TargetPosition.y)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-
-            default:
-                while (IsTileAviable(CurrentPos) && CurrentPos.y < TargetPosition.y)
-                {
-                    CurrentPos += MovementDirection;
-                }
-                while (!IsTileAviable(CurrentPos))
-                {
-                    CurrentPos -= MovementDirection;
-                }
-                break;
-        }
-        TargetPosition = CurrentPos;
-
-        TimeElapsed = 0f;
-        while (TimeElapsed < MovementDuration.y)
-        {
-            transform.position = Vector3.Lerp(InitialPosition, TargetPosition, MovementCurveY.Evaluate(TimeElapsed / MovementDuration.y));
-            TimeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = TargetPosition;
-
-        #endregion
-
-        //enemAnimator.SetBool("IsMoving", false);
     }
 
     public virtual IEnumerator LerpEmenyToTarget(Vector3 InitialPos, Vector3 TargetPos, float LerpDuration, AnimationCurve animationCurve)

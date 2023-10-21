@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
-  m_Name: Wp1
+  m_Name: Pico Recolector De Basura
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1508147618502575821, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
+  weapon: {fileID: 0}
   WeaponID: 0
-  DisplayName: WP1
+  DisplayName: Pico Recolector De Basura
   DisplayImage: {fileID: 0}
-  DisplayDescription: 
-  BaseDamage: 2
-  BaseUseCost: 1
+  DisplayDescription: Arama Basica
+  BaseDamage: 3
+  BaseUseCost: 2
   BaseReloadTime: 3
-  attackRange: {x: 1, y: 2}
-  AffectAllMaterials: 0
-  AffectedEnemyMaterials: 00000000
-  AffectAllCategories: 0
-  AffectedEnemyCategories: 00000000
+  attackRange: {x: 1, y: 1}
+  AffectAllMaterials: 1
+  AffectedEnemyMaterials: 
+  AffectAllCategories: 1
+  AffectedEnemyCategories: 

@@ -9,14 +9,14 @@ using UnityEngine.Events;
 public class Base_Weapon : MonoBehaviour
 {
     [Header("Weapon Data")]
-    [SerializeField] WeaponData weaponDataSO;
-    public WeaponData WeaponDataSO { get { return weaponDataSO; } set { weaponDataSO = value; } }
+    [SerializeField] protected WeaponData weaponDataSO;
+    public WeaponData WeaponDataSO { get => weaponDataSO; }
 
     [Header("Weapon Behaviour Variables")]
-    [SerializeField] bool IsInstantKill;
+    [SerializeField] protected bool IsInstantKill;
     //public bool isInstaKill { get { return IsInstantKill; } }
-    [SerializeField] bool UseSpecialEffect;
-    [SerializeField] float DestroyDelay;
+    [SerializeField] protected bool UseSpecialEffect;
+    [SerializeField] protected float DestroyDelay;
 
     //Events
     [SerializeField] UnityEvent Hit;
@@ -57,7 +57,7 @@ public class Base_Weapon : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AtackRange.x, weaponDataSO.AtackRange.y));
+        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y));
     }
 
     #endregion
@@ -67,16 +67,17 @@ public class Base_Weapon : MonoBehaviour
         HitPosition = Point;
     }
 
-    public virtual void WeaponHitWhTl(Vector3 hitPoint)
+    public virtual void WeaponHitWhTile(Vector3 hitPoint)
     {
-        RigidBody.bodyType = RigidbodyType2D.Static;
-        Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AtackRange, 0f);
+        RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AttackRange, 0f);
         HitPosition = hitPoint;
         foreach (Collider2D col in Colliders)
         {
             if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
             {
-                Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
+                Enem.TakeDamage(weaponDataSO.BaseDamage, IsInstantKill);
                 if (UseSpecialEffect) WeaponSpecialEffect(Enem);
                 //Destroy(gameObject);
             }

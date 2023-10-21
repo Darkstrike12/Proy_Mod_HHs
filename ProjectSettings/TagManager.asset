@@ -18,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - ColliderGrid
-  - NoColliderGrid
+  - BarrierGrid
+  - GameGrid
   - Weapons
   - 
   - 

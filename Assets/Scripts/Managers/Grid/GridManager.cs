@@ -8,17 +8,20 @@ public class GridManager : MonoBehaviour
     [SerializeField] int width, height;
 
     [Header("Tiles")]
-    [SerializeField] GameObject GridTilePF;
+    [SerializeField] GameObject GameTilePF;
     [SerializeField] GameObject FinishTilePF;
     [SerializeField] GameObject EnemySpawnTilePF;
     [SerializeField] GameObject BarrierTilePF;
 
-    [Header("External")]
+    [Header("External References")]
     [SerializeField] Transform Player;
     [SerializeField] Transform EnemySpawner;
 
     //Internal
     Grid gridCompnent;
+    public Grid Grid { get => gridCompnent; }
+
+    #region Unity Functions
 
     private void Start()
     {
@@ -28,6 +31,8 @@ public class GridManager : MonoBehaviour
         Player.position = new Vector3(transform.position.x - 1, height/2);
         EnemySpawner.position = new Vector3(width, height - 1) + (gridCompnent.cellSize / 2);
     }
+
+    #endregion
 
     #region Getters
 
@@ -41,12 +46,22 @@ public class GridManager : MonoBehaviour
         return Vector3.zero + (gridCompnent.cellSize / 2);
     }
 
-    public Grid GetGridCompnent()
+    #endregion
+
+    public bool IsOverGameGrid(Vector3 Position)
     {
-        return gridCompnent;
+        if(Physics2D.OverlapCircle(Position, 0.25f, LayerMask.GetMask("GameGrid")))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
-    #endregion
+    #region Grid Generation
 
     void GenerateGrid()
     {
@@ -58,7 +73,7 @@ public class GridManager : MonoBehaviour
 
             for (int y = 0; y < height; y++)
             {
-                SpawnTile(GridTilePF, new Vector3(x, y, 0));
+                SpawnTile(GameTilePF, new Vector3(x, y, 0));
 
                 SpawnTile(FinishTilePF, new Vector3(-1, y, 0));
 
@@ -74,4 +89,6 @@ public class GridManager : MonoBehaviour
         SpawnedTile.transform.parent = transform;
         SpawnedTile.name = $"{SpawnedTile.name} : {SpawnPosition.x}, {SpawnPosition.y}";
     }
+
+    #endregion
 }

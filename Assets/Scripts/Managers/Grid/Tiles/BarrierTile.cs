@@ -11,6 +11,7 @@ public class BarrierTile : GridTile
         if (IsEnemyOnTile(collision, out Base_Enemy enemy))
         {
             Destroy(collision.gameObject, DestroyDelay);
+            GameManager.Instance.UpdateStatsOnEnemyOutOfGameArea();
         }
     }
 }
