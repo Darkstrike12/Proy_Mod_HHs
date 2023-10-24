@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{6dc7bf3a-319c-4713-89a2-87f4cb59393f}">
 		<property name="name">
-			<value>Gameplay_Music</value>
+			<value>Gameplay_Music_Intensity</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3e29a3da-a31e-4961-ba68-741cc3cc2f8c}</destination>

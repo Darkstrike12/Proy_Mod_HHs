@@ -94,14 +94,17 @@ public class EnemySpawner : MonoBehaviour
             case GameManager.LevelState.Soft:
                 SpawnDelay = (float)(Random.Range(5, 7));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 5;
+                SelectEnemyBasedOnPorcentage(60, 30, 10, 0);
                 break;
             case GameManager.LevelState.Medium:
                 SpawnDelay = (float)(Random.Range(3, 5));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 3;
+                SelectEnemyBasedOnPorcentage(10, 40, 40, 10);
                 break;
             case GameManager.LevelState.Hard:
                 SpawnDelay = (float)(Random.Range(1, 3));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 2;
+                SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
                 break;
             case GameManager.LevelState.Finish:
                 break;
@@ -113,31 +116,55 @@ public class EnemySpawner : MonoBehaviour
         {
             EnemyData.EnemyCategories selectedCategory = EnemyData.EnemyCategories.None;
 
-            EnemyData.EnemyCategories[] catogoriesForSpawn = { EnemyData.EnemyCategories.Viviente,
+            EnemyData.EnemyCategories[] catogoriesForSpawn = { 
+                EnemyData.EnemyCategories.Viviente,
                 EnemyData.EnemyCategories.Andante,
                 EnemyData.EnemyCategories.Consiente, 
                 EnemyData.EnemyCategories.Autoconsciente };
 
-            float[] wheights = { LivingChance, WalkingChance, ConsientChance, SelfconscientChance };
-            float accumulatedWheights = 0;
+            float[] Chances = { LivingChance, WalkingChance, ConsientChance, SelfconscientChance };
+            float totalChances = 0;
 
-            foreach (float w in wheights)
+            float numberForAdding = 0;
+            float randomNumber = Random.Range(0f, 1f);
+
+            foreach(float num in Chances)
             {
-                accumulatedWheights += w;
+                totalChances += num;
             }
 
-            float randNumber = Random.Range(0, accumulatedWheights);
-            float runningTotal = 0;
-
-            for (int i = 0; i < wheights.Length; i++)
+            for (int i = 0; i < catogoriesForSpawn.Length; i++)
             {
-                runningTotal += wheights[i];
-                if (randNumber < runningTotal)
+                if (Chances[i]/ totalChances + numberForAdding >= randomNumber)
                 {
-                    selectedCategory = catogoriesForSpawn[i];
-                    print($"Cateogry to spawn {selectedCategory}");
+                    print($"Spawn {catogoriesForSpawn[i]}");
+                }
+                else
+                {
+                    numberForAdding += Chances[i] / totalChances;
                 }
             }
+
+            //float[] wheights = { LivingChance, WalkingChance, ConsientChance, SelfconscientChance };
+            //float accumulatedWheights = 0;
+
+            //foreach (float w in wheights)
+            //{
+            //    accumulatedWheights += w;
+            //}
+
+            //float randNumber = Random.Range(0, accumulatedWheights);
+
+            //float runningTotal = 0;
+            //for (int i = 0; i < wheights.Length; i++)
+            //{
+            //    runningTotal += wheights[i];
+            //    if (randNumber < runningTotal)
+            //    {
+            //        selectedCategory = catogoriesForSpawn[i];
+            //        print($"Cateogry to spawn {selectedCategory}");
+            //    }
+            //}
 
             //switch (randNumber)
             //{

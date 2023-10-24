@@ -69,27 +69,30 @@ public class GameManager : MonoBehaviour
         {
             case float i when i > 0f && i < 20f:
                 CurrentLevelState = LevelState.Soft;
+                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             case float i when i > 20f && i < 70f:
                 CurrentLevelState = LevelState.Medium;
+                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             case float i when i > 70f && i < 100f:
                 CurrentLevelState = LevelState.Hard;
+                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             case float i when i >= 100f:
                 CurrentLevelState = LevelState.Finish;
                 break;
         }
 
-        print($"Intensity {intensityIndicator}, level state {CurrentLevelState}");
+        //print($"Intensity {intensityIndicator}, level state {CurrentLevelState}");
     }
 
     public enum LevelState
     {
-        Start,
-        Soft,
-        Medium,
-        Hard,
-        Finish
+        Start = -1,
+        Soft = 0,
+        Medium = 1,
+        Hard = 2,
+        Finish = 3
     }
 }

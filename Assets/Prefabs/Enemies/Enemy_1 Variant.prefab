@@ -129,11 +129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: DetectedLayers.m_Bits
@@ -154,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: TestOneSshot.Guid.Data4
       value: 1735634271
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurveX.m_Curve.Array.size
@@ -192,7 +196,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_PostInfinity
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
@@ -213,6 +233,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurveY.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
@@ -269,6 +297,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementAnimationCurveY.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[1].m_Curve.Array.data[0].outSlope
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715250, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}

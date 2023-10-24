@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Events;
 
 public class WeaponSpawner : MonoBehaviour

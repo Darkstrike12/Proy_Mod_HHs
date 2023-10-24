@@ -15,10 +15,65 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638331352370761659
+  lastModified: 638336927330082278
   FileSizes:
   - Name: Desktop
-    Value: 814
+    Value: 1034
+  Exists: 1
+--- !u!114 &-3069933091490862360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestEvents/TstMusic5
+  m_EditorClassIdentifier: 
+  Path: event:/TestEvents/TstMusic5
+  Guid:
+    Data1: -1889371650
+    Data2: 1308385025
+    Data3: -2047671379
+    Data4: -134341048
+  Banks:
+  - {fileID: 1099987750225915635}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 6772843738828718747}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 66206
+--- !u!114 &-2900070777348547119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TstMusic4/Gameplay_Music_Intensity
+  m_EditorClassIdentifier: 
+  Name: Gameplay_Music_Intensity
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3604299488
+    data2: 3178932810
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Soft
+  - Medium
+  - Hard
   Exists: 1
 --- !u!114 &-1519021468992950977
 MonoBehaviour:
@@ -35,7 +90,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638331352370761659
+  lastModified: 638336927330052277
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -57,14 +112,43 @@ MonoBehaviour:
   - {fileID: -1519021468992950977}
   - {fileID: 1099987750225915635}
   EditorEvents:
-  - {fileID: 4100028383846197087}
+  - {fileID: 3200113162024659154}
+  - {fileID: 1028386001920254063}
+  - {fileID: -3069933091490862360}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1519021468992950977}
   StringsBanks:
   - {fileID: -4993273454060946457}
-  cacheTime: 638331352370771663
+  cacheTime: 638336929206996336
   cacheVersion: 131608
+--- !u!114 &1028386001920254063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestEvents/Example2Devent
+  m_EditorClassIdentifier: 
+  Path: event:/TestEvents/Example2Devent
+  Guid:
+    Data1: -259332139
+    Data2: 1157401781
+    Data3: 530806205
+    Data4: 1735634271
+  Banks:
+  - {fileID: 1099987750225915635}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1099987750225915635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,12 +164,12 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/TestBank.bank
   Name: TestBank
   StudioPath: bank:/TestBank
-  lastModified: 638331352370771663
+  lastModified: 638336929206996336
   FileSizes:
   - Name: Desktop
-    Value: 12320
+    Value: 717920
   Exists: 1
---- !u!114 &4100028383846197087
+--- !u!114 &3200113162024659154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,20 +179,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Example2Devent
+  m_Name: event:/TestEvents/TstMusic4
   m_EditorClassIdentifier: 
-  Path: event:/Example2Devent
+  Path: event:/TestEvents/TstMusic4
   Guid:
-    Data1: -259332139
-    Data2: 1157401781
-    Data3: 530806205
-    Data4: 1735634271
+    Data1: 242915177
+    Data2: 1200721866
+    Data3: 2021289369
+    Data4: -438730407
   Banks:
   - {fileID: 1099987750225915635}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2900070777348547119}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 66206
+--- !u!114 &6772843738828718747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TstMusic5/Gameplay_Music_Intensity
+  m_EditorClassIdentifier: 
+  Name: Gameplay_Music_Intensity
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3604299488
+    data2: 3178932810
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Soft
+  - Medium
+  - Hard
+  Exists: 1
