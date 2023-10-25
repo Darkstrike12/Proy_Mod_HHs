@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MovementTimeRangeIdle
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
-  Description: 
+  Description: Idle With a ranom timer in a range to start movement
   useMoventTimeRange: 1

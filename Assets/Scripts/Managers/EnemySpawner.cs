@@ -66,9 +66,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position + Vector3.left, 0.25f);
+        Gizmos.DrawWireSphere(transform.position + (Vector3.left * 2), 0.25f);
+    }
+
     #endregion
 
-    #region Update Stats
+    #region Update Variables
 
     public void UpdateStatsOnEnemyDefeated()
     {
@@ -194,6 +201,10 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy()
     {
         transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
+        while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")))
+        {
+            transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
+        }
         Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
         //EnemySpawned.transform.parent = transform;
         EnemySpawned.InitEnemy(gridManager.Grid);

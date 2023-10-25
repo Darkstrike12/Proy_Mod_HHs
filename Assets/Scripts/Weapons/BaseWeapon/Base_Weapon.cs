@@ -67,7 +67,7 @@ public class Base_Weapon : MonoBehaviour
         HitPosition = Point;
     }
 
-    public virtual void WeaponHitWhTile(Vector3 hitPoint)
+    public virtual void HitOnPosition(Vector3 hitPoint)
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
         transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);

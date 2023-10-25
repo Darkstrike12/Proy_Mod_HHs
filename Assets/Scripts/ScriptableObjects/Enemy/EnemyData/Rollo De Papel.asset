@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
   m_Name: Rollo De Papel
   m_EditorClassIdentifier: 
-  DisplayName: 
+  DisplayName: Rollo De Papel
   DisplayImage: {fileID: 0}
   DisplayDescription: 
-  EnemyMaterial: 
+  EnemyMaterial: 01000000
   EnemyCategory: 1
   MovementVector: {x: 1, y: 0, z: 0}
   MovementTime: 0

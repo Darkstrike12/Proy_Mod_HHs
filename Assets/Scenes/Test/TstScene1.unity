@@ -512,7 +512,7 @@ MonoBehaviour:
   SpawnDelay: 3
   MaxEnemyCount: 5
   aviableEnemiesToSpawn:
-  - {fileID: 7076135802495003943, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
+  - {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
   gridManager: {fileID: 1408618466}
   OnEnemySpawned:
     m_PersistentCalls:
@@ -1746,7 +1746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1891209282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1767,6 +1767,7 @@ MonoBehaviour:
       Data4: -134341048
     Path: event:/TestEvents/TstMusic5
   parameterInt: 3
+  levelState: 0
 --- !u!212 &1891209283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1941,10 +1942,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRecyclePoints: 4
-  TotalEnemiesOnLevel: 20
+  <TotalEnemiesOnLevel>k__BackingField: 20
   RecyclePointsCounter: {fileID: 1878408912}
-  RemainingEnemies: 0
-  CurrentRecyclePoints: 0
+  <RemainingEnemies>k__BackingField: 0
+  <CurrentRecyclePoints>k__BackingField: 0
   <CurrentLevelState>k__BackingField: 0
 --- !u!4 &1990297131
 Transform:

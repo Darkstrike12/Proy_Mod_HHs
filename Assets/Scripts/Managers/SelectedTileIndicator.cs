@@ -20,7 +20,7 @@ public class SelectedTileIndicator : MonoBehaviour
     {
         if (collision.TryGetComponent(out Base_Weapon weapon))
         {
-            weapon.WeaponHitWhTile(transform.position);
+            weapon.HitOnPosition(transform.position);
             gameObject.SetActive(false);
         }
     }

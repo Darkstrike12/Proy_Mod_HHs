@@ -2,9 +2,6 @@ using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -34,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        //InitializeBMG(MusicEvents.Find(e => e.Name == "BGM").Event);
+        InitializeBMG(MusicEvents.Find(e => e.Name == "BGM").Event);
     }
 
     void Update()
@@ -70,6 +67,9 @@ public class AudioManager : MonoBehaviour
             case GameManager.LevelState.Hard:
                 numLevelState = 2;
                 break;
+            case GameManager.LevelState.Finish:
+                MainBGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                return;
         }
         MainBGM.setParameterByName("Gameplay_Music_Intensity", numLevelState);
     }

@@ -7,20 +7,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Level Variables")]
+    [Range(1, 100)]
     [SerializeField] int initialRecyclePoints;
-    public int TotalEnemiesOnLevel;
+    [field: SerializeField] public int TotalEnemiesOnLevel { get; private set; }
 
     [Header("External References")]
     [SerializeField] TextMeshProUGUI RecyclePointsCounter;
 
     [Header("Internal Variables")]
     //Internal Variables
-    public int RemainingEnemies;
-    public int CurrentRecyclePoints;
+    [Space(4)]
+    int testInt;
+    [field: SerializeField]  public int RemainingEnemies {  get; private set; }
+    [field: SerializeField] public int CurrentRecyclePoints { get; private set; }
     [field: SerializeField] public LevelState CurrentLevelState { get; private set; }
 
     //Intanse
     public static GameManager Instance;
+
+    #region Unity Functions
 
     private void Awake()
     {
@@ -43,6 +48,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         RecyclePointsCounter.text = CurrentRecyclePoints.ToString();
+    }
+
+    #endregion
+
+    #region Update Variables
+
+    public void UpdateCurrentRecyclePoints(int RecyclePoints)
+    {
+        CurrentRecyclePoints += RecyclePoints;
     }
 
     public void UpdateStatsOnEnemyDefeated(Base_Enemy enemy)
@@ -86,6 +100,8 @@ public class GameManager : MonoBehaviour
 
         //print($"Intensity {intensityIndicator}, level state {CurrentLevelState}");
     }
+
+    #endregion
 
     public enum LevelState
     {

@@ -74,7 +74,7 @@ public class WeaponSpawner : MonoBehaviour
                 IsWeaponSelected = false;
                 MousePosition.SetSelectedTile();
                 CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
-                GameManager.Instance.CurrentRecyclePoints -= CurrentWeapon.WeaponDataSO.BaseUseCost;
+                GameManager.Instance.UpdateCurrentRecyclePoints(-CurrentWeapon.WeaponDataSO.BaseUseCost);
             }
         }
 
