@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     [Range(1, 100)]
     [SerializeField] int initialRecyclePoints;
     [field: SerializeField] public int TotalEnemiesOnLevel { get; private set; }
+    [Header("Level State Threshold")]
+    [SerializeField] float SoftThreshold;
+    [SerializeField] float MediumThreshold;
+    [SerializeField] float HardThreshold;
 
-    [Header("External References")]
+    [Header("UI References")]
     [SerializeField] TextMeshProUGUI RecyclePointsCounter;
 
-    [Header("Internal Variables")]
-    //Internal Variables
     [Space(4)]
     int testInt;
     [field: SerializeField]  public int RemainingEnemies {  get; private set; }
@@ -48,6 +50,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         RecyclePointsCounter.text = CurrentRecyclePoints.ToString();
+        if(RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0)
+        {
+            CurrentLevelState = LevelState.Finish;
+        }
     }
 
     #endregion
@@ -81,24 +87,22 @@ public class GameManager : MonoBehaviour
 
         switch (intensityIndicator)
         {
-            case float i when i > 0f && i < 20f:
+            case float i when i >= 0f && i < SoftThreshold:
                 CurrentLevelState = LevelState.Soft;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            case float i when i > 20f && i < 70f:
+            case float i when i > SoftThreshold && i < MediumThreshold:
                 CurrentLevelState = LevelState.Medium;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            case float i when i > 70f && i < 100f:
+            case float i when i > MediumThreshold && i < HardThreshold:
                 CurrentLevelState = LevelState.Hard;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            case float i when i >= 100f:
-                CurrentLevelState = LevelState.Finish;
-                break;
+            //case float i when i >= HardThreshold:
+            //    CurrentLevelState = LevelState.Finish;
+            //    break;
         }
-
-        //print($"Intensity {intensityIndicator}, level state {CurrentLevelState}");
     }
 
     #endregion

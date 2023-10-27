@@ -342,79 +342,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333640658}
   m_CullTransparentMesh: 1
---- !u!1001 &336781915
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 726781124221117165, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_Name
-      value: Barril De Petroleo
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117165, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117166, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 726781124221117169, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 865f9b49a1ad3ea418c04d53cb988b59, type: 2}
-    - target: {fileID: 1162274860219766428, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: grid
-      value: 
-      objectReference: {fileID: 1408618464}
-    - target: {fileID: 1162274860219766428, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
-      propertyPath: MovementDuration.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
 --- !u!1 &380168531
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &450593877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,8 +511,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnDelay: 3
   MaxEnemyCount: 5
-  aviableEnemiesToSpawn:
-  - {fileID: 1162274860219766428, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
+  aviableEnemies:
+  - {fileID: 7478231810919298006, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
+  - {fileID: 2812440255424630329, guid: d34bfb2bbc27d154d8f4d7180072be3f, type: 3}
   gridManager: {fileID: 1408618466}
   OnEnemySpawned:
     m_PersistentCalls:
@@ -626,8 +554,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  CurrentEnemyCount: 0
-  DefeatedEnemyCount: 0
+  <CurrentEnemyCount>k__BackingField: 0
+  <DefeatedEnemyCount>k__BackingField: 0
 --- !u!212 &450593878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1037,7 +965,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &971190801
 GameObject:
@@ -1246,7 +1174,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1311,7 +1239,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7076135802495003941, guid: 6528f5dd5ca78a64cbb8962da6645fe0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2047,7 +1975,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1990297129
 GameObject:
@@ -2080,6 +2008,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialRecyclePoints: 4
   <TotalEnemiesOnLevel>k__BackingField: 20
+  SoftThreshold: 10
+  MediumThreshold: 60
+  HardThreshold: 100
   RecyclePointsCounter: {fileID: 1878408912}
   <RemainingEnemies>k__BackingField: 0
   <CurrentRecyclePoints>k__BackingField: 0

@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int MaxEnemyCount;
 
     [Header("Enemies To Spawn")]
-    [SerializeField] List<Base_Enemy> aviableEnemiesToSpawn;
+    [SerializeField] List<Base_Enemy> aviableEnemies;
 
     [Header("External References")]
     [SerializeField] GridManager gridManager;
@@ -19,12 +19,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnEnemySpawned;
 
-    [Header("Internal Variables")]
     //Internal Variables
     Vector2Int GridSize;
     float CurrentSpawnDelay;
-    public int CurrentEnemyCount;
-    public int DefeatedEnemyCount = 0;
+    [field: SerializeField] public int CurrentEnemyCount { get; private set; }
+    [field: SerializeField] public int DefeatedEnemyCount { get; private set; }
 
     //SingletonInstance
     public static EnemySpawner Instance;
@@ -47,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GridSize = gridManager.GetGridSize();
 
+        DefeatedEnemyCount = 0;
         CurrentSpawnDelay = 0f;
         CurrentEnemyCount = 0;
     }
@@ -94,32 +94,40 @@ public class EnemySpawner : MonoBehaviour
 
     Base_Enemy SelectEnemyToSpawn()
     {
-        Base_Enemy selectedEnemy;
+        Base_Enemy selectedEnemy = null;
 
         switch (GameManager.Instance.CurrentLevelState)
         {
             case GameManager.LevelState.Soft:
                 SpawnDelay = (float)(Random.Range(5, 7));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 5;
-                SelectEnemyBasedOnPorcentage(60, 30, 10, 0);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(70, 30, 0, 0);
                 break;
             case GameManager.LevelState.Medium:
                 SpawnDelay = (float)(Random.Range(3, 5));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 3;
-                SelectEnemyBasedOnPorcentage(10, 40, 40, 10);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(15, 40, 40, 5);
                 break;
             case GameManager.LevelState.Hard:
                 SpawnDelay = (float)(Random.Range(1, 3));
                 MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 2;
-                SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
                 break;
             case GameManager.LevelState.Finish:
                 break;
         }
 
-        return aviableEnemiesToSpawn[0];
+        if (selectedEnemy != null)
+        {
+            print($"Enemy {selectedEnemy}, enemy category {selectedEnemy.EnemyData.EnemyCategory}");
+            return selectedEnemy;
+        }
+        else
+        {
+            return aviableEnemies[Random.Range(0, aviableEnemies.Count())];
+        }
 
-        void SelectEnemyBasedOnPorcentage(float LivingChance, float WalkingChance, float ConsientChance, float SelfconscientChance)
+        Base_Enemy SelectEnemyBasedOnPorcentage(float LivingChance, float WalkingChance, float ConsientChance, float SelfconscientChance)
         {
             EnemyData.EnemyCategories selectedCategory = EnemyData.EnemyCategories.None;
 
@@ -145,6 +153,7 @@ public class EnemySpawner : MonoBehaviour
                 if (Chances[i]/ totalChances + numberForAdding >= randomNumber)
                 {
                     print($"Spawn {catogoriesForSpawn[i]}");
+                    selectedCategory = catogoriesForSpawn[i];
                 }
                 else
                 {
@@ -152,49 +161,12 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            //float[] wheights = { LivingChance, WalkingChance, ConsientChance, SelfconscientChance };
-            //float accumulatedWheights = 0;
+            List<Base_Enemy> enemySpawnPool = aviableEnemies.Where(e => e.EnemyData.EnemyCategory == selectedCategory).ToList();
 
-            //foreach (float w in wheights)
-            //{
-            //    accumulatedWheights += w;
-            //}
+            //return enemySpawnPool[Random.Range(0, enemySpawnPool.Count())];
 
-            //float randNumber = Random.Range(0, accumulatedWheights);
-
-            //float runningTotal = 0;
-            //for (int i = 0; i < wheights.Length; i++)
-            //{
-            //    runningTotal += wheights[i];
-            //    if (randNumber < runningTotal)
-            //    {
-            //        selectedCategory = catogoriesForSpawn[i];
-            //        print($"Cateogry to spawn {selectedCategory}");
-            //    }
-            //}
-
-            //switch (randNumber)
-            //{
-            //    case float val when val > 0 && val < LivingChance:
-            //        selectedCategory = EnemyData.EnemyCategories.Viviente;
-            //        break;
-            //    case float val when val > LivingChance && val < WalkingChance:
-            //        selectedCategory = EnemyData.EnemyCategories.Andante;
-            //        break;
-            //    case float val when val > WalkingChance && val < ConsientChance:
-            //        selectedCategory = EnemyData.EnemyCategories.Andante;
-            //        break;
-            //    case float val when val > ConsientChance && val < SelfconscientChance:
-            //        selectedCategory = EnemyData.EnemyCategories.Andante;
-            //        break;
-            //    default:
-            //        selectedCategory = EnemyData.EnemyCategories.None;
-            //        break;
-            //}
-
-            IEnumerable<Base_Enemy> enemySpawnPool = aviableEnemiesToSpawn.Where(e => e.EnemyData.EnemyCategory == selectedCategory);
-
-            //return enemySpawnPool[Random.Range(0, enemySpawnPool.Count)];
+            if (enemySpawnPool.Count() > 0) return enemySpawnPool[Random.Range(0, enemySpawnPool.Count())];
+            else return null;
         }
     }
 
@@ -205,8 +177,21 @@ public class EnemySpawner : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
         }
+
+        //Base_Enemy selectedEnemy = SelectEnemyToSpawn();
+        //while (selectedEnemy == null)
+        //{
+        //    selectedEnemy = SelectEnemyToSpawn();
+        //}
+
+        //if (selectedEnemy != null)
+        //{
+        //    Base_Enemy EnemySpawned = Instantiate(selectedEnemy, transform.position + Vector3.left, Quaternion.identity);
+        //    EnemySpawned.InitEnemy(gridManager.Grid);
+        //    CurrentEnemyCount++;
+        //}
+
         Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
-        //EnemySpawned.transform.parent = transform;
         EnemySpawned.InitEnemy(gridManager.Grid);
         CurrentEnemyCount++;
     }

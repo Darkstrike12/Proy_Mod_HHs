@@ -20,9 +20,9 @@ MonoBehaviour:
   EnemyMaterial: 0300000002000000
   EnemyCategory: 3
   MovementVector: {x: 3, y: 3, z: 0}
-  MovementTime: 1
+  MovementTime: 0
   MovementTimeRange:
-  - 3
-  - 6
+  - 2
+  - 5
   MaxHitPoints: 12
   RecyclePointsGiven: 2

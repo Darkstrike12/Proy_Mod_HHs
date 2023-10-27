@@ -22,8 +22,8 @@ public class BarrilDePetroleo : Base_Enemy
 
         initialPosition = transform.position;
 
-        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(0, Mathf.Abs(enemyData.MovementVector.x)) : MovementLimit.x = enemyData.MovementVector.x;
-        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(0, Mathf.Abs(enemyData.MovementVector.y)) : MovementLimit.y = enemyData.MovementVector.y;
+        var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = Random.Range(1, Mathf.Abs(enemyData.MovementVector.x + 1)) : MovementLimit.x = enemyData.MovementVector.x;
+        var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(1, Mathf.Abs(enemyData.MovementVector.y + 1)) : MovementLimit.y = enemyData.MovementVector.y;
 
         int DirectionIndicator = Random.Range(1, 11) % 2;
         switch (DirectionIndicator)
@@ -55,14 +55,6 @@ public class BarrilDePetroleo : Base_Enemy
                 targetPosition = GetAviablePosition(Axis.Y, initialPosition, targetPosition);
                 break;
         }
-
-        print($"Traget Pos {targetPosition}");
-
-        //StartCoroutine(LerpPositionToTarget(this, initialPosition, targetPosition, MovementDuration.x, MovementCurves[0]));
-
-        //LerpPositionToTarget(this, initialPosition, targetPosition, MovementDuration.x, MovementCurves[0]);
-
-        //transform.position = Lerp(initialPosition, targetPosition, MovementDuration.x, MovementCurves[0]);
 
         float TimeElapsed;
         TimeElapsed = 0f;

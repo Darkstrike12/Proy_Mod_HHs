@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
-  m_Name: Lata
+  m_Name: LataLoca
   m_EditorClassIdentifier: 
-  DisplayName: Lata Viviente
+  DisplayName: Lata Loca
   DisplayImage: {fileID: 0}
-  DisplayDescription: "Latas de diferentes marcas que han adquirido piernas y \r\nbrazos
-    delgados, un par de ojos de brillo rojo y una mentalidad un poco soci\xF3pata."
+  DisplayDescription: 
   EnemyMaterial: 02000000
-  EnemyCategory: 1
-  MovementVector: {x: 2, y: 0, z: 0}
-  MovementTime: 1
-  MovementTimeRange: []
-  MaxHitPoints: 5
-  RecyclePointsGiven: 8
+  EnemyCategory: 2
+  MovementVector: {x: 4, y: 2, z: 0}
+  MovementTime: 0
+  MovementTimeRange:
+  - 2
+  - 6
+  MaxHitPoints: 6
+  RecyclePointsGiven: 6
