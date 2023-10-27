@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -91,7 +92,10 @@ public class Base_Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        EnemySpawner.Instance.UpdateStatsOnEnemyDestroyed();
+        if(EnemySpawner.Instance != null)
+        {
+            EnemySpawner.Instance.UpdateStatsOnEnemyDestroyed();
+        }
     }
 
     #endregion
@@ -140,14 +144,38 @@ public class Base_Enemy : MonoBehaviour
     {
         StopAllCoroutines();
         enemAnimator.SetTrigger("IsDefeated");
-        EnemySpawner.Instance.UpdateStatsOnEnemyDefeated();
-        GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
+        if (EnemySpawner.Instance != null)
+        {
+            EnemySpawner.Instance.UpdateStatsOnEnemyDefeated();
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
+        }
         Destroy(gameObject);
     }
 
     #endregion
 
-    #region JitterAxys
+    #region Jitter and random axys
+
+    //protected virtual Vector3 GetRandomVector()
+    //{
+
+    //}
+
+    protected virtual Vector3Int JitterAxys(Axis axis, Vector3Int movementVector)
+    {
+        switch (axis)
+        {
+            case Axis.X:
+                return JitterXAxis(movementVector);
+            case Axis.Y:
+                return JitterYAxis(movementVector);
+            default:
+                return movementVector;
+        }
+    }
 
     protected virtual Vector3Int JitterYAxis(Vector3Int MovementVector)
     {
@@ -372,22 +400,39 @@ public class Base_Enemy : MonoBehaviour
         enemAnimator.SetBool("IsMoving", false);
     }
 
-    public virtual IEnumerator LerpEmenyToTarget(Vector3 InitialPos, Vector3 TargetPos, float LerpDuration, AnimationCurve animationCurve)
+    protected Vector3 Lerp(Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
+    {
+        Vector3 FinalVector = Vector3.zero;
+
+        StartCoroutine(LerpToTarget());
+
+        return FinalVector;
+
+        IEnumerator LerpToTarget()
+        {
+            float TimeElapsed;
+            TimeElapsed = 0f;
+            while (TimeElapsed < lerpDuration)
+            {
+                FinalVector = Vector3.Lerp(initialPos, targetPos, animationCurve.Evaluate(TimeElapsed / lerpDuration));
+                TimeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            FinalVector = targetPos;
+        }
+    }
+
+    protected virtual IEnumerator LerpPositionToTarget(Vector3 FinalVector, Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
     {
         float TimeElapsed;
         TimeElapsed = 0f;
-        while (TimeElapsed < LerpDuration)
+        while (TimeElapsed < lerpDuration)
         {
-            transform.position = Vector3.Lerp(InitialPos, TargetPos, animationCurve.Evaluate(TimeElapsed / LerpDuration));
+            FinalVector = Vector3.Lerp(initialPos, targetPos, animationCurve.Evaluate(TimeElapsed / lerpDuration));
             TimeElapsed += Time.deltaTime;
             yield return null;
         }
-        transform.position = TargetPos;
-    }
-
-    public virtual IEnumerator OverrideMoveEnemyCR()
-    {
-        yield return null;
+        FinalVector = targetPos;
     }
 
     #endregion

@@ -1,12 +1,16 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &399190628015388266
+--- !u!1001 &644401971619391033
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8014547067184715244, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 523285390, guid: e4c19fc97b3379f44ba954842bd20350, type: 3}
     - target: {fileID: 8014547067184715245, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,23 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715246, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Name
-      value: Rollo De Papel
+      value: Lata
       objectReference: {fileID: 0}
-    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
-      propertyPath: idleBH
-      value: 
-      objectReference: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: e564da6b28104aa4f89445f58069772e, type: 2}
+      objectReference: {fileID: 11400000, guid: 690f89e219b53cf43a2ef6a85849f7b8, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
-      propertyPath: MovementDuration.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurves.Array.size
@@ -95,9 +91,17 @@ PrefabInstance:
       propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715250, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 1cc145d28a21e8847ba33a2b0b61a09b, type: 2}
+      objectReference: {fileID: 22100000, guid: ff7a1e8b62d267f4192c0c4233f06c83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}

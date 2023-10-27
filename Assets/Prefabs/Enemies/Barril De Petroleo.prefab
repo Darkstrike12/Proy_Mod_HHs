@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &399190628015388266
+--- !u!1001 &7291168972271597315
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715246, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Name
-      value: Rollo De Papel
+      value: Barril De Petroleo
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: idleBH
@@ -62,15 +62,7 @@ PrefabInstance:
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: e564da6b28104aa4f89445f58069772e, type: 2}
-    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
-      propertyPath: MovementDuration.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
-      propertyPath: MovementDuration.y
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 907c152f35e01b3458aafda6e363a707, type: 2}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementCurves.Array.size
       value: 1
@@ -95,9 +87,97 @@ PrefabInstance:
       propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715250, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 1cc145d28a21e8847ba33a2b0b61a09b, type: 2}
-    m_RemovedComponents: []
+      objectReference: {fileID: 22100000, guid: 865f9b49a1ad3ea418c04d53cb988b59, type: 2}
+    m_RemovedComponents:
+    - {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+--- !u!1 &726781124221117165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8014547067184715246, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+  m_PrefabInstance: {fileID: 7291168972271597315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162274860219766428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726781124221117165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe905e0dba442fb42af6b8956c49115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 907c152f35e01b3458aafda6e363a707, type: 2}
+  grid: {fileID: 0}
+  DetectedLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  AllowDamage: 1
+  MovementDuration: {x: 2, y: 1}
+  RandomMoveInX: 0
+  RandomMoveInY: 0
+  JitterX: 1
+  JitterY: 1
+  MovementCurves:
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  idleBH: {fileID: 11400000, guid: 7aeb9de32a1378049b19ba93bb90e936, type: 2}
+  movingBH: {fileID: 11400000, guid: 9ba16dbb23bf33843bef3f98089cf4e4, type: 2}
+  alterStateBH: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
+  takeDamageBH: {fileID: 11400000, guid: 40becd817e3740e4997bc519ca29545d, type: 2}

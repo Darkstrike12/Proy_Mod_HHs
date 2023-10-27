@@ -43,9 +43,11 @@ public class AudioManager : MonoBehaviour
 
     EventInstance CreateEventInstance(EventReference fmodEventReference)
     {
-        EventInstance instance = RuntimeManager.CreateInstance(fmodEventReference);
-        return instance;
+        EventInstance eventInstance = RuntimeManager.CreateInstance(fmodEventReference);
+        return eventInstance;
     }
+
+    #region BGM Control
 
     void InitializeBMG(EventReference BGMEventRef)
     {
@@ -78,4 +80,6 @@ public class AudioManager : MonoBehaviour
     {
         MainBGM.setParameterByName("Gameplay_Music_Intensity", musicIntensity);
     }
+
+    #endregion
 }

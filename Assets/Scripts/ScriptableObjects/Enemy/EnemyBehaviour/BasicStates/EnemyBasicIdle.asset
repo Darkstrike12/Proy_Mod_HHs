@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyBasicIdle
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
-  Description: Basic Idle that uses a fixed time for movement
-  useMoventTimeRange: 0
+  Description: Basic Idle that uses a fixed time for movement or a range depending
+    on the data

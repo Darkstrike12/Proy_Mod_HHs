@@ -18,7 +18,7 @@ MonoBehaviour:
   EnemyMaterial: 00000000
   EnemyCategory: 0
   MovementVector: {x: 2, y: 1, z: 0}
-  MovementTime: 2
+  MovementTime: 1
   MovementTimeRange: []
   MaxHitPoints: 4
   RecyclePointsGiven: 4
