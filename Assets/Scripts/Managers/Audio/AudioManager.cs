@@ -34,11 +34,6 @@ public class AudioManager : MonoBehaviour
         InitializeBMG(MusicEvents.Find(e => e.Name == "BGM").Event);
     }
 
-    void Update()
-    {
-        
-    }
-
     #endregion
 
     EventInstance CreateEventInstance(EventReference fmodEventReference)
@@ -71,6 +66,7 @@ public class AudioManager : MonoBehaviour
                 break;
             case GameManager.LevelState.Finish:
                 MainBGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                MainBGM.release();
                 return;
         }
         MainBGM.setParameterByName("Gameplay_Music_Intensity", numLevelState);

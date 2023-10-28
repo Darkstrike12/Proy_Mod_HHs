@@ -61,8 +61,8 @@ public class GameManager : MonoBehaviour
         if (RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0)
         {
             CurrentLevelState = LevelState.Finish;
+            OnLEvelFinished();
         }
-        OnLEvelFinished();
     }
 
     #endregion
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         if(CurrentLevelState == LevelState.Finish)
         {
+            AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
             levelFinished.SetActive(true);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
@@ -118,20 +119,18 @@ public class GameManager : MonoBehaviour
         {
             case float i when i >= 0f && i <= SoftThreshold:
                 CurrentLevelState = LevelState.Soft;
-                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             case float i when i > SoftThreshold && i <= MediumThreshold:
                 CurrentLevelState = LevelState.Medium;
-                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             case float i when i > MediumThreshold && i <= HardThreshold:
                 CurrentLevelState = LevelState.Hard;
-                AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
             //case float i when i >= HardThreshold && RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0:
             //    CurrentLevelState = LevelState.Finish;
             //    break;
         }
+        AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
     }
 
     #endregion
