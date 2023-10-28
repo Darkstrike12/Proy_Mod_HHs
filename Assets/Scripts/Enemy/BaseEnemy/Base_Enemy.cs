@@ -19,7 +19,7 @@ public class Base_Enemy : MonoBehaviour
     #region Behavior Variables
 
     [Header("Behaviour Variables")]
-    [SerializeField] public bool AllowDamage;
+    [SerializeField] protected bool AllowDamage;
     [Space]
     [SerializeField] protected Vector2 MovementDuration;
     [Space]
@@ -59,8 +59,7 @@ public class Base_Enemy : MonoBehaviour
     public Coroutine MoveCoroutine;
 
     //Internal References
-    protected Animator enemAnimator;
-    public Animator EnemAnimator { get => enemAnimator; }
+    public Animator EnemAnimator {  get; protected set; }
 
     #region Unity Functions
 
@@ -79,7 +78,7 @@ public class Base_Enemy : MonoBehaviour
         AlterStateBH.Initialize(this);
         TakeDamageBH.Initialize(this);
 
-        enemAnimator = GetComponent<Animator>();
+        EnemAnimator = GetComponent<Animator>();
 
         CurrentHitPoints = enemyData.MaxHitPoints;
         transform.position = grid.WorldToCell(transform.position) + (grid.cellSize / 2);
@@ -134,7 +133,7 @@ public class Base_Enemy : MonoBehaviour
     {
         if (AllowDamage)
         {
-            enemAnimator.SetTrigger("TookDamage");
+            EnemAnimator.SetTrigger("TookDamage");
             CurrentHitPoints -= DamageTaken;
             if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
         }
@@ -143,7 +142,7 @@ public class Base_Enemy : MonoBehaviour
     protected virtual void EnemyDefeated()
     {
         StopAllCoroutines();
-        enemAnimator.SetTrigger("IsDefeated");
+        EnemAnimator.SetTrigger("IsDefeated");
         if (EnemySpawner.Instance != null)
         {
             EnemySpawner.Instance.UpdateStatsOnEnemyDefeated();
@@ -333,7 +332,7 @@ public class Base_Enemy : MonoBehaviour
     public virtual IEnumerator MoveCR(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
-        enemAnimator.SetBool("IsMoving", true);
+        EnemAnimator.SetBool("IsMoving", true);
 
         Vector3 InitialPosition;
         Vector3 TargetPosition;
@@ -397,30 +396,8 @@ public class Base_Enemy : MonoBehaviour
 
         #endregion
 
-        enemAnimator.SetBool("IsMoving", false);
+        EnemAnimator.SetBool("IsMoving", false);
     }
-
-    //protected Vector3 LerpEnemyToTarget(Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
-    //{
-    //    Vector3 FinalVector = Vector3.zero;
-
-    //    StartCoroutine(LerpToTarget());
-
-    //    return FinalVector;
-
-    //    IEnumerator LerpToTarget()
-    //    {
-    //        float TimeElapsed;
-    //        TimeElapsed = 0f;
-    //        while (TimeElapsed < lerpDuration)
-    //        {
-    //            FinalVector = Vector3.Lerp(initialPos, targetPos, animationCurve.Evaluate(TimeElapsed / lerpDuration));
-    //            TimeElapsed += Time.deltaTime;
-    //            yield return null;
-    //        }
-    //        FinalVector = targetPos;
-    //    }
-    //}
 
     //protected virtual IEnumerator LerpPositionToTarget(Vector3 FinalVector, Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
     //{

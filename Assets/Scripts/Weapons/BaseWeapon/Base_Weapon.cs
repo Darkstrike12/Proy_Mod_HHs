@@ -13,10 +13,10 @@ public class Base_Weapon : MonoBehaviour
     public WeaponData WeaponDataSO { get => weaponDataSO; }
 
     [Header("Weapon Behaviour Variables")]
-    [SerializeField] protected bool IsInstantKill;
+    [SerializeField] protected bool isInstantKill;
     //public bool isInstaKill { get { return IsInstantKill; } }
-    [SerializeField] protected bool UseSpecialEffect;
-    [SerializeField] protected float DestroyDelay;
+    [SerializeField] protected bool useSpecialEffect;
+    [SerializeField] protected float destroyDelay;
 
     //Events
     [SerializeField] UnityEvent Hit;
@@ -84,12 +84,12 @@ public class Base_Weapon : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
             {
-                Enem.TakeDamage(weaponDataSO.BaseDamage, IsInstantKill);
-                if (UseSpecialEffect) WeaponSpecialEffect(Enem);
+                Enem.TakeDamage(weaponDataSO.BaseDamage, isInstantKill);
+                if (useSpecialEffect) WeaponSpecialEffect(Enem);
                 //Destroy(gameObject);
             }
         }
-        Destroy(gameObject, DestroyDelay);
+        Destroy(gameObject, destroyDelay);
     }
 
     protected virtual void WeaponSpecialEffect(Base_Enemy enemy)

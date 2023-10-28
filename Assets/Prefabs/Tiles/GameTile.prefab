@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7c8cfe2c9e2bb4e99a53dd99d045a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoSelectTarget: 1
   TopSprites:
   - {fileID: 1970137207, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
   - {fileID: -1532410444, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}

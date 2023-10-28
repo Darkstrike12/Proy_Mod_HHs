@@ -64,6 +64,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478231810919298006, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
+      propertyPath: RandomMoveInY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478231810919298006, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
       propertyPath: MovementDuration.x
       value: 1.5
       objectReference: {fileID: 0}

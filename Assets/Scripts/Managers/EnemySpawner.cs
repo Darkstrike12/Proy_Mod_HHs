@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         CurrentEnemyCount = gridManager.CountEnemiesOnGrid();
-        if (MaxEnemyCount <= 0) MaxEnemyCount = 1;
+        if (MaxEnemyCount <= 0/* && GameManager.Instance.CurrentLevelState != GameManager.LevelState.Soft*/) MaxEnemyCount = 1;
 
         CurrentSpawnDelay += Time.deltaTime;
         if (CurrentSpawnDelay > SpawnDelay && CurrentEnemyCount < MaxEnemyCount && GameManager.Instance.RemainingEnemies > 0)
@@ -173,6 +173,7 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy()
     {
         transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
+
         while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")))
         {
             transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);

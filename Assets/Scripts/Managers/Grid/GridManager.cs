@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
         gridCompnent = GetComponent<Grid>();
         GenerateGrid();
 
-        Player.position = new Vector3(transform.position.x - 1, height/2);
+        Player.position = new Vector3(transform.position.x - 2.2f, height/2 + 2f);
         EnemySpawner.position = new Vector3(width, height - 1) + (gridCompnent.cellSize / 2);
     }
 
@@ -94,19 +94,24 @@ public class GridManager : MonoBehaviour
     {
         for (int x = 0; x < width; x++)
         {
-            SpawnTile(BarrierTilePF, new Vector3(x, height, 0));
-
-            SpawnTile(BarrierTilePF, new Vector3(x, -1, 0));
-
             for (int y = 0; y < height; y++)
             {
                 SpawnTile(GameTilePF, new Vector3(x, y, 0));
-
-                SpawnTile(FinishTilePF, new Vector3(-1, y, 0));
-
-                SpawnTile(EnemySpawnTilePF, new Vector3(width, y, 0));
             }
+        }
 
+        for (int x = 0; x < width; x++)
+        {
+            SpawnTile(BarrierTilePF, new Vector3(x, height, 0));
+
+            SpawnTile(BarrierTilePF, new Vector3(x, -1, 0));
+        }
+
+        for (int y = 0; y < height; y++)
+        {
+            SpawnTile(FinishTilePF, new Vector3(-1, y, 0));
+
+            SpawnTile(EnemySpawnTilePF, new Vector3(width, y, 0));
         }
     }
 

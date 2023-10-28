@@ -15,7 +15,7 @@ public class BarrilDePetroleo : Base_Enemy
     public override IEnumerator MoveCR(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
-        enemAnimator.SetBool("IsMoving", true);
+        EnemAnimator.SetBool("IsMoving", true);
 
         Vector3 targetPosition = Vector3.zero;
         Vector3 initialPosition;
@@ -89,6 +89,6 @@ public class BarrilDePetroleo : Base_Enemy
         }
         transform.position = targetPosition;
 
-        enemAnimator.SetBool("IsMoving", false);
+        EnemAnimator.SetBool("IsMoving", false);
     }
 }

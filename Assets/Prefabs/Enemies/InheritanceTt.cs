@@ -9,10 +9,10 @@ public class InheritanceTt : Base_Enemy
     {
         //return base.MoveCR(MovementTime);
         yield return new WaitForSeconds(MovementTime);
-        enemAnimator.SetBool("IsMoving", true);
+        EnemAnimator.SetBool("IsMoving", true);
 
         //StartCoroutine(LerpPositionToTarget(this, transform.position, transform.position + Vector3.left, MovementDuration.x, MovementCurves[0]));
 
-        enemAnimator.SetBool("IsMoving", false);
+        EnemAnimator.SetBool("IsMoving", false);
     }
 }
