@@ -6,10 +6,11 @@ using UnityEngine.Events;
 public class WeaponSpawner : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Transform SpawnPosition;
-    [SerializeField] Base_Weapon WeaponPrefab;
-    [SerializeField] Camera SceneCamera;
-    [SerializeField] MousePosition2D MousePosition;
+    [SerializeField] Transform spawnPosition;
+    [SerializeField] Base_Weapon weaponPrefab;
+    [SerializeField] GameObject weaponAreaDisplay;
+    [SerializeField] Camera sceneCamera;
+    [SerializeField] MousePosition2D mousePosition;
 
     [Header("Behaviour Varaibles")]
     [SerializeField] float LaunchSpeed = 1f;
@@ -28,11 +29,17 @@ public class WeaponSpawner : MonoBehaviour
     {
         //CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
         IsWeaponSelected = false;
+        weaponAreaDisplay = Instantiate(weaponAreaDisplay, transform);
+        weaponAreaDisplay.SetActive(false);
     }
 
     void Update()
     {
-        if (IsWeaponSelected) WeaponFaceToMouse();
+        if (IsWeaponSelected)
+        {
+            WeaponFaceToMouse();
+            DisplayWeaponAreaIndicator();
+        }
         if (Input.GetMouseButtonDown(0) && IsWeaponSelected)
         {
             OnWeaponUsed.Invoke();
@@ -48,16 +55,23 @@ public class WeaponSpawner : MonoBehaviour
     public void SelectWeapon()
     {
         Destroy(CurrentWeapon);
-        CurrentWeapon = Instantiate(WeaponPrefab, SpawnPosition);
+        CurrentWeapon = Instantiate(weaponPrefab, spawnPosition);
         IsWeaponSelected = true;
+        weaponAreaDisplay.SetActive(true);
     }
 
     void WeaponFaceToMouse()
     {
-        Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition) - CurrentWeapon.transform.position;
+        Vector2 Direction = sceneCamera.ScreenToWorldPoint(Input.mousePosition) - CurrentWeapon.transform.position;
         float Angle = MathF.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         Quaternion Rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
         CurrentWeapon.transform.rotation = Rotation;
+    }
+
+    void DisplayWeaponAreaIndicator()
+    {
+        CurrentWeapon.DisplayWeaponAffectedArea(weaponAreaDisplay);
+        weaponAreaDisplay.transform.position = mousePosition.GetMousePointerPosition();
     }
 
     public void WeaponFaceToPointer(Transform Pointer)
@@ -67,12 +81,13 @@ public class WeaponSpawner : MonoBehaviour
 
     public void LaunchWeapon()
     {
+        weaponAreaDisplay.SetActive(false);
         if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
         {
-            if (MousePosition.IsMousePointerOverGameGrid())
+            if (mousePosition.IsMousePointerOverGameGrid())
             {
                 IsWeaponSelected = false;
-                MousePosition.SetSelectedTile();
+                mousePosition.SetSelectedTile();
                 CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
                 GameManager.Instance.UpdateCurrentRecyclePoints(-CurrentWeapon.WeaponDataSO.BaseUseCost);
             }

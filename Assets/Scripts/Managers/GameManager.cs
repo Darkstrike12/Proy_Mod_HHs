@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] float MediumThreshold;
     [SerializeField] float HardThreshold;
 
-    [Header("UI References")]
-    [SerializeField] TextMeshProUGUI RecyclePointsCounter;
+    [Header("External References")]
+    [SerializeField] GridManager gridManager;
+    [SerializeField] Endings levelEnginds;
 
-    [Space(4)]
-    int testInt;
+    [Header("UI References")]
+    [SerializeField] TextMeshProUGUI recyclePointsCounter;
+    [SerializeField] GameObject levelFinished;
+    [SerializeField] TextMeshProUGUI defeatedEnemyCounter;
+    [SerializeField] TextMeshProUGUI endingType;
+
     [field: SerializeField]  public int RemainingEnemies {  get; private set; }
     [field: SerializeField] public int CurrentRecyclePoints { get; private set; }
     [field: SerializeField] public LevelState CurrentLevelState { get; private set; }
@@ -49,14 +55,37 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        RecyclePointsCounter.text = CurrentRecyclePoints.ToString();
-        if(RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0)
+        recyclePointsCounter.text = CurrentRecyclePoints.ToString();
+
+        //UpdateLevelState();
+        if (RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0)
         {
             CurrentLevelState = LevelState.Finish;
         }
+        OnLEvelFinished();
     }
 
     #endregion
+
+    public void OnLEvelFinished()
+    {
+        if(CurrentLevelState == LevelState.Finish)
+        {
+            levelFinished.SetActive(true);
+            defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
+            endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
+        }
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     #region Update Variables
 
@@ -87,19 +116,19 @@ public class GameManager : MonoBehaviour
 
         switch (intensityIndicator)
         {
-            case float i when i >= 0f && i < SoftThreshold:
+            case float i when i >= 0f && i <= SoftThreshold:
                 CurrentLevelState = LevelState.Soft;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            case float i when i > SoftThreshold && i < MediumThreshold:
+            case float i when i > SoftThreshold && i <= MediumThreshold:
                 CurrentLevelState = LevelState.Medium;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            case float i when i > MediumThreshold && i < HardThreshold:
+            case float i when i > MediumThreshold && i <= HardThreshold:
                 CurrentLevelState = LevelState.Hard;
                 AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
                 break;
-            //case float i when i >= HardThreshold:
+            //case float i when i >= HardThreshold && RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0:
             //    CurrentLevelState = LevelState.Finish;
             //    break;
         }

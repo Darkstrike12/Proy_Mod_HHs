@@ -62,9 +62,16 @@ public class Base_Weapon : MonoBehaviour
 
     #endregion
 
+    #region Weapon Hit
+
     public void SetHitPoint(Vector3 Point)
     {
         HitPosition = Point;
+    }
+
+    public void DisplayWeaponAffectedArea(GameObject displayIndicator)
+    {
+        displayIndicator.transform.localScale = new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y, 0f);
     }
 
     public virtual void HitOnPosition(Vector3 hitPoint)
@@ -107,4 +114,6 @@ public class Base_Weapon : MonoBehaviour
             return true;
         }
     }
+
+    #endregion
 }

@@ -20,6 +20,7 @@ public class GridManager : MonoBehaviour
     //Internal
     Grid gridCompnent;
     public Grid Grid { get => gridCompnent; }
+    [field: SerializeField] public int EnemyCount { get; private set; }
 
     #region Unity Functions
 
@@ -32,13 +33,22 @@ public class GridManager : MonoBehaviour
         EnemySpawner.position = new Vector3(width, height - 1) + (gridCompnent.cellSize / 2);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 0.2f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(width, height, 0f), 0.2f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0f, height, 0f), 0.2f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(width, 0f, 0f), 0.2f);
+    }
+
     #endregion
 
     #region Getters
 
-    public Vector2Int GetGridSize()
+    public Vector2 GetGridSize()
     {
-        return new Vector2Int(width, height);
+        return new Vector2(width, height);
     }
 
     public Vector3 GridCellCenter()
@@ -59,6 +69,23 @@ public class GridManager : MonoBehaviour
             return false;
         }
         
+    }
+
+    public int CountEnemiesOnGrid()
+    {
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(transform.position, transform.position + new Vector3(width, height, 0f));
+        if (colliders.Length > 0)
+        {
+            EnemyCount = 0;
+            foreach (Collider2D coll in colliders)
+            {
+                if (coll.gameObject.TryGetComponent(out Base_Enemy enemy))
+                {
+                    EnemyCount++;
+                }
+            }
+        }
+        return EnemyCount;
     }
 
     #region Grid Generation

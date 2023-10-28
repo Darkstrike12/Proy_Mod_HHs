@@ -16,10 +16,10 @@ MonoBehaviour:
   DisplayName: WP1
   DisplayImage: {fileID: 0}
   DisplayDescription: 
-  BaseDamage: 30
+  BaseDamage: 3
   BaseUseCost: 1
   BaseReloadTime: 3
-  attackRange: {x: 2, y: 2}
+  attackRange: {x: 1, y: 1}
   AffectAllMaterials: 0
   AffectedEnemyMaterials: 00000000
   AffectAllCategories: 0

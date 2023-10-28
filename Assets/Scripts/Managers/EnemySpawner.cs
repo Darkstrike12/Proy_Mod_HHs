@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     public UnityEvent OnEnemySpawned;
 
     //Internal Variables
-    Vector2Int GridSize;
+    Vector2 GridSize;
     float CurrentSpawnDelay;
     [field: SerializeField] public int CurrentEnemyCount { get; private set; }
     [field: SerializeField] public int DefeatedEnemyCount { get; private set; }
@@ -53,6 +53,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        CurrentEnemyCount = gridManager.CountEnemiesOnGrid();
+        if (MaxEnemyCount <= 0) MaxEnemyCount = 1;
+
         CurrentSpawnDelay += Time.deltaTime;
         if (CurrentSpawnDelay > SpawnDelay && CurrentEnemyCount < MaxEnemyCount && GameManager.Instance.RemainingEnemies > 0)
         {
@@ -79,14 +82,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void UpdateStatsOnEnemyDefeated()
     {
-        CurrentEnemyCount--;
         DefeatedEnemyCount++;
     }
 
-    public void UpdateStatsOnEnemyDestroyed()
-    {
-        CurrentEnemyCount--;
-    }
+    //public void UpdateStatsOnEnemyDestroyed()
+    //{
+    //    CurrentEnemyCount--;
+    //}
 
     #endregion
 
@@ -163,8 +165,6 @@ public class EnemySpawner : MonoBehaviour
 
             List<Base_Enemy> enemySpawnPool = aviableEnemies.Where(e => e.EnemyData.EnemyCategory == selectedCategory).ToList();
 
-            //return enemySpawnPool[Random.Range(0, enemySpawnPool.Count())];
-
             if (enemySpawnPool.Count() > 0) return enemySpawnPool[Random.Range(0, enemySpawnPool.Count())];
             else return null;
         }
@@ -177,19 +177,6 @@ public class EnemySpawner : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
         }
-
-        //Base_Enemy selectedEnemy = SelectEnemyToSpawn();
-        //while (selectedEnemy == null)
-        //{
-        //    selectedEnemy = SelectEnemyToSpawn();
-        //}
-
-        //if (selectedEnemy != null)
-        //{
-        //    Base_Enemy EnemySpawned = Instantiate(selectedEnemy, transform.position + Vector3.left, Quaternion.identity);
-        //    EnemySpawned.InitEnemy(gridManager.Grid);
-        //    CurrentEnemyCount++;
-        //}
 
         Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
         EnemySpawned.InitEnemy(gridManager.Grid);
