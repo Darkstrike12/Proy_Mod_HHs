@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: DestroyDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: weaponDataSO
       value: 
       objectReference: {fileID: 11400000, guid: 24af77f6ea9a47e439b7a264a27d1b2c, type: 2}
@@ -26,6 +30,10 @@ PrefabInstance:
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
@@ -74,6 +82,18 @@ PrefabInstance:
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e460d379a7b85c14785e704579812f08, type: 3}

@@ -10,20 +10,24 @@ public class Enemy_Idle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Enemy = animator.GetComponent<Base_Enemy>();
-        Enemy.StartCoroutine(Enemy.MoveEnemy());
+        //Enemy.IdleBH.Initialize(Enemy);
+        //Enemy.StopAllCoroutines();
+        //Enemy.StartCoroutine(Enemy.MoveEnemyCR(Enemy.EnemyData.MovementTime));
         //Enemy.MoveEnemyAs();
+        Enemy.IdleBH.OnIdleEnter();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        Enemy.IdleBH.OnIdleUpdate();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //Enemy?.IdleBH.OnIdleExit();
+        Enemy.IdleBH.OnIdleExit();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
