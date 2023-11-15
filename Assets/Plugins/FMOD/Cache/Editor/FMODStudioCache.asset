@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638336927330082278
+  lastModified: 638355846139768767
   FileSizes:
   - Name: Desktop
     Value: 1034
@@ -90,7 +90,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638336927330052277
+  lastModified: 638355846139758762
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -120,7 +120,7 @@ MonoBehaviour:
   - {fileID: -1519021468992950977}
   StringsBanks:
   - {fileID: -4993273454060946457}
-  cacheTime: 638336929206996336
+  cacheTime: 638355846139808771
   cacheVersion: 131608
 --- !u!114 &1028386001920254063
 MonoBehaviour:
@@ -164,7 +164,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/TestBank.bank
   Name: TestBank
   StudioPath: bank:/TestBank
-  lastModified: 638336929206996336
+  lastModified: 638355846139808771
   FileSizes:
   - Name: Desktop
     Value: 717920
