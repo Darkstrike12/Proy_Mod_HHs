@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 744f02914d8395446b7fd6bfcebcf564, type: 2}
   horribleThreshold: 30
   badThreshold: 50
-  regularThreshold: 100
+  regularThreshold: 95

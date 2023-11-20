@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
             levelFinished.SetActive(true);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
+            print(levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString());
+            print("Completition " + TotalEnemiesOnLevel / EnemySpawner.Instance.DefeatedEnemyCount * 100);
         }
     }
 

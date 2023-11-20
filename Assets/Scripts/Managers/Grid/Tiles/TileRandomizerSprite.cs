@@ -26,12 +26,12 @@ public class TileRandomizerSprite : MonoBehaviour
 
     public void RandomizeSprite()
     {
-        if(TileBase != null)
+        if(TileBase != null && BaseSprites.Count > 0)
         {
             SpriteRenderer BottomSpriteRenderer = TileBase.GetComponent<SpriteRenderer>();
             BottomSpriteRenderer.sprite = BaseSprites[Random.Range(0, BaseSprites.Count)];
         }
-        if(TileTop != null)
+        if(TileTop != null && TopSprites.Count > 0)
         {
             SpriteRenderer TopSpriteRenderer = TileTop.GetComponent<SpriteRenderer>();
             TopSpriteRenderer.sprite = TopSprites[Random.Range(0, TopSprites.Count)];

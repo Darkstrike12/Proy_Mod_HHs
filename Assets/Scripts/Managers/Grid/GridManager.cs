@@ -46,9 +46,9 @@ public class GridManager : MonoBehaviour
 
     #region Getters
 
-    public Vector2 GetGridSize()
+    public Vector2Int GetGridSize()
     {
-        return new Vector2(width, height);
+        return new Vector2Int(width, height);
     }
 
     public Vector3 GridCellCenter()

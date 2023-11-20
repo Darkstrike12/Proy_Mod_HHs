@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6731087950932952382
+--- !u!1001 &4321119603180063703
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,40 +12,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: DestroyDelay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: destroyDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: weaponDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 24af77f6ea9a47e439b7a264a27d1b2c, type: 2}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11500000, guid: b17cfccd6ca78e84b9d6c5e51e55d3ea, type: 3}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 844e5e49db927b04596dd18e2bb7d754, type: 2}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
-      value: Weapon_1 Variant
+      value: PicoRecolectorDeBasura
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_RootOrder
@@ -90,18 +62,6 @@ PrefabInstance:
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e460d379a7b85c14785e704579812f08, type: 3}

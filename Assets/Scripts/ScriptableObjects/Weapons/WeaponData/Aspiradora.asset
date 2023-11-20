@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
   m_Name: Aspiradora
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   WeaponID: 3
   DisplayName: Aspiradora
   DisplayImage: {fileID: 0}
@@ -20,8 +19,8 @@ MonoBehaviour:
   BaseDamage: 0
   BaseUseCost: 15
   BaseReloadTime: 10
-  attackRange: {x: 3, y: 1}
+  attackRange: {x: 2, y: 1}
   AffectAllMaterials: 0
-  AffectedEnemyMaterials: 
+  AffectedEnemyMaterials: 01000000
   AffectAllCategories: 0
-  AffectedEnemyCategories: 
+  AffectedEnemyCategories: 0100000002000000

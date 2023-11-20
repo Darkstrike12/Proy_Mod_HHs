@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Variables")]
     [SerializeField] float SpawnDelay;
-    [SerializeField] int MaxEnemyCount;
+    [SerializeField] int EnemyCap;
 
     [Header("Enemies To Spawn")]
     [SerializeField] List<Base_Enemy> aviableEnemies;
@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour
     public UnityEvent OnEnemySpawned;
 
     //Internal Variables
-    Vector2 GridSize;
     float CurrentSpawnDelay;
     [field: SerializeField] public int CurrentEnemyCount { get; private set; }
     [field: SerializeField] public int DefeatedEnemyCount { get; private set; }
@@ -44,8 +43,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        GridSize = gridManager.GetGridSize();
-
         DefeatedEnemyCount = 0;
         CurrentSpawnDelay = 0f;
         CurrentEnemyCount = 0;
@@ -54,10 +51,10 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         CurrentEnemyCount = gridManager.CountEnemiesOnGrid();
-        if (MaxEnemyCount <= 0/* && GameManager.Instance.CurrentLevelState != GameManager.LevelState.Soft*/) MaxEnemyCount = 1;
+        if (EnemyCap <= 0/* && GameManager.Instance.CurrentLevelState != GameManager.LevelState.Soft*/) EnemyCap = 1;
 
         CurrentSpawnDelay += Time.deltaTime;
-        if (CurrentSpawnDelay > SpawnDelay && CurrentEnemyCount < MaxEnemyCount && GameManager.Instance.RemainingEnemies > 0)
+        if (CurrentSpawnDelay > SpawnDelay && CurrentEnemyCount < EnemyCap && GameManager.Instance.RemainingEnemies > 0)
         {
             OnEnemySpawned.Invoke();
             CurrentSpawnDelay = 0f;
@@ -101,18 +98,18 @@ public class EnemySpawner : MonoBehaviour
         switch (GameManager.Instance.CurrentLevelState)
         {
             case GameManager.LevelState.Soft:
-                SpawnDelay = (float)(Random.Range(5, 7));
-                MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 5;
+                SpawnDelay = (float)Random.Range(5, 7);
+                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 5;
                 selectedEnemy = SelectEnemyBasedOnPorcentage(70, 30, 0, 0);
                 break;
             case GameManager.LevelState.Medium:
-                SpawnDelay = (float)(Random.Range(3, 5));
-                MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 3;
-                selectedEnemy = SelectEnemyBasedOnPorcentage(15, 40, 40, 5);
+                SpawnDelay = (float)Random.Range(3, 5);
+                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 3;
+                selectedEnemy = SelectEnemyBasedOnPorcentage(15, 50, 40, 0);
                 break;
             case GameManager.LevelState.Hard:
-                SpawnDelay = (float)(Random.Range(1, 3));
-                MaxEnemyCount = GameManager.Instance.TotalEnemiesOnLevel / 2;
+                SpawnDelay = (float)Random.Range(1, 3);
+                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 2;
                 selectedEnemy = SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
                 break;
             case GameManager.LevelState.Finish:
@@ -172,16 +169,18 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
 
-        while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")))
+        do
         {
-            transform.position = new Vector3(transform.position.x, Random.Range(0, GridSize.y) + gridManager.GridCellCenter().y, 0f);
-        }
+            //int spawnHeight = Random.Range(0, GridSize.y - 1);
+            int spawnHeight = Random.Range(0, gridManager.GetGridSize().y - 1);
+            transform.position = new Vector3(transform.position.x, spawnHeight + gridManager.GridCellCenter().y, 0f);
+        } while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")));
 
         Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
         EnemySpawned.InitEnemy(gridManager.Grid);
         CurrentEnemyCount++;
+
     }
 
     #endregion

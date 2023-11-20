@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6731087950932952382
+--- !u!1001 &6017104622884416037
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,43 +9,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: damageType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: DestroyDelay
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: destroyDelay
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: weaponDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 24af77f6ea9a47e439b7a264a27d1b2c, type: 2}
+      objectReference: {fileID: 11400000, guid: 0666c343d4269ff47a9ac7096afc9be7, type: 2}
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: useSpecialEffect
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11500000, guid: b17cfccd6ca78e84b9d6c5e51e55d3ea, type: 3}
-    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: OnEnemyHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_FlipY
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
-      value: Weapon_1 Variant
+      value: Iman
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_RootOrder
@@ -91,17 +67,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298384427808179191, guid: e460d379a7b85c14785e704579812f08, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e460d379a7b85c14785e704579812f08, type: 3}
+--- !u!1 &1875371385951693270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
+  m_PrefabInstance: {fileID: 6017104622884416037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7432911847591063489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875371385951693270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8b83f44278595419aadc5461e4541b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDataSO: {fileID: 11400000, guid: 0666c343d4269ff47a9ac7096afc9be7, type: 2}
+  isInstantKill: 0
+  useSpecialEffect: 1
+  destroyDelay: 8
+  damageType: 1

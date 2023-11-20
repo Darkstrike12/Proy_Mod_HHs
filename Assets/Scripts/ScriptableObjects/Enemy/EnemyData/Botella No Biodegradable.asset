@@ -18,7 +18,7 @@ MonoBehaviour:
     una especie de patas de grillo la cual usan para dar saltos."
   EnemyMaterial: 04000000
   EnemyCategory: 2
-  MovementVector: {x: 3, y: 2, z: 0}
+  MovementVector: {x: 3, y: 1, z: 0}
   MovementTime: 3
   MovementTimeRange: []
   MaxHitPoints: 6

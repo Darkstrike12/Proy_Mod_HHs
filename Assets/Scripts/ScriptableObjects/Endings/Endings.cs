@@ -15,9 +15,9 @@ public class Endings : ScriptableObject
     [SerializeField] float regularThreshold;
     //[SerializeField] float goodThreshold;
 
-    public EndingData SelectEnding(int toalEnemies, int defeatedEnemies)
+    public EndingData SelectEnding(int totalEnemies, int defeatedEnemies)
     {
-        float defeatedRate = ((float)defeatedEnemies / (float)toalEnemies) * 100f;
+        float defeatedRate = ((float)defeatedEnemies / (float)totalEnemies) * 100f;
         List<EndingData> selectedEndingPool = new List<EndingData>();
 
         switch (defeatedRate)

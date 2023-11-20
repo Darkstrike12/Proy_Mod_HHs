@@ -140,9 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoSelectTarget: 0
-  TopSprites:
-  - {fileID: 0}
-  - {fileID: 246845718, guid: 76a4ac590cc1a034eb8a1658cfb155b0, type: 3}
+  TopSprites: []
   BaseSprites:
   - {fileID: -228678940, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}
   - {fileID: 1748578885, guid: eefdb43db358a2d4f8e4afd0f93d7bd5, type: 3}

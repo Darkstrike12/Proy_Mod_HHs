@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84e649a33b7c044a8521434293b4f9f, type: 3}
   m_Name: EndingsLevel1
   m_EditorClassIdentifier: 
+  endings: []
+  horribleThreshold: 30
+  badThreshold: 50
+  regularThreshold: 99

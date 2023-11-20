@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
   m_Name: Colador De Plasticos
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   WeaponID: 1
   DisplayName: Colador De Plasticos
   DisplayImage: {fileID: 0}
@@ -22,8 +21,8 @@ MonoBehaviour:
   BaseDamage: 0
   BaseUseCost: 12
   BaseReloadTime: 16
-  attackRange: {x: 1, y: 1}
+  attackRange: {x: 2, y: 0.8}
   AffectAllMaterials: 0
-  AffectedEnemyMaterials: 0100000004000000
+  AffectedEnemyMaterials: 04000000
   AffectAllCategories: 0
-  AffectedEnemyCategories: 0100000002000000
+  AffectedEnemyCategories: 010000000200000003000000

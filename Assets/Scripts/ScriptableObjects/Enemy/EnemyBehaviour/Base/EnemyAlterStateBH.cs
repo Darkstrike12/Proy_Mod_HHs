@@ -8,6 +8,8 @@ public class EnemyAlterStateBH : ScriptableObject
     [TextArea]
     [SerializeField] string Description;
 
+    public float stateDuration;
+
     public virtual void Initialize(Base_Enemy enemy)
     {
         Enemy = enemy;
