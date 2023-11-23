@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{495ff290-4d05-4a4c-b708-406ff2bed070}">
 		<property name="assetPath">
-			<value>TNOTLW - Medium.wav</value>
+			<value>Music/GameplayMusic/TNOTLW - Medium.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

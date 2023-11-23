@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{515ef743-c24c-4d6f-b524-1266f7b43ddd}">
 		<property name="assetPath">
-			<value>TNOTLW - Soft.wav</value>
+			<value>Music/GameplayMusic/TNOTLW - Soft.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
