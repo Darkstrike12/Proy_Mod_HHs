@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
   m_Name: Pico Recolector De Basura
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   WeaponID: 0
   DisplayName: Pico Recolector De Basura
   DisplayImage: {fileID: 0}
@@ -25,3 +24,5 @@ MonoBehaviour:
   AffectedEnemyMaterials: 
   AffectAllCategories: 1
   AffectedEnemyCategories: 
+  HitSound: {fileID: 11400000, guid: 8fad7ca96ba43c94a8778b6cb5ef309b, type: 2}
+  EffectSound: {fileID: 0}

@@ -9,6 +9,16 @@ public class ColadorDePlastico : Base_Weapon
     [SerializeField] float movementDuration = 1;
     [SerializeField] AnimationCurve movementCurve;
 
+    Vector3 posChecker;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y));
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(posChecker, 0.25f);
+    }
+
     #region WeaponHit
 
     protected override void SpecialEffect(Base_Enemy enemy)
@@ -24,6 +34,7 @@ public class ColadorDePlastico : Base_Weapon
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
         transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
         StartCoroutine(MoveForward(hitPoint));
+        
     }
 
     Vector3 LimitChecker()
@@ -36,7 +47,7 @@ public class ColadorDePlastico : Base_Weapon
             finalPos += Vector3.right;
         }
 
-        movementDuration = (finalPos.x - initialPos.x) * 5.5f;
+        movementDuration = (finalPos.x - initialPos.x) / 8f;
 
         return finalPos;
     }
@@ -44,18 +55,22 @@ public class ColadorDePlastico : Base_Weapon
     IEnumerator MoveForward(Vector3 hitPoint)
     {
         float timeElapsed = 0;
+        Vector3 initalPos = transform.position;
         Vector3 targetPos = LimitChecker();
         //print($"from {transform.position} to {targetPos}");
+        animator.SetTrigger("Hit");
 
         while (timeElapsed < movementDuration)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPos, movementCurve.Evaluate(timeElapsed / movementDuration));
+            transform.position = Vector3.Lerp(initalPos, targetPos, movementCurve.Evaluate(timeElapsed / movementDuration));
             timeElapsed += Time.deltaTime;
             DamageOnce(transform.position);
+            posChecker = targetPos;
             yield return null;
         }
         transform.position = targetPos;
         movementDuration = 0f;
+        Invoke("DisableWeapon", EffectDuration);
         //Destroy(gameObject, destroyDelay);
     }
 

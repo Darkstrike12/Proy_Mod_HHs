@@ -28,6 +28,11 @@ public class EnemyData : ScriptableObject
     public int MaxHitPoints;
     public int RecyclePointsGiven;
 
+    [Header("Enemy Sounds")]
+    public FmodEvent MainSound;
+    public FmodEvent HurtSound;
+    public FmodEvent DeathSound;
+
     //public void AssignEnemyData()
     //{
     //    enemy.GetComponent<Base_Enemy>().EnemyData = this;

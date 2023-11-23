@@ -17,11 +17,12 @@ public class Base_Weapon : MonoBehaviour
     [SerializeField] protected bool isInstantKill;
     //public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] protected bool useSpecialEffect;
-    [SerializeField] protected float destroyDelay;
+    [field: SerializeField] public float EffectDuration {  get; protected set; }
     [SerializeField] DamageType damageType;
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
+    protected Animator animator;
 
     //Internal Variables
     protected Vector3 HitPosition;
@@ -31,6 +32,7 @@ public class Base_Weapon : MonoBehaviour
     protected virtual void Start()
     {
         RigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnDrawGizmos()
@@ -41,9 +43,10 @@ public class Base_Weapon : MonoBehaviour
 
     #endregion
 
-    protected void DestroyWeapon()
+    protected void DisableWeapon()
     {
-        Destroy(gameObject);
+        animator.SetTrigger("Finish");
+        Destroy(gameObject); // disable
     }
 
     #region Weapon Hit
@@ -62,19 +65,20 @@ public class Base_Weapon : MonoBehaviour
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
         transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        animator.SetTrigger("Hit");
         switch (damageType)
         {
             case DamageType.Instant:
                 DamageOnce(hitPoint); 
                 break;
             case DamageType.Overtime: 
-                DamageOvertime(hitPoint, destroyDelay); 
+                DamageOvertime(hitPoint, EffectDuration); 
                 break;
             default:
                 DamageOnce(hitPoint);
                 break;
         }
-        Destroy(gameObject, destroyDelay);
+        Invoke("DisableWeapon", EffectDuration);
     }
 
     protected virtual void DamageOnce(Vector3 hitPoint)
@@ -108,7 +112,6 @@ public class Base_Weapon : MonoBehaviour
                     {
                         if (weaponDataSO.BaseDamage > 0) Enem.TakeDamage(weaponDataSO.BaseDamage, isInstantKill);
                         if (useSpecialEffect) SpecialEffect(Enem);
-                        print("Enemy Found");
                     }
                 }
                 currentDmgTime += Time.deltaTime;

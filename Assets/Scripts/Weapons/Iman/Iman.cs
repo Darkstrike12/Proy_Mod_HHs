@@ -8,7 +8,7 @@ public class Iman : Base_Weapon
     {
         if (IsWeaponEffective(enemy))
         {
-            enemy.AlterStateBH.stateDuration = destroyDelay;
+            enemy.AlterStateBH.stateDuration = EffectDuration;
             enemy.EnemAnimator.SetTrigger("IsAlterState");
         }
     }

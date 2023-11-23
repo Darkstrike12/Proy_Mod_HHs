@@ -23,3 +23,6 @@ MonoBehaviour:
   MovementTimeRange: []
   MaxHitPoints: 5
   RecyclePointsGiven: 8
+  MainSound: {fileID: 11400000, guid: b6a796b89aad84240beb9d6b2213a565, type: 2}
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}

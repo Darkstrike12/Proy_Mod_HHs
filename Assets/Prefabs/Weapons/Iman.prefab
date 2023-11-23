@@ -90,5 +90,5 @@ MonoBehaviour:
   weaponDataSO: {fileID: 11400000, guid: 0666c343d4269ff47a9ac7096afc9be7, type: 2}
   isInstantKill: 0
   useSpecialEffect: 1
-  destroyDelay: 8
+  <EffectDuration>k__BackingField: 6
   damageType: 1

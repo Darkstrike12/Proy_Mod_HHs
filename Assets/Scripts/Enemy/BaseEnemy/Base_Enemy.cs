@@ -133,9 +133,9 @@ public class Base_Enemy : MonoBehaviour
     {
         if (AllowDamage)
         {
-            EnemAnimator.SetTrigger("TookDamage");
             CurrentHitPoints -= DamageTaken;
             if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
+            else EnemAnimator.SetTrigger("TookDamage");
         }
     }
 
@@ -151,7 +151,7 @@ public class Base_Enemy : MonoBehaviour
         {
             GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     protected void DestroyEnemy()
@@ -398,19 +398,6 @@ public class Base_Enemy : MonoBehaviour
 
         EnemAnimator.SetBool("IsMoving", false);
     }
-
-    //protected virtual IEnumerator LerpPositionToTarget(Vector3 FinalVector, Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
-    //{
-    //    float TimeElapsed;
-    //    TimeElapsed = 0f;
-    //    while (TimeElapsed < lerpDuration)
-    //    {
-    //        FinalVector = Vector3.Lerp(initialPos, targetPos, animationCurve.Evaluate(TimeElapsed / lerpDuration));
-    //        TimeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    FinalVector = targetPos;
-    //}
 
     #endregion
 
