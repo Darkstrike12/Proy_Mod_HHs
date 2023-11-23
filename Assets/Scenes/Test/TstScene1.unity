@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1496385840}
-  weaponPrefab: {fileID: 7432911847591063489, guid: cf1fad53fab1ff541a46dce24873c406, type: 3}
+  weaponPrefab: {fileID: 1508147618502575822, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
   weaponAreaDisplay: {fileID: 6851518843558091438, guid: 6cde2d88e9308704da08aabfda661bd8, type: 3}
   sceneCamera: {fileID: 519420031}
   mousePosition: {fileID: 2117758657}
@@ -2553,8 +2553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052adf82530dfe841a2c7a5727317756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicEvents:
-  - {fileID: 11400000, guid: 26e15d50e3bb1934f97749603f62a2eb, type: 2}
+  bgmEvent: {fileID: 11400000, guid: 26e15d50e3bb1934f97749603f62a2eb, type: 2}
+  AmbienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
 --- !u!1 &1878408910
 GameObject:
   m_ObjectHideFlags: 0
