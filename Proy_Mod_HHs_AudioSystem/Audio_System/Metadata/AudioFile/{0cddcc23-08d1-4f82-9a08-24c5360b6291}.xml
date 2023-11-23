@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0cddcc23-08d1-4f82-9a08-24c5360b6291}">
+		<property name="assetPath">
+			<value>SFX/Weapons/vacuum-cleaner.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>44.749138321995467</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c9d86d18-f26d-46f9-9f82-e41d573b1c5e}</destination>
+		</relationship>
+	</object>
+</objects>

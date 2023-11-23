@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{94b445f2-9516-499e-b97c-84bd18a373e8}">
+		<property name="assetPath">
+			<value>SFX/Enemies/Woosh_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.0449583333333337</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c9d86d18-f26d-46f9-9f82-e41d573b1c5e}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -4,28 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Base_Weapon : MonoBehaviour
 {
     [Header("Weapon Data")]
-    [SerializeField] WeaponData weaponDataSO;
-    public WeaponData WeaponDataSO { get { return weaponDataSO; } set { weaponDataSO = value; } }
+    [SerializeField] protected WeaponData weaponDataSO;
+    public WeaponData WeaponDataSO { get => weaponDataSO; }
 
     [Header("Weapon Behaviour Variables")]
-    [SerializeField] bool IsInstantKill;
+    [SerializeField] protected bool isInstantKill;
     //public bool isInstaKill { get { return IsInstantKill; } }
-    [SerializeField] bool UseSpecialEffect;
-    [SerializeField] float DestroyDelay;
-
-    //Events
-    [SerializeField] UnityEvent Hit;
+    [SerializeField] protected bool useSpecialEffect;
+    [SerializeField] protected float destroyDelay;
+    [SerializeField] DamageType damageType;
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
 
     //Internal Variables
-    Vector3 HitPosition;
+    protected Vector3 HitPosition;
 
     #region Unity Functions
 
@@ -34,57 +33,92 @@ public class Base_Weapon : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.TryGetComponent(out Base_Enemy Enem))
-        //{
-        //    Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
-        //    if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject, DestroyDelay);
-        //}
-        
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AtackRange.x, weaponDataSO.AtackRange.y));
+        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y));
     }
 
     #endregion
 
-    public void SetHitPoint(Vector3 Point)
+    protected void DestroyWeapon()
+    {
+        Destroy(gameObject);
+    }
+
+    #region Weapon Hit
+
+    public virtual void SetHitPoint(Vector3 Point)
     {
         HitPosition = Point;
     }
 
-    public virtual void WeaponHitWhTl(Vector3 hitPoint)
+    public virtual void DisplayWeaponAffectedArea(GameObject displayIndicator)
     {
-        RigidBody.bodyType = RigidbodyType2D.Static;
-        Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AtackRange, 0f);
-        HitPosition = hitPoint;
+        displayIndicator.transform.localScale = new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y, 0f);
+    }
+
+    public virtual void HitOnPosition(Vector3 hitPoint)
+    {
+        RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        switch (damageType)
+        {
+            case DamageType.Instant:
+                DamageOnce(hitPoint); 
+                break;
+            case DamageType.Overtime: 
+                DamageOvertime(hitPoint, destroyDelay); 
+                break;
+            default:
+                DamageOnce(hitPoint);
+                break;
+        }
+        Destroy(gameObject, destroyDelay);
+    }
+
+    protected virtual void DamageOnce(Vector3 hitPoint)
+    {
+        Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AttackRange, 0f);
         foreach (Collider2D col in Colliders)
         {
             if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
             {
-                Enem.TakeDamage(WeaponDataSO.BaseDamage, IsInstantKill);
-                if (UseSpecialEffect) WeaponSpecialEffect(Enem);
-                //Destroy(gameObject);
+                if (weaponDataSO.BaseDamage > 0) Enem.TakeDamage(weaponDataSO.BaseDamage, isInstantKill);
+                if (useSpecialEffect) SpecialEffect(Enem);
+                //print("EnemyFound");
             }
         }
-        Destroy(gameObject, DestroyDelay);
+        HitPosition = hitPoint;
     }
 
-    protected virtual void WeaponSpecialEffect(Base_Enemy enemy)
+    protected virtual void DamageOvertime(Vector3 hitPoint, float damageTime)
+    {
+        StartCoroutine(damageOverTime());
+
+        IEnumerator damageOverTime()
+        {
+            float currentDmgTime = 0;
+            while (currentDmgTime < damageTime)
+            {
+                Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AttackRange, 0f);
+                foreach (Collider2D col in Colliders)
+                {
+                    if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
+                    {
+                        if (weaponDataSO.BaseDamage > 0) Enem.TakeDamage(weaponDataSO.BaseDamage, isInstantKill);
+                        if (useSpecialEffect) SpecialEffect(Enem);
+                        print("Enemy Found");
+                    }
+                }
+                currentDmgTime += Time.deltaTime;
+                yield return new WaitForSeconds(0.5f);
+            }
+            HitPosition = hitPoint;
+        }
+    }
+
+    protected virtual void SpecialEffect(Base_Enemy enemy)
     {
         if (IsWeaponEffective(enemy))
         {
@@ -105,5 +139,14 @@ public class Base_Weapon : MonoBehaviour
         {
             return true;
         }
+    }
+
+    #endregion
+
+    public enum DamageType
+    {
+        None,
+        Instant,
+        Overtime
     }
 }

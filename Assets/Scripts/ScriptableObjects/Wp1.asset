@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
   m_Name: Wp1
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1508147618502575821, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
   WeaponID: 0
   DisplayName: WP1
   DisplayImage: {fileID: 0}
   DisplayDescription: 
-  BaseDamage: 2
+  BaseDamage: 3
   BaseUseCost: 1
   BaseReloadTime: 3
-  AtackRange: {x: 1, y: 1}
+  attackRange: {x: 1, y: 1}
   AffectAllMaterials: 0
   AffectedEnemyMaterials: 00000000
   AffectAllCategories: 0

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MousePosition2D : MonoBehaviour
 {
+    [Header("External References")]
     [SerializeField] Camera SceneCamera;
     [SerializeField] GameObject MousePointerObject;
-    [SerializeField] Grid grid;
+    [SerializeField] GridManager gridManager;
     [SerializeField] SelectedTileIndicator TileIndicatorPrefab;
 
+    //Internal Variables
     GameObject MousePointer;
     SelectedTileIndicator TileIndicator;
 
@@ -22,20 +24,27 @@ public class MousePosition2D : MonoBehaviour
         TileIndicator.gameObject.SetActive(false);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 mouseWorldPosition = SceneCamera.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0f;
-        Vector3Int GridPosition = grid.WorldToCell(mouseWorldPosition);
+        //Vector3Int GridPosition = grid.WorldToCell(mouseWorldPosition);
+        Vector3Int GridPosition = gridManager.Grid.WorldToCell(mouseWorldPosition);
         //MousePointer.transform.position = mouseWorldPosition;
-        MousePointer.transform.position = grid.CellToWorld(GridPosition) + (grid.cellSize/2);
+        //MousePointer.transform.position = grid.CellToWorld(GridPosition) + (grid.cellSize / 2);
+        MousePointer.transform.position = gridManager.Grid.CellToWorld(GridPosition) + (gridManager.Grid.cellSize / 2);
+    }
+
+
+
+    public bool IsMousePointerOverGameGrid()
+    {
+        return gridManager.IsOverGameGrid(MousePointer.transform.position);
     }
 
     public void SetSelectedTile()

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
+  m_Name: Iman
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  WeaponID: 2
+  DisplayName: "Im\xE1n"
+  DisplayImage: {fileID: 0}
+  DisplayDescription: 
+  BaseDamage: 0
+  BaseUseCost: 8
+  BaseReloadTime: 20
+  attackRange: {x: 3, y: 3}
+  AffectAllMaterials: 0
+  AffectedEnemyMaterials: 02000000
+  AffectAllCategories: 0
+  AffectedEnemyCategories: 010000000200000003000000

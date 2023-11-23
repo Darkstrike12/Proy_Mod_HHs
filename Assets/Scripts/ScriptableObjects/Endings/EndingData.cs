@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Ending/Data/New Ending")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Ending/New Ending")]
 public class EndingData : ScriptableObject
 {
     [Header("Internal Data")]
@@ -17,6 +17,10 @@ public class EndingData : ScriptableObject
 
     public enum EndingType
     {
-        None,
+        None = -1,
+        Horrible = 0,
+        Malo = 1,
+        Regular = 2,
+        Bueno = 3
     }
 }

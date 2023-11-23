@@ -13,7 +13,17 @@ public class EnemyBasicIdle : EnemyIdleBH
         {
             Enemy.StopAllCoroutines();
             Enemy.transform.position = Enemy.Grid.WorldToCell(Enemy.transform.position) + (Enemy.Grid.cellSize / 2);
-            Enemy.MoveCoroutine = Enemy.StartCoroutine(Enemy.MoveEnemyCR(Enemy.EnemyData.MovementTime));
+
+            if (Enemy.EnemyData.MovementTime == 0f && Enemy.EnemyData.MovementTimeRange.Length > 0)
+            {
+                Enemy.MoveCoroutine = Enemy.StartCoroutine(Enemy.MoveCR(Random.Range(Enemy.EnemyData.MovementTimeRange[0], Enemy.EnemyData.MovementTimeRange[1])));
+                //Enemy.StartCoroutine(Enemy.MoveCR(Random.Range(Enemy.EnemyData.MovementTimeRange[0], Enemy.EnemyData.MovementTimeRange[1])));
+            } 
+            else
+            {
+                Enemy.MoveCoroutine = Enemy.StartCoroutine(Enemy.MoveCR(Enemy.EnemyData.MovementTime));
+                //Enemy.StartCoroutine(Enemy.MoveCR(Enemy.EnemyData.MovementTime));
+            }
         }
         else
         {
