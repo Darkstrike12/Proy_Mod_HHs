@@ -7,10 +7,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("Fmod Events")]
-    [SerializeField] List<FmodEvent> MusicEvents;
+    [SerializeField] FmodEvent bgmEvent;
+    [SerializeField] FmodEvent AmbienceEvent;
 
     //Event Instances
     EventInstance MainBGM;
+    EventInstance AmbienceSound;
 
     //Singleton Instance
     public static AudioManager Instance;
@@ -31,7 +33,8 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        InitializeBMG(MusicEvents.Find(e => e.Name == "BGM").Event);
+        InitializeBMG(bgmEvent.Event);
+        InitializeAmbience(AmbienceEvent.Event);
     }
 
     #endregion
@@ -41,6 +44,21 @@ public class AudioManager : MonoBehaviour
         EventInstance eventInstance = RuntimeManager.CreateInstance(fmodEventReference);
         return eventInstance;
     }
+
+    #region Ambience Control
+
+    void InitializeAmbience(EventReference AmbienceRef)
+    {
+        AmbienceSound = CreateEventInstance(AmbienceRef);
+        AmbienceSound.start();
+    }
+
+    public void ChanceAmbienceIntensity(float intensity)
+    {
+        AmbienceSound.setParameterByName("Ambience_Intensity", intensity);
+    }
+
+    #endregion
 
     #region BGM Control
 
@@ -52,24 +70,29 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBGMIntensity(GameManager.LevelState levelState)
     {
-        int numLevelState = 0;
-        switch (levelState)
-        {
-            case GameManager.LevelState.Soft:
-                numLevelState = 0;
-                break;
-            case GameManager.LevelState.Medium:
-                numLevelState = 1;
-                break;
-            case GameManager.LevelState.Hard:
-                numLevelState = 2;
-                break;
-            case GameManager.LevelState.Finish:
-                MainBGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                MainBGM.release();
-                return;
-        }
-        MainBGM.setParameterByName("Gameplay_Music_Intensity", numLevelState);
+        //int numLevelState = 0;
+        //switch (levelState)
+        //{
+        //    case GameManager.LevelState.Soft:
+        //        numLevelState = 0;
+        //        break;
+        //    case GameManager.LevelState.Medium:
+        //        numLevelState = 1;
+        //        break;
+        //    case GameManager.LevelState.Hard:
+        //        numLevelState = 2;
+        //        break;
+        //    case GameManager.LevelState.Finish:
+        //        MainBGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //        MainBGM.release();
+        //        return;
+        //}
+        MainBGM.setParameterByName("Gameplay_Music_Intensity", ((int)levelState));
+    }
+
+    public void ChangeEndingType(EndingData.EndingType endingType)
+    {
+        MainBGM.setParameterByName("Ending_Type", ((int)endingType));
     }
 
     public void ChangeBGMIntensity(int musicIntensity)
@@ -78,4 +101,14 @@ public class AudioManager : MonoBehaviour
     }
 
     #endregion
+
+    public void PlaySound(FmodEvent eventToPlay)
+    {
+        RuntimeManager.PlayOneShot(eventToPlay.Event);
+    }
+
+    public void PlaySound(EventReference eventReference)
+    {
+        RuntimeManager.PlayOneShot(eventReference);
+    }
 }

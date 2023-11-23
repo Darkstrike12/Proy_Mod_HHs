@@ -71,11 +71,13 @@ public class GameManager : MonoBehaviour
     {
         if(CurrentLevelState == LevelState.Finish)
         {
+            var selectedEnding = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount);
             AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
+            AudioManager.Instance.ChangeEndingType(selectedEnding.endingType);
             levelFinished.SetActive(true);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
-            print(levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString());
+            print(selectedEnding.endingType.ToString());
             print("Completition " + TotalEnemiesOnLevel / EnemySpawner.Instance.DefeatedEnemyCount * 100);
         }
     }

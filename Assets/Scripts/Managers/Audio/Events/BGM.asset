@@ -16,9 +16,9 @@ MonoBehaviour:
   Priority: 0
   Event:
     Guid:
-      Data1: -1889371650
-      Data2: 1308385025
-      Data3: -2047671379
-      Data4: -134341048
-    Path: event:/TestEvents/TstMusic5
+      Data1: 144019386
+      Data2: 1268727267
+      Data3: 830896062
+      Data4: 845560671
+    Path: event:/Music/GameplayMusic
   Category: 0
