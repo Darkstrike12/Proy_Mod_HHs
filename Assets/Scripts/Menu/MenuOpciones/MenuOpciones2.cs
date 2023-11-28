@@ -2,12 +2,16 @@ using Nova;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MenuOpciones2 : MonoBehaviour
 {
 
     public UIBlock Root = null;
+    public GameObject Body = null;
+    public GameObject Otro = null;
 
     public List<SettingsCollection> SettingsCollections = null;
     public ListView TabBar = null;
@@ -64,9 +68,22 @@ public class MenuOpciones2 : MonoBehaviour
         if(selectedIndex >= 0 && TabBar.TryGetItemView(selectedIndex, out ItemView currenteItemView))
         {
             (currenteItemView.Visuals as VisualTab).IsSelected = false;
+            
+
+        }
+        if (visualTabb.Label.Text == "Sonido")
+        {
+            Body.SetActive(true);
+            Otro.SetActive(false);
+        }
+        else
+        {
+            Body.SetActive(false);
+            Otro.SetActive(true);
         }
         selectedIndex = index;
         visualTabb.IsSelected = true;
+
     }
 
     private void BindTab(Data.OnBind<SettingsCollection> evt, VisualTab target, int index)
