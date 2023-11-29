@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
         {
             var selectedEnding = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount);
             AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
-            AudioManager.Instance.ChangeEndingType(selectedEnding.endingType);
+            AudioManager.Instance.ChangeEndingSound(selectedEnding.endingType);
+            AudioManager.Instance.ChangeAmbienceIntensity(0.8f);
             levelFinished.SetActive(true);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
@@ -90,6 +91,11 @@ public class GameManager : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     #region Update Variables
@@ -135,6 +141,7 @@ public class GameManager : MonoBehaviour
             //    break;
         }
         AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
+        //AudioManager.Instance.ChangeAmbienceIntensity(intensityIndicator / 100);
     }
 
     #endregion

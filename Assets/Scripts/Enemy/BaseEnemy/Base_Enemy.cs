@@ -129,6 +129,11 @@ public class Base_Enemy : MonoBehaviour
 
     #region Enemy Damage Calculation
 
+    public void SetAllowDamage(bool value)
+    {
+        AllowDamage = value;
+    }
+
     public virtual void TakeDamage(int DamageTaken, bool IsInstantKill)
     {
         if (AllowDamage)
@@ -294,36 +299,36 @@ public class Base_Enemy : MonoBehaviour
         }
     }
 
-    protected virtual Vector3 GetAviablePosition(Vector3 initialPosition, Vector3 targetPosition)
-    {
-        Vector3 movementDirection = (targetPosition - initialPosition).normalized;
-        Vector3 currentPositoin = initialPosition + movementDirection;
+    //protected virtual Vector3 GetAviablePosition(Vector3 initialPosition, Vector3 targetPosition)
+    //{
+    //    Vector3 movementDirection = (targetPosition - initialPosition).normalized;
+    //    Vector3 currentPositoin = initialPosition + movementDirection;
 
-        switch (movementDirection)
-        {
-            case Vector3 vec when vec.x > 0f && vec.y > 0f:
-                while (IsTileAviable(currentPositoin) && currentPositoin.x < targetPosition.x && currentPositoin.y < targetPosition.y)
-                {
-                    currentPositoin += movementDirection;
-                }
-                while (!IsTileAviable(currentPositoin))
-                {
-                    currentPositoin -= movementDirection;
-                }
-                break;
-            case Vector3 vec when vec.x < 0f && vec.y < 0f:
-                while (IsTileAviable(currentPositoin) && currentPositoin.x > targetPosition.x && currentPositoin.y > targetPosition.y)
-                {
-                    currentPositoin += movementDirection;
-                }
-                while (!IsTileAviable(currentPositoin))
-                {
-                    currentPositoin -= movementDirection;
-                }
-                break;
-        }
-        return currentPositoin;
-    }
+    //    switch (movementDirection)
+    //    {
+    //        case Vector3 vec when vec.x > 0f && vec.y > 0f:
+    //            while (IsTileAviable(currentPositoin) && currentPositoin.x < targetPosition.x && currentPositoin.y < targetPosition.y)
+    //            {
+    //                currentPositoin += movementDirection;
+    //            }
+    //            while (!IsTileAviable(currentPositoin))
+    //            {
+    //                currentPositoin -= movementDirection;
+    //            }
+    //            break;
+    //        case Vector3 vec when vec.x < 0f && vec.y < 0f:
+    //            while (IsTileAviable(currentPositoin) && currentPositoin.x > targetPosition.x && currentPositoin.y > targetPosition.y)
+    //            {
+    //                currentPositoin += movementDirection;
+    //            }
+    //            while (!IsTileAviable(currentPositoin))
+    //            {
+    //                currentPositoin -= movementDirection;
+    //            }
+    //            break;
+    //    }
+    //    return currentPositoin;
+    //}
 
     #endregion
 

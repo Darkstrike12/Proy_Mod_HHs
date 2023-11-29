@@ -25,4 +25,4 @@ MonoBehaviour:
   AffectAllCategories: 0
   AffectedEnemyCategories: 010000000200000003000000
   HitSound: {fileID: 11400000, guid: 8fad7ca96ba43c94a8778b6cb5ef309b, type: 2}
-  EffectSound: {fileID: 0}
+  EffectSound: {fileID: 11400000, guid: 171fac98f46fa7742a9c99483cfb8e29, type: 2}

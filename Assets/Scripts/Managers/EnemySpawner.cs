@@ -169,6 +169,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        Base_Enemy EnemySelected = SelectEnemyToSpawn();
 
         do
         {
@@ -177,7 +178,16 @@ public class EnemySpawner : MonoBehaviour
             transform.position = new Vector3(transform.position.x, spawnHeight + gridManager.GridCellCenter().y, 0f);
         } while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")));
 
-        Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
+        //if (EnemySelected.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente)
+        //{
+
+        //}
+        //else
+        //{
+
+        //}
+
+        Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left, Quaternion.identity);
         EnemySpawned.InitEnemy(gridManager.Grid);
         CurrentEnemyCount++;
 

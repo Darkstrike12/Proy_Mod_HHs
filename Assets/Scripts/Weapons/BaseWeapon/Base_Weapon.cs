@@ -22,6 +22,7 @@ public class Base_Weapon : MonoBehaviour
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
+    public ParticleSystem Particles {  get; protected set; }
     protected Animator animator;
 
     //Internal Variables
@@ -32,6 +33,7 @@ public class Base_Weapon : MonoBehaviour
     protected virtual void Start()
     {
         RigidBody = GetComponent<Rigidbody2D>();
+        Particles = GetComponentInChildren<ParticleSystem>();
         animator = GetComponent<Animator>();
     }
 
@@ -46,7 +48,7 @@ public class Base_Weapon : MonoBehaviour
     protected void DisableWeapon()
     {
         animator.SetTrigger("Finish");
-        Destroy(gameObject); // disable
+        Destroy(gameObject, 1f); // disable
     }
 
     #region Weapon Hit

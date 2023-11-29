@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyDelay: 0
+  targetPosition: {x: 4, y: -1, z: 0}
+  lerpDuration: 2
 --- !u!114 &-2212263227275972358
 MonoBehaviour:
   m_ObjectHideFlags: 0
