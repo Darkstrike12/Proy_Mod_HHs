@@ -6,6 +6,7 @@ public class TrashCan : MonoBehaviour
 {
     public GameObject trashcanContent;
     [SerializeField] Sprite[] contentSprites;
+    [field: SerializeField] public FmodEvent sound {  get; private set; }
 
     public Animator animator {  get; private set; }
 
@@ -28,6 +29,9 @@ public class TrashCan : MonoBehaviour
             case GameManager.LevelState.Hard:
                 trashcanContent.GetComponent<SpriteRenderer>().sprite = contentSprites[2];
                 break;
+            case GameManager.LevelState.Finish:
+                trashcanContent.GetComponent<SpriteRenderer>().sprite = contentSprites[3];
+                break;
             default:
                 trashcanContent.GetComponent<SpriteRenderer>().sprite = contentSprites[0];
                 break;
@@ -39,6 +43,14 @@ public class TrashCan : MonoBehaviour
         if (spriteIndex <= contentSprites.Length && spriteIndex != 0)
         {
             trashcanContent.GetComponent<SpriteRenderer>().sprite = contentSprites[spriteIndex];
+        }
+    }
+
+    public void PlaySound()
+    {
+        if(sound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound(sound);
         }
     }
 }

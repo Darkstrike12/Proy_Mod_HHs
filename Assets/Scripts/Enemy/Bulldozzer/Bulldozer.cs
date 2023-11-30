@@ -83,12 +83,21 @@ public class Bulldozer : Base_Enemy
                 if (AllowDamage)
                 {
                     CurrentHitPoints -= DamageTaken / 2;
-                    if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
-                    else EnemAnimator.SetTrigger("TookDamage");
+                    if (CurrentHitPoints <= 0 || IsInstantKill)
+                    {
+                        EnemyDefeated();
+                    }
+                    else
+                    {
+                        EnemAnimator.SetFloat("Damage", 1);
+                        EnemAnimator.SetTrigger("TookDamage");
+                    }
                 }
                 break;
             case 1:
                 print("No Damage");
+                EnemAnimator.SetFloat("Damage", 0);
+                EnemAnimator.SetTrigger("TookDamage");
                 break;
 
         }

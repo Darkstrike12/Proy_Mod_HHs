@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buldozzer
       objectReference: {fileID: 0}
+    - target: {fileID: 8014547067184715250, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3272d7112ac552f45a252eb18de651f9, type: 2}
     m_RemovedComponents:
     - {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
@@ -97,7 +101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   AllowDamage: 1
-  MovementDuration: {x: 5, y: 0}
+  MovementDuration: {x: 7, y: 0}
   RandomMoveInX: 1
   RandomMoveInY: 0
   JitterX: 0
@@ -152,4 +156,4 @@ MonoBehaviour:
   idleBH: {fileID: 11400000, guid: 175f2206e901dbd4c971dab7bb583503, type: 2}
   movingBH: {fileID: 11400000, guid: 9ba16dbb23bf33843bef3f98089cf4e4, type: 2}
   alterStateBH: {fileID: 11400000, guid: 26fdb5a397e7e5a489ed6b3928f567c2, type: 2}
-  takeDamageBH: {fileID: 11400000, guid: 40becd817e3740e4997bc519ca29545d, type: 2}
+  takeDamageBH: {fileID: 11400000, guid: 0b9241f4aa39cd945964f6aca187cc29, type: 2}

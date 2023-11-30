@@ -1906,6 +1906,7 @@ MonoBehaviour:
   - {fileID: 2812440255424630329, guid: d34bfb2bbc27d154d8f4d7180072be3f, type: 3}
   - {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
   - {fileID: 1162274860219766428, guid: b02673ac5a78ff64eb8c78e3597ca449, type: 3}
+  - {fileID: 5128887685788870794, guid: 506f64bd09542aa438fe2bb548cd065b, type: 3}
   gridManager: {fileID: 1408618466}
   OnEnemySpawned:
     m_PersistentCalls:
@@ -8883,7 +8884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRecyclePoints: 100
-  <TotalEnemiesOnLevel>k__BackingField: 5
+  <TotalEnemiesOnLevel>k__BackingField: 2
   SoftThreshold: 10
   MediumThreshold: 50
   HardThreshold: 100

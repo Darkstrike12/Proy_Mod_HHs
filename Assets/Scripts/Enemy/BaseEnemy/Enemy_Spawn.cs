@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_Spawn : StateMachineBehaviour
 {
+    [SerializeField] bool useMoveForward;
     Base_Enemy enemy;
     Collider2D collider;
 
@@ -14,9 +15,11 @@ public class Enemy_Spawn : StateMachineBehaviour
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySound(enemy.EnemyData.MainSound.Event);
         //enemy.StartCoroutine(enemy.MoveForward(2f, 1f));
         //enemy.StartCoroutine(enemy.MoveForward(animator.GetCurrentAnimatorClipInfo(0).Length, 1f));
-        enemy.StartCoroutine(enemy.MoveForward(animator.GetCurrentAnimatorStateInfo(0).length, 1f));
-        //collider.enabled = false;
-        collider.offset = Vector2.left * 2;
+        if (useMoveForward)
+        {
+            enemy.StartCoroutine(enemy.MoveForward(animator.GetCurrentAnimatorStateInfo(0).length, 1f));
+            collider.offset = Vector2.left * 2;
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,8 +31,10 @@ public class Enemy_Spawn : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //collider.enabled = true;
-        collider.offset = Vector2.zero;
+        if (useMoveForward)
+        {
+            collider.offset = Vector2.zero;
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

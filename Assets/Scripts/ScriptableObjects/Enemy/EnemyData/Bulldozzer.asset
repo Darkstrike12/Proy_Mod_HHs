@@ -20,8 +20,8 @@ MonoBehaviour:
   MovementVector: {x: 1, y: 0, z: 0}
   MovementTime: 0
   MovementTimeRange:
-  - 2
-  - 4
+  - 1
+  - 3
   MaxHitPoints: 20
   RecyclePointsGiven: 8
   MainSound: {fileID: 11400000, guid: eb56ac88788b23e4698695781665e1b7, type: 2}

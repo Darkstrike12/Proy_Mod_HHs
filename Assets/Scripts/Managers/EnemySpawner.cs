@@ -199,28 +199,65 @@ public class EnemySpawner : MonoBehaviour
 
         UpdateCurrentTrashCan();
 
-        if (GameManager.Instance.RemainingEnemies == 1 && aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
-        {
-            EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
-            transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y/2, 0f);
-            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
-            EnemySpawned.InitEnemy(gridManager.Grid);
+        //if (GameManager.Instance.RemainingEnemies == 1 && aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
+        //{
+        //    EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
+        //    transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y/2, 0f);
+        //    Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
+        //    EnemySpawned.InitEnemy(gridManager.Grid);
 
-            if(currentTrashCan != null) currentTrashCan.UpdateVisual(3);
+        //    //if(currentTrashCan != null) currentTrashCan.UpdateVisual(3);
+        //}
+        //else
+        //{
+        //    Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position, Quaternion.identity);
+        //    EnemySpawned.InitEnemy(gridManager.Grid);
+        //    if (currentTrashCan != null)
+        //    {
+        //        currentTrashCan.UpdateVisual(GameManager.Instance.CurrentLevelState);
+        //        currentTrashCan.animator.SetTrigger("IsOpen");
+        //        currentTrashCan.PlaySound();
+        //    }
+        //}
+
+        switch (GameManager.Instance.RemainingEnemies)
+        {
+            case 1:
+                if (aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
+                {
+                    BossSpawn();
+                }
+                else
+                {
+                    NormalSpawn(3);
+                }
+                break;
+            default:
+                NormalSpawn((int)GameManager.Instance.CurrentLevelState);
+                break;
         }
-        else
+        
+        CurrentEnemyCount++;
+
+        void NormalSpawn(int trashcanVisualIndex)
         {
             Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position, Quaternion.identity);
             EnemySpawned.InitEnemy(gridManager.Grid);
+            if (currentTrashCan != null)
+            {
+                currentTrashCan.UpdateVisual(trashcanVisualIndex);
+                currentTrashCan.animator.SetTrigger("IsOpen");
+                currentTrashCan.PlaySound();
+            }
         }
 
-        if (currentTrashCan != null)
+        void BossSpawn()
         {
-            currentTrashCan.UpdateVisual(GameManager.Instance.CurrentLevelState);
-            currentTrashCan.animator.SetTrigger("IsOpen");
+            EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
+            transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y / 2, 0f);
+            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
+            EnemySpawned.InitEnemy(gridManager.Grid);
         }
-        //if (currentTrashCan != null) Debug.Log("Selected can", currentTrashCan);
-        CurrentEnemyCount++;
     }
 
     #endregion
