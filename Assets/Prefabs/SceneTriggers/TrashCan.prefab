@@ -289,8 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d7e6fbc349ad943b013beb4f7ee6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashcanContent: {fileID: 0}
-  trashcanTop: {fileID: 0}
+  trashcanContent: {fileID: 3552998759039772176}
+  contentSprites:
+  - {fileID: 607486461, guid: 0753455a539b39b4199b588f25316501, type: 3}
+  - {fileID: 729870700, guid: 0753455a539b39b4199b588f25316501, type: 3}
+  - {fileID: 1975479481, guid: 0753455a539b39b4199b588f25316501, type: 3}
+  - {fileID: 14148994, guid: 0753455a539b39b4199b588f25316501, type: 3}
 --- !u!114 &2736740723119649913
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     //Internal Variables
     float CurrentSpawnDelay;
+    public TrashCan currentTrashCan;
     [field: SerializeField] public int CurrentEnemyCount { get; private set; }
     [field: SerializeField] public int DefeatedEnemyCount { get; private set; }
 
@@ -87,10 +88,18 @@ public class EnemySpawner : MonoBehaviour
         CurrentEnemyCount++;
     }
 
-    //public void UpdateStatsOnEnemyDestroyed()
-    //{
-    //    CurrentEnemyCount--;
-    //}
+    public void UpdateCurrentTrashCan()
+    {
+        SpawnTile spawnTile;
+
+        currentTrashCan = null;
+        spawnTile = Physics2D.OverlapCircle(transform.position, 0.2f).GetComponent<SpawnTile>();
+        currentTrashCan = spawnTile.GetComponentInChildren<TrashCan>();
+
+        //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.25f);
+        //var trashCan = colliders.FirstOrDefault(c => c.GetComponent<TrashCan>());
+        //currentTrashCan = trashCan.GetComponent<TrashCan>();
+    }
 
     #endregion
 
@@ -188,12 +197,16 @@ public class EnemySpawner : MonoBehaviour
             transform.position = new Vector3(transform.position.x, spawnHeight + gridManager.GridCellCenter().y, 0f);
         } while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")));
 
+        UpdateCurrentTrashCan();
+
         if (GameManager.Instance.RemainingEnemies == 1 && aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
         {
             EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
             transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y/2, 0f);
             Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
             EnemySpawned.InitEnemy(gridManager.Grid);
+
+            if(currentTrashCan != null) currentTrashCan.UpdateVisual(3);
         }
         else
         {
@@ -201,6 +214,12 @@ public class EnemySpawner : MonoBehaviour
             EnemySpawned.InitEnemy(gridManager.Grid);
         }
 
+        if (currentTrashCan != null)
+        {
+            currentTrashCan.UpdateVisual(GameManager.Instance.CurrentLevelState);
+            currentTrashCan.animator.SetTrigger("IsOpen");
+        }
+        //if (currentTrashCan != null) Debug.Log("Selected can", currentTrashCan);
         CurrentEnemyCount++;
     }
 
