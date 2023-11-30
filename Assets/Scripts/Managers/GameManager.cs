@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI defeatedEnemyCounter;
     [SerializeField] TextMeshProUGUI endingType;
 
+    //Public Variables
     [field: SerializeField]  public int RemainingEnemies {  get; private set; }
     [field: SerializeField] public int CurrentRecyclePoints { get; private set; }
     [field: SerializeField] public LevelState CurrentLevelState { get; private set; }
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour
             var selectedEnding = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount);
             AudioManager.Instance.ChangeBGMIntensity(CurrentLevelState);
             AudioManager.Instance.ChangeEndingSound(selectedEnding.endingType);
-            AudioManager.Instance.ChangeAmbienceIntensity(0.8f);
+            AudioManager.Instance.ChangeAmbienceIntensity(0.6f);
+
             levelFinished.SetActive(true);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
@@ -90,11 +92,15 @@ public class GameManager : MonoBehaviour
 
     public void ReloadLevel()
     {
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.StopAmbienceSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevel()
     {
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.StopAmbienceSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

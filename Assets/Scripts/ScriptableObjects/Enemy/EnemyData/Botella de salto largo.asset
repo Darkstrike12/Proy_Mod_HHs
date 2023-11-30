@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
+  m_Name: Botella de salto largo
+  m_EditorClassIdentifier: 
+  DisplayName: Botella No Biodegradable Andante
+  DisplayImage: {fileID: 0}
+  DisplayDescription: "Botellas de 2 litros de diversas bebidas las cuales les creci\xF3\r
+    una especie de patas de grillo la cual usan para dar saltos."
+  EnemyMaterial: 04000000
+  EnemyCategory: 2
+  MovementVector: {x: 8, y: 1, z: 0}
+  MovementTime: 10
+  MovementTimeRange: []
+  MaxHitPoints: 8
+  RecyclePointsGiven: 6
+  MainSound: {fileID: 11400000, guid: 7ecf7c7976ab9a547aedd8cd671acfda, type: 2}
+  HurtSound: {fileID: 11400000, guid: 6eca84b232958424a9607b16c57d0167, type: 2}
+  DeathSound: {fileID: 11400000, guid: bd301ca724a7c8249a4a43835a318783, type: 2}

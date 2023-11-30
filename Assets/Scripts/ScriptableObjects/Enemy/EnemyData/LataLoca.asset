@@ -25,5 +25,5 @@ MonoBehaviour:
   MaxHitPoints: 6
   RecyclePointsGiven: 6
   MainSound: {fileID: 11400000, guid: b6a796b89aad84240beb9d6b2213a565, type: 2}
-  HurtSound: {fileID: 0}
-  DeathSound: {fileID: 0}
+  HurtSound: {fileID: 11400000, guid: d6a747efc76e4d64d8ef1a64c8167db2, type: 2}
+  DeathSound: {fileID: 11400000, guid: bd301ca724a7c8249a4a43835a318783, type: 2}

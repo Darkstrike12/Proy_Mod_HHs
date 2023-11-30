@@ -82,6 +82,11 @@ public class EnemySpawner : MonoBehaviour
         DefeatedEnemyCount++;
     }
 
+    public void UpdateStatsOnEnemySpawned()
+    {
+        CurrentEnemyCount++;
+    }
+
     //public void UpdateStatsOnEnemyDestroyed()
     //{
     //    CurrentEnemyCount--;
@@ -100,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
             case GameManager.LevelState.Soft:
                 SpawnDelay = (float)Random.Range(5, 7);
                 EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 5;
-                selectedEnemy = SelectEnemyBasedOnPorcentage(70, 30, 0, 0);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(90, 10, 0, 0);
                 break;
             case GameManager.LevelState.Medium:
                 SpawnDelay = (float)Random.Range(3, 5);
@@ -110,7 +115,7 @@ public class EnemySpawner : MonoBehaviour
             case GameManager.LevelState.Hard:
                 SpawnDelay = (float)Random.Range(1, 3);
                 EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 2;
-                selectedEnemy = SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(10, 40, 50, 0);
                 break;
             case GameManager.LevelState.Finish:
                 break;
@@ -167,6 +172,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    Base_Enemy SelectEnemyToSpawn(EnemyData.EnemyCategories category)
+    {
+        return aviableEnemies.FirstOrDefault(e => e.EnemyData.EnemyCategory == category);
+    }
+
     public void SpawnEnemy()
     {
         Base_Enemy EnemySelected = SelectEnemyToSpawn();
@@ -178,19 +188,20 @@ public class EnemySpawner : MonoBehaviour
             transform.position = new Vector3(transform.position.x, spawnHeight + gridManager.GridCellCenter().y, 0f);
         } while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")));
 
-        //if (EnemySelected.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente)
-        //{
+        if (GameManager.Instance.RemainingEnemies == 1 && aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
+        {
+            EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
+            transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y/2, 0f);
+            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
+            EnemySpawned.InitEnemy(gridManager.Grid);
+        }
+        else
+        {
+            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position, Quaternion.identity);
+            EnemySpawned.InitEnemy(gridManager.Grid);
+        }
 
-        //}
-        //else
-        //{
-
-        //}
-
-        Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left, Quaternion.identity);
-        EnemySpawned.InitEnemy(gridManager.Grid);
         CurrentEnemyCount++;
-
     }
 
     #endregion

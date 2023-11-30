@@ -404,6 +404,36 @@ public class Base_Enemy : MonoBehaviour
         EnemAnimator.SetBool("IsMoving", false);
     }
 
+    public IEnumerator MoveForward(float movementTime, float times)
+    {
+        Vector3 initalPos = transform.position;
+        Vector3 finalPos = initalPos + Vector3.left * times;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < movementTime)
+        {
+            transform.position = Vector3.Lerp(initalPos, finalPos, timeElapsed / movementTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = finalPos;
+    }
+
+    public IEnumerator MoveForward(float movementTime, float yOffset, float times)
+    {
+        Vector3 initalPos = transform.position;
+        Vector3 finalPos = initalPos + Vector3.left * times + new Vector3(0, yOffset, 0);
+        float timeElapsed = 0f;
+
+        while (timeElapsed < movementTime)
+        {
+            transform.position = Vector3.Lerp(initalPos, finalPos, timeElapsed / movementTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = finalPos;
+    }
+
     #endregion
 
     protected virtual void EnemyAbility()

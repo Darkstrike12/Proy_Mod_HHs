@@ -54,7 +54,7 @@ PrefabInstance:
     - target: {fileID: 7478231810919298005, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7ab67ca8a7f9e5e4b9cf37f5b9075d0f, type: 2}
+      objectReference: {fileID: 2100000, guid: f5e256983a534fe4184ed33e3f234d47, type: 2}
     - target: {fileID: 7478231810919298006, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
       propertyPath: JitterY
       value: 1
