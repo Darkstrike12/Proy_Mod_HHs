@@ -15,10 +15,10 @@ public class Base_Weapon : MonoBehaviour
 
     [Header("Weapon Behaviour Variables")]
     [SerializeField] protected bool isInstantKill;
-    //public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] protected bool useSpecialEffect;
     [field: SerializeField] public float EffectDuration {  get; protected set; }
     [SerializeField] DamageType damageType;
+    [SerializeField] protected Quaternion landingRotation;
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
@@ -45,7 +45,7 @@ public class Base_Weapon : MonoBehaviour
 
     #endregion
 
-    protected void DisableWeapon()
+    protected virtual void DisableWeapon()
     {
         animator.SetTrigger("Finish");
         Destroy(gameObject, 1f); // disable
@@ -67,6 +67,7 @@ public class Base_Weapon : MonoBehaviour
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
         transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
         animator.SetTrigger("Hit");
         switch (damageType)
         {

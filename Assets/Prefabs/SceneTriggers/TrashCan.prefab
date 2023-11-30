@@ -295,6 +295,7 @@ MonoBehaviour:
   - {fileID: 729870700, guid: 0753455a539b39b4199b588f25316501, type: 3}
   - {fileID: 1975479481, guid: 0753455a539b39b4199b588f25316501, type: 3}
   - {fileID: 14148994, guid: 0753455a539b39b4199b588f25316501, type: 3}
+  <sound>k__BackingField: {fileID: 11400000, guid: 958306514bd228c4db4ddf098ee4a517, type: 2}
 --- !u!114 &2736740723119649913
 MonoBehaviour:
   m_ObjectHideFlags: 0

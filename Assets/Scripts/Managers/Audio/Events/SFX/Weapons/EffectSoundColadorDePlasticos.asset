@@ -16,9 +16,9 @@ MonoBehaviour:
   Priority: 0
   Event:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -941170078
+      Data2: 1171915294
+      Data3: 1263598012
+      Data4: -1584645591
+    Path: event:/SFX/Weapons/PlasticFilter
   Category: 0

@@ -6,8 +6,12 @@ using UnityEngine;
 public class ColadorDePlastico : Base_Weapon
 {
     [Header("Unique Variables")]
-    [SerializeField] float movementDuration = 1;
     [SerializeField] AnimationCurve movementCurve;
+    [SerializeField] float speed;
+    [SerializeField] ParticleEffect particleEffect;
+
+    float movementDuration;
+
 
     Vector3 posChecker;
 
@@ -19,7 +23,7 @@ public class ColadorDePlastico : Base_Weapon
         Gizmos.DrawWireSphere(posChecker, 0.25f);
     }
 
-    #region WeaponHit
+
 
     protected override void SpecialEffect(Base_Enemy enemy)
     {
@@ -33,9 +37,18 @@ public class ColadorDePlastico : Base_Weapon
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
         transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
         StartCoroutine(MoveForward(hitPoint));
         
     }
+
+    protected override void DisableWeapon()
+    {
+        if (particleEffect != null) particleEffect.particles.Stop();
+        base.DisableWeapon();
+    }
+
+    #region WeaponHit
 
     Vector3 LimitChecker()
     {
@@ -47,7 +60,7 @@ public class ColadorDePlastico : Base_Weapon
             finalPos += Vector3.right;
         }
 
-        movementDuration = (finalPos.x - initialPos.x) / 8f;
+        movementDuration = (finalPos.x - initialPos.x) / speed;
 
         return finalPos;
     }
@@ -59,7 +72,8 @@ public class ColadorDePlastico : Base_Weapon
         Vector3 targetPos = LimitChecker();
         //print($"from {transform.position} to {targetPos}");
         animator.SetTrigger("Hit");
-
+        yield return new WaitForSeconds(0.4f);
+        if(particleEffect != null) particleEffect.particles.Play();
         while (timeElapsed < movementDuration)
         {
             transform.position = Vector3.Lerp(initalPos, targetPos, movementCurve.Evaluate(timeElapsed / movementDuration));
@@ -71,7 +85,6 @@ public class ColadorDePlastico : Base_Weapon
         transform.position = targetPos;
         movementDuration = 0f;
         Invoke("DisableWeapon", EffectDuration);
-        //Destroy(gameObject, destroyDelay);
     }
 
     #endregion

@@ -1,5 +1,157 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &941725461146072867
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7835602325001362986}
+    m_Modifications:
+    - target: {fileID: 3303372207470115842, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_Name
+      value: ParticleEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 7.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: -1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+--- !u!114 &2361647433536637728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3303372207470115843, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+  m_PrefabInstance: {fileID: 941725461146072867}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be33c6ece82988d4a968e197714e03b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2682459122617130460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,6 +218,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e460d379a7b85c14785e704579812f08, type: 3}
+--- !u!4 &7835602325001362986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
+  m_PrefabInstance: {fileID: 2682459122617130460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7835602325001362991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
@@ -88,7 +245,7 @@ MonoBehaviour:
   useSpecialEffect: 1
   <EffectDuration>k__BackingField: 1
   damageType: 2
-  movementDuration: 3
+  landingRotation: {x: 0, y: 0, z: 0, w: 1}
   movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -113,3 +270,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  speed: 5
+  particleEffect: {fileID: 2361647433536637728}
