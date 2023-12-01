@@ -1023,7 +1023,7 @@ MonoBehaviour:
         Raw: 1920
         Type: 0
       Y:
-        Raw: 960
+        Raw: 947.0852
         Type: 0
       Z:
         Raw: 0
@@ -1442,6 +1442,7 @@ GameObject:
   - component: {fileID: 1020421292}
   - component: {fileID: 1020421291}
   - component: {fileID: 1020421290}
+  - component: {fileID: 1020421293}
   m_Layer: 5
   m_Name: Perfiles
   m_TagString: Untagged
@@ -1513,7 +1514,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1020421291}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1020421293}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: SceneLoader
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1020421291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,6 +1565,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020421288}
   m_CullTransparentMesh: 1
+--- !u!114 &1020421293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020421288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NombreEscena: Menu_Perfiles
 --- !u!1 &1060023212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreEscena: TstScene1
+  NombreEscena: Menu_Niveles
 --- !u!1 &1528551131
 GameObject:
   m_ObjectHideFlags: 0
