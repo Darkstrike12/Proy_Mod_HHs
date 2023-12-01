@@ -8,7 +8,6 @@ public class WeaponSpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Transform spawnPosition;
-    [SerializeField] Base_Weapon weaponPrefab;
     [SerializeField] GameObject weaponAreaDisplay;
     [SerializeField] Camera sceneCamera;
     [SerializeField] MousePosition2D mousePosition;

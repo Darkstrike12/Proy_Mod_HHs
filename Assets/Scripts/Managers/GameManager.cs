@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         recyclePointsCounter.text = CurrentRecyclePoints.ToString();
 
         //UpdateLevelState();
-        if (RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0)
+        if (RemainingEnemies == 0 && EnemySpawner.Instance.CurrentEnemyCount <= 0 && CurrentLevelState != LevelState.Finish)
         {
             CurrentLevelState = LevelState.Finish;
             OnLEvelFinished();
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.ChangeAmbienceIntensity(0.6f);
 
             levelFinished.SetActive(true);
+            GameObject endingImg = Instantiate(selectedEnding.EndingObject, levelFinished.transform);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
             print(selectedEnding.endingType.ToString());
