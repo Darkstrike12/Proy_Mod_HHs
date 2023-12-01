@@ -1168,7 +1168,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1878408911}
   m_Father: {fileID: 508073727}
@@ -1558,7 +1558,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 508073727}
   m_RootOrder: 1
@@ -3597,7 +3597,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1133962561}
   - {fileID: 1938333712}
@@ -4938,6 +4938,12 @@ MonoBehaviour:
   weaponAreaDisplay: {fileID: 6851518843558091438, guid: 6cde2d88e9308704da08aabfda661bd8, type: 3}
   sceneCamera: {fileID: 519420031}
   mousePosition: {fileID: 2117758657}
+  aviableWeapons:
+  - {fileID: 8246117246493100071, guid: 8a83a3ff3fa951f4e821068140b8b9e3, type: 3}
+  - {fileID: 532227187, guid: 0b6de6b7058ed7d43a882a788cae0248, type: 3}
+  - {fileID: 1377803341541870412, guid: fc0f50afff7addd4a915811277174bb0, type: 3}
+  - {fileID: 7432911847591063489, guid: cf1fad53fab1ff541a46dce24873c406, type: 3}
+  weaponPool: []
   LaunchSpeed: 20
   OnWeaponSelected:
     m_PersistentCalls:
@@ -4945,7 +4951,7 @@ MonoBehaviour:
       - m_Target: {fileID: 971190804}
         m_TargetAssemblyTypeName: WeaponSpawner, Assembly-CSharp
         m_MethodName: SelectWeapon
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7308,7 +7314,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 508073727}
   m_RootOrder: 0

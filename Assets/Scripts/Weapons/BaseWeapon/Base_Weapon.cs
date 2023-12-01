@@ -16,6 +16,7 @@ public class Base_Weapon : MonoBehaviour
     [Header("Weapon Behaviour Variables")]
     [SerializeField] protected bool isInstantKill;
     [SerializeField] protected bool useSpecialEffect;
+    public State wpState;
     [field: SerializeField] public float EffectDuration {  get; protected set; }
     [SerializeField] DamageType damageType;
     [SerializeField] protected Quaternion landingRotation;
@@ -35,6 +36,8 @@ public class Base_Weapon : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
         Particles = GetComponentInChildren<ParticleSystem>();
         animator = GetComponent<Animator>();
+
+        wpState = State.Standby;
     }
 
     private void OnDrawGizmos()
@@ -48,8 +51,20 @@ public class Base_Weapon : MonoBehaviour
     protected virtual void DisableWeapon()
     {
         animator.SetTrigger("Finish");
-        Destroy(gameObject, 1f); // disable
+        wpState = State.Recharging;
+        Invoke("SetToStandBy", weaponDataSO.BaseReloadTime);
+        gameObject.SetActive(false);
     }
+
+    public void SetToStandBy()
+    {
+        wpState = State.Standby;
+    }
+
+    //public IEnumerator Recharge()
+    //{
+    //    yield return new WaitForSeconds(weaponDataSO.BaseReloadTime);
+    //}
 
     #region Weapon Hit
 
@@ -154,5 +169,12 @@ public class Base_Weapon : MonoBehaviour
         None,
         Instant,
         Overtime
+    }
+
+    public enum State
+    {
+        Standby,
+        Active,
+        Recharging
     }
 }

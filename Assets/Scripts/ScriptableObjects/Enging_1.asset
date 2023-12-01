@@ -16,4 +16,5 @@ MonoBehaviour:
   EngingName: 
   endingType: 0
   EndingSprite: {fileID: 0}
+  EndingObject: {fileID: 0}
   EndingText: 
