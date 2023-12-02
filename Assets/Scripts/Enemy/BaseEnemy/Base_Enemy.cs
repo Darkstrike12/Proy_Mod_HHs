@@ -15,6 +15,8 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] protected Grid grid;
     public Grid Grid { get => grid; set => grid = value; }
     [SerializeField] protected LayerMask DetectedLayers;
+    [SerializeField] GameObject deathExplosion;
+    [SerializeField] Vector3 explosionSizeMult;
 
     #region Behavior Variables
 
@@ -432,6 +434,30 @@ public class Base_Enemy : MonoBehaviour
             yield return null;
         }
         transform.position = finalPos;
+    }
+
+    #endregion
+
+    #region Animation Events
+
+    public void InstantiateExplosion()
+    {
+        Vector3 sizeMult = new Vector3(0.5f, 0.5f, 0f);
+        if(explosionSizeMult != null && explosionSizeMult != Vector3.zero)
+        {
+            sizeMult = explosionSizeMult;
+        }
+
+        if (deathExplosion != null)
+        {
+            var explosion = Instantiate(deathExplosion, transform);
+            explosion.transform.localScale += sizeMult;
+        }
+    }
+
+    public void DestroyExplosion()
+    {
+
     }
 
     #endregion

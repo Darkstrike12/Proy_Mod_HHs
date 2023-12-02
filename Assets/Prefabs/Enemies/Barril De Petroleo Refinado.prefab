@@ -124,6 +124,7 @@ MonoBehaviour:
   DetectedLayers:
     serializedVersion: 2
     m_Bits: 192
+  deathExplosion: {fileID: 5146420662669453638, guid: 59479167588e91141a36b6186354975c, type: 3}
   AllowDamage: 1
   MovementDuration: {x: 0.5, y: 0.5}
   RandomMoveInX: 0

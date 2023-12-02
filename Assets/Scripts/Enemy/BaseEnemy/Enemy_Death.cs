@@ -8,6 +8,10 @@ public class Enemy_Death : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Enemy = animator.GetComponent<Base_Enemy>();
+        Enemy.StopAllCoroutines();
+        Enemy.EnemAnimator.SetBool("IsMoving", false);
+        Enemy.SetAllowDamage(false);
+        Enemy.transform.position = Enemy.Grid.WorldToCell(Enemy.transform.position) + (Enemy.Grid.cellSize / 2);
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySound(Enemy.EnemyData.DeathSound);
     }
 

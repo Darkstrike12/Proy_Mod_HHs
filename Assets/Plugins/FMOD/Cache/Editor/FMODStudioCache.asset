@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8417576360321877035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Button 3
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Button 3
+  Guid:
+    Data1: 1424139255
+    Data2: 1077119852
+    Data3: -1087672140
+    Data4: -1818019553
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7313504600521081605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +162,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12000
+--- !u!114 &-6249976159667049013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Button 2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Button 2
+  Guid:
+    Data1: -2011036737
+    Data2: 1210258392
+    Data3: -1231892340
+    Data4: 152838281
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5785177056844358486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,10 +231,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638362850707538774
+  lastModified: 638369798983134396
   FileSizes:
   - Name: Desktop
-    Value: 1768640
+    Value: 2063968
   Exists: 1
 --- !u!114 &-5367207886146132737
 MonoBehaviour:
@@ -251,11 +305,38 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638362818721140374
+  lastModified: 638369650941871231
   FileSizes:
   - Name: Desktop
-    Value: 1644
+    Value: 2130
   Exists: 1
+--- !u!114 &-4938672039325583847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Scenario/TrashCan
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Scenario/TrashCan
+  Guid:
+    Data1: 1306173965
+    Data2: 1173766889
+    Data3: 291306630
+    Data4: 1485406248
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3069933091490862360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +365,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 66206
+--- !u!114 &-2579119638160278957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Zombie_Destroy_Epic
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Zombie_Destroy_Epic
+  Guid:
+    Data1: -187394833
+    Data2: 1308578857
+    Data3: -2070738285
+    Data4: -1580723116
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1519021468992950977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,11 +407,38 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638362818721110363
+  lastModified: 638369650941841224
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-1304284165923692020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Zombie_Hit_Metal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Zombie_Hit_Metal
+  Guid:
+    Data1: -862999448
+    Data2: 1299785028
+    Data3: -582160749
+    Data4: -307401038
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1099150782532320158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +466,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 16551
+--- !u!114 &-1083877199068421428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Button 1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Button 1
+  Guid:
+    Data1: -944087370
+    Data2: 1202085150
+    Data3: -1568361812
+    Data4: 1033053022
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-550416148118406574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Zombie_Hit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Zombie_Hit
+  Guid:
+    Data1: -503914855
+    Data2: 1080340165
+    Data3: -298617931
+    Data4: 1779858007
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,12 +552,24 @@ MonoBehaviour:
   - {fileID: 7051978270272291731}
   - {fileID: -5785177056844358486}
   - {fileID: -5367207886146132737}
+  - {fileID: -1304284165923692020}
+  - {fileID: -550416148118406574}
+  - {fileID: 3922626292259822523}
+  - {fileID: 9091507393358355199}
+  - {fileID: -2579119638160278957}
+  - {fileID: -4938672039325583847}
+  - {fileID: 8985874369192267109}
+  - {fileID: 6481429170924121399}
+  - {fileID: -1083877199068421428}
+  - {fileID: -6249976159667049013}
+  - {fileID: -8417576360321877035}
+  - {fileID: 4675347035106238675}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1519021468992950977}
   StringsBanks:
   - {fileID: -4993273454060946457}
-  cacheTime: 638362912441036266
+  cacheTime: 638369798983134396
   cacheVersion: 131608
 --- !u!114 &418609978603968155
 MonoBehaviour:
@@ -385,10 +586,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638362912441036266
+  lastModified: 638369650948408503
   FileSizes:
   - Name: Desktop
-    Value: 1496768
+    Value: 2492896
   Exists: 1
 --- !u!114 &1099987750225915635
 MonoBehaviour:
@@ -465,6 +666,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3922626292259822523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Zombie_Hit_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Zombie_Hit_2
+  Guid:
+    Data1: -727507553
+    Data2: 1314377398
+    Data3: -1668168796
+    Data4: -168385025
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4675347035106238675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Button 4
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Button 4
+  Guid:
+    Data1: 1609136633
+    Data2: 1074373072
+    Data3: 1364095380
+    Data4: -1299897248
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &5133329464848695732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +735,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Ambeince.bank
   Name: Ambeince
   StudioPath: bank:/Ambeince
-  lastModified: 638362850707178696
+  lastModified: 638368569590786820
   FileSizes:
   - Name: Desktop
     Value: 2246944
@@ -507,7 +762,7 @@ MonoBehaviour:
   - {fileID: -5658980846117471489}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: -7313504600521081605}
   MinDistance: 1
@@ -569,6 +824,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 74482
+--- !u!114 &6481429170924121399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/Button 5
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/Button 5
+  Guid:
+    Data1: 1385147826
+    Data2: 1264439882
+    Data3: -638629725
+    Data4: -664914861
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6772843738828718747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +897,60 @@ MonoBehaviour:
     Data2: 1200583617
     Data3: 2138431104
     Data4: -2121041161
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8985874369192267109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Weapons/PlasticFilter
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Weapons/PlasticFilter
+  Guid:
+    Data1: -941170078
+    Data2: 1171915294
+    Data3: 1263598012
+    Data4: -1584645591
+  Banks:
+  - {fileID: 418609978603968155}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24920
+--- !u!114 &9091507393358355199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Zombie_Destroy
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Zombie_Destroy
+  Guid:
+    Data1: 1344880551
+    Data2: 1236299386
+    Data3: -1894714971
+    Data4: 2072013727
   Banks:
   - {fileID: 418609978603968155}
   IsStream: 0

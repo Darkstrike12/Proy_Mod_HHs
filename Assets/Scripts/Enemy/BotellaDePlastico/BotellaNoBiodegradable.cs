@@ -5,6 +5,9 @@ using UnityEngine.Animations;
 
 public class BotellaNoBiodegradable : Base_Enemy
 {
+    [Header("Unique Variables")]
+    [SerializeField] bool useAnimationTime;
+
     public override IEnumerator MoveCR(float MovementTime)
     {
         yield return new WaitForSeconds(MovementTime);
@@ -12,6 +15,7 @@ public class BotellaNoBiodegradable : Base_Enemy
 
         Vector3 targetPosition = Vector3.zero;
         Vector3 initialPosition = transform.position;
+        if(useAnimationTime) MovementDuration.x = EnemAnimator.GetCurrentAnimatorStateInfo(0).length;
 
         var UseRandomMoveInX = RandomMoveInX ? MovementLimit.x = -Random.Range(1, Mathf.Abs(enemyData.MovementVector.x + 1)) : MovementLimit.x = -enemyData.MovementVector.x;
         var UseRandomMoveInY = RandomMoveInY ? MovementLimit.y = Random.Range(1, Mathf.Abs(enemyData.MovementVector.y + 1)) : MovementLimit.y = enemyData.MovementVector.y;

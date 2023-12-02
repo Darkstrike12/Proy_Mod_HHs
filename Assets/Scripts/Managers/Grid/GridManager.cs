@@ -100,7 +100,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        for (int x = 0; x < width; x++)
+        for (int x = -1; x < width + 1; x++)
         {
             SpawnTile(BarrierTilePF, new Vector3(x, height, 0));
 

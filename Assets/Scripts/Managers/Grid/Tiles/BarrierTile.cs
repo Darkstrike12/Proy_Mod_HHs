@@ -9,6 +9,12 @@ public class BarrierTile : GridTile
     [SerializeField] float destroyDelay;
     [SerializeField] EnemyData.EnemyCategories[] destroyCategories;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0f));
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (IsEnemyOnTile(collision, out Base_Enemy enemy))
@@ -34,6 +40,7 @@ public class BarrierTile : GridTile
         {
             Destroy(enemy.gameObject, destroyDelay);
             GameManager.Instance.UpdateStatsOnEnemyOutOfGameArea();
+            Debug.LogWarning("Enemy Out Of Game Are", gameObject);
         }
     }
 
