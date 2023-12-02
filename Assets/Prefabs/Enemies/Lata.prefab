@@ -72,6 +72,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
+      propertyPath: deathExplosion
+      value: 
+      objectReference: {fileID: 5146420662669453638, guid: 59479167588e91141a36b6186354975c, type: 3}
+    - target: {fileID: 8014547067184715247, guid: 0293c6fdd4c29a04d8fc20868bb7edb2, type: 3}
       propertyPath: MovementDuration.x
       value: 2
       objectReference: {fileID: 0}

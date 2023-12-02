@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridTile : MonoBehaviour
 {
     //public Base_Enemy enemy { get; protected set; }
-    bool IsTileSelected;
+    //bool IsTileSelected;
 
     void Start()
     {

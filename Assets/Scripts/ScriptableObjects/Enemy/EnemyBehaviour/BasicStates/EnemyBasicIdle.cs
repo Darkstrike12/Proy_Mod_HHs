@@ -27,8 +27,8 @@ public class EnemyBasicIdle : EnemyIdleBH
         }
         else
         {
-            Debug.Log("Grid not found", Enemy);
-            Destroy(Enemy);
+            Debug.LogError("Grid not found", Enemy);
+            Destroy(Enemy.gameObject);
         }
     }
 }

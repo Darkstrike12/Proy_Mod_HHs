@@ -13,6 +13,7 @@ public class EndingData : ScriptableObject
     public string EngingName;
     public EndingType endingType;
     public Sprite EndingSprite;
+    public GameObject EndingObject;
     [TextArea] public string EndingText;
 
     public enum EndingType

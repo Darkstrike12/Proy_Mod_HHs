@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
@@ -7,10 +8,13 @@ public class WeaponSpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Transform spawnPosition;
-    [SerializeField] Base_Weapon weaponPrefab;
     [SerializeField] GameObject weaponAreaDisplay;
     [SerializeField] Camera sceneCamera;
     [SerializeField] MousePosition2D mousePosition;
+
+    [Header("Weapons")]
+    [SerializeField] List<Base_Weapon> aviableWeapons;
+    [SerializeField] List<Base_Weapon> weaponPool;
 
     [Header("Behaviour Varaibles")]
     [SerializeField] float LaunchSpeed = 1f;
@@ -31,6 +35,13 @@ public class WeaponSpawner : MonoBehaviour
         IsWeaponSelected = false;
         weaponAreaDisplay = Instantiate(weaponAreaDisplay, transform);
         weaponAreaDisplay.SetActive(false);
+
+        foreach (var weapon in aviableWeapons)
+        {
+            Base_Weapon wp = Instantiate(weapon, spawnPosition);
+            wp.gameObject.SetActive(false);
+            weaponPool.Add(wp);
+        }
     }
 
     void Update()
@@ -52,12 +63,21 @@ public class WeaponSpawner : MonoBehaviour
 
     #endregion
 
-    public void SelectWeapon()
+    public void SelectWeapon(int weaponIndex)
     {
-        Destroy(CurrentWeapon);
-        CurrentWeapon = Instantiate(weaponPrefab, spawnPosition);
-        IsWeaponSelected = true;
-        weaponAreaDisplay.SetActive(true);
+        CurrentWeapon = null;
+        CurrentWeapon = weaponPool[weaponIndex];
+        if(CurrentWeapon.wpState == Base_Weapon.State.Standby)
+        {
+            CurrentWeapon.transform.position = spawnPosition.transform.position;
+            CurrentWeapon.gameObject.SetActive(true);
+            IsWeaponSelected = true;
+            weaponAreaDisplay.SetActive(true);
+        } 
+        else
+        {
+            CurrentWeapon = null;
+        }
     }
 
     void WeaponFaceToMouse()
@@ -81,17 +101,28 @@ public class WeaponSpawner : MonoBehaviour
 
     public void LaunchWeapon()
     {
-        weaponAreaDisplay.SetActive(false);
-        if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
+        if(CurrentWeapon != null && CurrentWeapon.wpState == Base_Weapon.State.Standby)
         {
-            if (mousePosition.IsMousePointerOverGameGrid())
+            if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost && mousePosition.IsMousePointerOverGameGrid())
             {
+                weaponAreaDisplay.SetActive(false);
                 IsWeaponSelected = false;
                 mousePosition.SetSelectedTile();
+                CurrentWeapon.wpState = Base_Weapon.State.Active;
                 CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
                 GameManager.Instance.UpdateCurrentRecyclePoints(-CurrentWeapon.WeaponDataSO.BaseUseCost);
             }
         }
+        //if (GameManager.Instance.CurrentRecyclePoints >= CurrentWeapon.WeaponDataSO.BaseUseCost)
+        //{
+        //    if (mousePosition.IsMousePointerOverGameGrid())
+        //    {
+        //        IsWeaponSelected = false;
+        //        mousePosition.SetSelectedTile();
+        //        CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
+        //        GameManager.Instance.UpdateCurrentRecyclePoints(-CurrentWeapon.WeaponDataSO.BaseUseCost);
+        //    }
+        //}
 
         //Rigidbody2D WeaponRB = CurrentWeapon.GetComponent<Rigidbody2D>();
         //Vector2 Direction = SceneCamera.ScreenToWorldPoint(Input.mousePosition);

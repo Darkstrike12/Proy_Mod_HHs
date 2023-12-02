@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4300315759338204200
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3903591285337392496, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8fde0465dba608478c29d92fbd34226, type: 2}
+    - target: {fileID: 7688578989416522628, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_Name
+      value: Rollo Caro
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: f3868bac3ae42c8408873814630e8042, type: 2}
+    - target: {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: MovementDuration.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: MovementDuration.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522629, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: MovementCurves.Array.data[0].m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522630, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8fde0465dba608478c29d92fbd34226, type: 2}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688578989416522631, guid: 7403b0f0469595449a976d845e4d5192, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7403b0f0469595449a976d845e4d5192, type: 3}

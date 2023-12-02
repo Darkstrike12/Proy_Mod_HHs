@@ -65,7 +65,12 @@ public class Endings : ScriptableObject
 
     public EndingData SelectEnding(EndingData.EndingType endingType)
     {
-        List<EndingData> selectedEndingPool = selectedEndingPool = endings.Where(e => e.endingType == endingType).ToList();
+        List<EndingData> selectedEndingPool = endings.Where(e => e.endingType == endingType).ToList();
         return selectedEndingPool[Random.Range(0, selectedEndingPool.Count())];
+    }
+
+    public EndingData SelectEnding()
+    {
+        return endings[Random.Range(0, endings.Count())];
     }
 }

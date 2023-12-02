@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     //Internal Variables
     float CurrentSpawnDelay;
+    public TrashCan currentTrashCan;
     [field: SerializeField] public int CurrentEnemyCount { get; private set; }
     [field: SerializeField] public int DefeatedEnemyCount { get; private set; }
 
@@ -82,10 +83,23 @@ public class EnemySpawner : MonoBehaviour
         DefeatedEnemyCount++;
     }
 
-    //public void UpdateStatsOnEnemyDestroyed()
-    //{
-    //    CurrentEnemyCount--;
-    //}
+    public void UpdateStatsOnEnemySpawned()
+    {
+        CurrentEnemyCount++;
+    }
+
+    public void UpdateCurrentTrashCan()
+    {
+        SpawnTile spawnTile;
+
+        currentTrashCan = null;
+        spawnTile = Physics2D.OverlapCircle(transform.position, 0.2f).GetComponent<SpawnTile>();
+        currentTrashCan = spawnTile.GetComponentInChildren<TrashCan>();
+
+        //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.25f);
+        //var trashCan = colliders.FirstOrDefault(c => c.GetComponent<TrashCan>());
+        //currentTrashCan = trashCan.GetComponent<TrashCan>();
+    }
 
     #endregion
 
@@ -100,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
             case GameManager.LevelState.Soft:
                 SpawnDelay = (float)Random.Range(5, 7);
                 EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 5;
-                selectedEnemy = SelectEnemyBasedOnPorcentage(70, 30, 0, 0);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(90, 10, 0, 0);
                 break;
             case GameManager.LevelState.Medium:
                 SpawnDelay = (float)Random.Range(3, 5);
@@ -110,7 +124,7 @@ public class EnemySpawner : MonoBehaviour
             case GameManager.LevelState.Hard:
                 SpawnDelay = (float)Random.Range(1, 3);
                 EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 2;
-                selectedEnemy = SelectEnemyBasedOnPorcentage(10, 20, 40, 30);
+                selectedEnemy = SelectEnemyBasedOnPorcentage(10, 40, 50, 0);
                 break;
             case GameManager.LevelState.Finish:
                 break;
@@ -167,8 +181,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    Base_Enemy SelectEnemyToSpawn(EnemyData.EnemyCategories category)
+    {
+        return aviableEnemies.FirstOrDefault(e => e.EnemyData.EnemyCategory == category);
+    }
+
     public void SpawnEnemy()
     {
+        Base_Enemy EnemySelected = SelectEnemyToSpawn();
 
         do
         {
@@ -177,10 +197,67 @@ public class EnemySpawner : MonoBehaviour
             transform.position = new Vector3(transform.position.x, spawnHeight + gridManager.GridCellCenter().y, 0f);
         } while (Physics2D.OverlapCircle(transform.position + Vector3.left, 0.25f, LayerMask.GetMask("Enemy")) || Physics2D.OverlapCircle(transform.position + (Vector3.left * 2), 0.25f, LayerMask.GetMask("Enemy")));
 
-        Base_Enemy EnemySpawned = Instantiate(SelectEnemyToSpawn(), transform.position + Vector3.left, Quaternion.identity);
-        EnemySpawned.InitEnemy(gridManager.Grid);
+        UpdateCurrentTrashCan();
+
+        //if (GameManager.Instance.RemainingEnemies == 1 && aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
+        //{
+        //    EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
+        //    transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y/2, 0f);
+        //    Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
+        //    EnemySpawned.InitEnemy(gridManager.Grid);
+
+        //    //if(currentTrashCan != null) currentTrashCan.UpdateVisual(3);
+        //}
+        //else
+        //{
+        //    Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position, Quaternion.identity);
+        //    EnemySpawned.InitEnemy(gridManager.Grid);
+        //    if (currentTrashCan != null)
+        //    {
+        //        currentTrashCan.UpdateVisual(GameManager.Instance.CurrentLevelState);
+        //        currentTrashCan.animator.SetTrigger("IsOpen");
+        //        currentTrashCan.PlaySound();
+        //    }
+        //}
+
+        switch (GameManager.Instance.RemainingEnemies)
+        {
+            case 1:
+                if (aviableEnemies.Find(e => e.EnemyData.EnemyCategory == EnemyData.EnemyCategories.Autoconsciente))
+                {
+                    BossSpawn();
+                }
+                else
+                {
+                    NormalSpawn(3);
+                }
+                break;
+            default:
+                NormalSpawn((int)GameManager.Instance.CurrentLevelState);
+                break;
+        }
+        
         CurrentEnemyCount++;
 
+        void NormalSpawn(int trashcanVisualIndex)
+        {
+            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position, Quaternion.identity);
+            EnemySpawned.InitEnemy(gridManager.Grid);
+            if (currentTrashCan != null)
+            {
+                currentTrashCan.UpdateVisual(trashcanVisualIndex);
+                currentTrashCan.animator.SetTrigger("IsOpen");
+                currentTrashCan.PlaySound();
+            }
+        }
+
+        void BossSpawn()
+        {
+            EnemySelected = SelectEnemyToSpawn(EnemyData.EnemyCategories.Autoconsciente);
+            transform.position = new Vector3(transform.position.x, gridManager.GetGridSize().y / 2, 0f);
+            Base_Enemy EnemySpawned = Instantiate(EnemySelected, transform.position + Vector3.left * EnemySelected.transform.localScale.x, Quaternion.identity);
+            EnemySpawned.InitEnemy(gridManager.Grid);
+        }
     }
 
     #endregion

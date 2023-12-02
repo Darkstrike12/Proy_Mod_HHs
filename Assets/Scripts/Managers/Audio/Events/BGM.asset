@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c3222b2a23fb440a510a24ad50c8d8, type: 3}
   m_Name: BGM
   m_EditorClassIdentifier: 
-  Name: BGM
+  Name: GemplayBGM
   Priority: 0
   Event:
     Guid:

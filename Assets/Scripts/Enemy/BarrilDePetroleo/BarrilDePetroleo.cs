@@ -29,7 +29,6 @@ public class BarrilDePetroleo : Base_Enemy
         switch (DirectionIndicator)
         {
             case 0: //Choose x
-                print("Choose X");
                 if (JitterX)
                 {
                     targetPosition = transform.position + JitterAxys(Axis.X, MovementLimit);
@@ -42,7 +41,6 @@ public class BarrilDePetroleo : Base_Enemy
                 targetPosition = GetAviablePosition(Axis.X, initialPosition, targetPosition);
                 break;
             case 1: //Choose y
-                print("Choose Y");
                 if (JitterY)
                 {
                     targetPosition = transform.position + JitterAxys(Axis.Y, MovementLimit);

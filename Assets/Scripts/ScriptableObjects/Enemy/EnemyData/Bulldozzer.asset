@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33512e5bc1af764e876762c11830ccf, type: 3}
+  m_Name: Bulldozzer
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  DisplayImage: {fileID: 0}
+  DisplayDescription: 
+  EnemyMaterial: 02000000
+  EnemyCategory: 4
+  MovementVector: {x: 1, y: 0, z: 0}
+  MovementTime: 0
+  MovementTimeRange:
+  - 1
+  - 3
+  MaxHitPoints: 20
+  RecyclePointsGiven: 8
+  MainSound: {fileID: 11400000, guid: eb56ac88788b23e4698695781665e1b7, type: 2}
+  HurtSound: {fileID: 11400000, guid: 7fe2034fe99b799439dd3f108c198986, type: 2}
+  DeathSound: {fileID: 11400000, guid: 5e5b11110bdf0674789e4e887eb3a670, type: 2}

@@ -25,4 +25,6 @@ MonoBehaviour:
   AffectAllMaterials: 0
   AffectedEnemyMaterials: 04000000
   AffectAllCategories: 0
-  AffectedEnemyCategories: 010000000200000003000000
+  AffectedEnemyCategories: 0100000002000000
+  HitSound: {fileID: 11400000, guid: f9b7e1f279d7e4a40a0035af1a416f09, type: 2}
+  EffectSound: {fileID: 11400000, guid: f962c666c7e935e4c95ec7e5638f04c6, type: 2}

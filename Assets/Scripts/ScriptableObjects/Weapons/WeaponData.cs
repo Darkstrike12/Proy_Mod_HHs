@@ -47,6 +47,10 @@ public class WeaponData : ScriptableObject
     public bool AffectAllCategories;
     public EnemyData.EnemyCategories[] AffectedEnemyCategories;
 
+    [Header("Weapon Sounds")]
+    public FmodEvent HitSound;
+    public FmodEvent EffectSound;
+
     //public void AssignWeaponData()
     //{
     //    weapon.GetComponent<Base_Weapon>().WeaponDataSO = this;

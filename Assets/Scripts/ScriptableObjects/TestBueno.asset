@@ -16,4 +16,5 @@ MonoBehaviour:
   EngingName: 
   endingType: 4
   EndingSprite: {fileID: 0}
+  EndingObject: {fileID: 2272309875340688716, guid: 0e0e9ad0c8214bf4aaaabea20ce1bf55, type: 3}
   EndingText: 

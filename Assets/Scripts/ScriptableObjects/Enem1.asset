@@ -17,8 +17,11 @@ MonoBehaviour:
   DisplayDescription: 
   EnemyMaterial: 00000000
   EnemyCategory: 0
-  MovementVector: {x: 2, y: 1, z: 0}
+  MovementVector: {x: 1, y: 0, z: 0}
   MovementTime: 1
   MovementTimeRange: []
   MaxHitPoints: 4
   RecyclePointsGiven: 4
+  MainSound: {fileID: 0}
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}

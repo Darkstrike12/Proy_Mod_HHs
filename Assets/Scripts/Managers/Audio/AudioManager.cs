@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
-    EventInstance CreateEventInstance(EventReference fmodEventReference)
+    public EventInstance CreateEventInstance(EventReference fmodEventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(fmodEventReference);
         return eventInstance;
@@ -53,9 +53,15 @@ public class AudioManager : MonoBehaviour
         AmbienceSound.start();
     }
 
-    public void ChanceAmbienceIntensity(float intensity)
+    public void ChangeAmbienceIntensity(float intensity)
     {
         AmbienceSound.setParameterByName("Ambience_Intensity", intensity);
+    }
+
+    public void StopAmbienceSound()
+    {
+        AmbienceSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AmbienceSound.release();
     }
 
     #endregion
@@ -90,14 +96,20 @@ public class AudioManager : MonoBehaviour
         MainBGM.setParameterByName("Gameplay_Music_Intensity", ((int)levelState));
     }
 
-    public void ChangeEndingType(EndingData.EndingType endingType)
+    public void ChangeBGMIntensity(int musicIntensity)
+    {
+        MainBGM.setParameterByName("Gameplay_Music_Intensity", musicIntensity);
+    }
+
+    public void ChangeEndingSound(EndingData.EndingType endingType)
     {
         MainBGM.setParameterByName("Ending_Type", ((int)endingType));
     }
 
-    public void ChangeBGMIntensity(int musicIntensity)
+    public void StopBGM()
     {
-        MainBGM.setParameterByName("Gameplay_Music_Intensity", musicIntensity);
+        MainBGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        MainBGM.release();
     }
 
     #endregion

@@ -5,15 +5,29 @@ using UnityEngine;
 
 public class ExitTile : GridTile
 {
-    [SerializeField] float DestroyDelay;
+    public float finishOffset;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0f));
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(IsEnemyOnTile(collision, out Base_Enemy enemy))
         {
-            Destroy(collision.gameObject, DestroyDelay);
+            enemy.EnemAnimator.SetFloat("ExitYOffset", finishOffset);
+            enemy.EnemAnimator.SetTrigger("IsExitMap");
         }
     }
 
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (IsEnemyOnTile(collision, out Base_Enemy enemy))
+    //    {
+    //        enemy.EnemAnimator.SetTrigger("IsExitMap");
+    //    }
+    //}
 }
 

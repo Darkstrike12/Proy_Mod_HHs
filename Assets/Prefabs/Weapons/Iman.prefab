@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4803930280776101501, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 74623d43826568f4c9a98cd29c90d256, type: 2}
     - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: damageType
       value: 2
@@ -19,9 +23,25 @@ PrefabInstance:
       propertyPath: useSpecialEffect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1398980098, guid: 3128b23c2eea3e444b0ffe04438c6ac7, type: 3}
+    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b49d95d1afd8fe0419b0a1546b46c1d6, type: 2}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
       value: Iman
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.6875
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_RootOrder
@@ -70,6 +90,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e460d379a7b85c14785e704579812f08, type: 3}
+--- !u!4 &1875371385951693267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
+  m_PrefabInstance: {fileID: 6017104622884416037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1875371385951693270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
@@ -90,5 +115,76 @@ MonoBehaviour:
   weaponDataSO: {fileID: 11400000, guid: 0666c343d4269ff47a9ac7096afc9be7, type: 2}
   isInstantKill: 0
   useSpecialEffect: 1
-  destroyDelay: 8
+  wpState: 0
+  <EffectDuration>k__BackingField: 6
   damageType: 1
+  landingRotation: {x: 0, y: 0, z: 0, w: 0}
+  particleEffect: {fileID: 5031558661735206327}
+--- !u!1001 &7168617605189280039
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1875371385951693267}
+    m_Modifications:
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427917, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787627335668427921, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+      propertyPath: m_Name
+      value: ImanParticleEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+--- !u!114 &5031558661735206327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2787627335668427920, guid: 2e8cc7913e5aff146ac1d440f5d91755, type: 3}
+  m_PrefabInstance: {fileID: 7168617605189280039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be33c6ece82988d4a968e197714e03b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

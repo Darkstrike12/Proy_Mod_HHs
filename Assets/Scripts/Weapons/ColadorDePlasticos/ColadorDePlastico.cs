@@ -6,10 +6,24 @@ using UnityEngine;
 public class ColadorDePlastico : Base_Weapon
 {
     [Header("Unique Variables")]
-    [SerializeField] float movementDuration = 1;
     [SerializeField] AnimationCurve movementCurve;
+    [SerializeField] float speed;
+    [SerializeField] ParticleEffect particleEffect;
 
-    #region WeaponHit
+    float movementDuration;
+
+
+    Vector3 posChecker;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(HitPosition, new Vector3(weaponDataSO.AttackRange.x, weaponDataSO.AttackRange.y));
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(posChecker, 0.25f);
+    }
+
+
 
     protected override void SpecialEffect(Base_Enemy enemy)
     {
@@ -22,9 +36,19 @@ public class ColadorDePlastico : Base_Weapon
     public override void HitOnPosition(Vector3 hitPoint)
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
-        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint + landPositionOffset, 5f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
         StartCoroutine(MoveForward(hitPoint));
+        
     }
+
+    protected override void DisableWeapon()
+    {
+        if (particleEffect != null) particleEffect.particles.Stop();
+        base.DisableWeapon();
+    }
+
+    #region WeaponHit
 
     Vector3 LimitChecker()
     {
@@ -36,7 +60,7 @@ public class ColadorDePlastico : Base_Weapon
             finalPos += Vector3.right;
         }
 
-        movementDuration = (finalPos.x - initialPos.x) * 5.5f;
+        movementDuration = (finalPos.x - initialPos.x) / speed;
 
         return finalPos;
     }
@@ -44,19 +68,23 @@ public class ColadorDePlastico : Base_Weapon
     IEnumerator MoveForward(Vector3 hitPoint)
     {
         float timeElapsed = 0;
+        Vector3 initalPos = transform.position;
         Vector3 targetPos = LimitChecker();
         //print($"from {transform.position} to {targetPos}");
-
+        animator.SetTrigger("Hit");
+        yield return new WaitForSeconds(0.4f);
+        if(particleEffect != null) particleEffect.particles.Play();
         while (timeElapsed < movementDuration)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPos, movementCurve.Evaluate(timeElapsed / movementDuration));
+            transform.position = Vector3.Lerp(initalPos, targetPos, movementCurve.Evaluate(timeElapsed / movementDuration));
             timeElapsed += Time.deltaTime;
             DamageOnce(transform.position);
+            posChecker = targetPos;
             yield return null;
         }
         transform.position = targetPos;
         movementDuration = 0f;
-        //Destroy(gameObject, destroyDelay);
+        Invoke("DisableWeapon", EffectDuration);
     }
 
     #endregion

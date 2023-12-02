@@ -15,6 +15,8 @@ public class Base_Enemy : MonoBehaviour
     [SerializeField] protected Grid grid;
     public Grid Grid { get => grid; set => grid = value; }
     [SerializeField] protected LayerMask DetectedLayers;
+    [SerializeField] GameObject deathExplosion;
+    [SerializeField] Vector3 explosionSizeMult;
 
     #region Behavior Variables
 
@@ -129,13 +131,18 @@ public class Base_Enemy : MonoBehaviour
 
     #region Enemy Damage Calculation
 
+    public void SetAllowDamage(bool value)
+    {
+        AllowDamage = value;
+    }
+
     public virtual void TakeDamage(int DamageTaken, bool IsInstantKill)
     {
         if (AllowDamage)
         {
-            EnemAnimator.SetTrigger("TookDamage");
             CurrentHitPoints -= DamageTaken;
             if (CurrentHitPoints <= 0 || IsInstantKill) EnemyDefeated();
+            else EnemAnimator.SetTrigger("TookDamage");
         }
     }
 
@@ -151,7 +158,7 @@ public class Base_Enemy : MonoBehaviour
         {
             GameManager.Instance.UpdateStatsOnEnemyDefeated(this);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     protected void DestroyEnemy()
@@ -294,36 +301,36 @@ public class Base_Enemy : MonoBehaviour
         }
     }
 
-    protected virtual Vector3 GetAviablePosition(Vector3 initialPosition, Vector3 targetPosition)
-    {
-        Vector3 movementDirection = (targetPosition - initialPosition).normalized;
-        Vector3 currentPositoin = initialPosition + movementDirection;
+    //protected virtual Vector3 GetAviablePosition(Vector3 initialPosition, Vector3 targetPosition)
+    //{
+    //    Vector3 movementDirection = (targetPosition - initialPosition).normalized;
+    //    Vector3 currentPositoin = initialPosition + movementDirection;
 
-        switch (movementDirection)
-        {
-            case Vector3 vec when vec.x > 0f && vec.y > 0f:
-                while (IsTileAviable(currentPositoin) && currentPositoin.x < targetPosition.x && currentPositoin.y < targetPosition.y)
-                {
-                    currentPositoin += movementDirection;
-                }
-                while (!IsTileAviable(currentPositoin))
-                {
-                    currentPositoin -= movementDirection;
-                }
-                break;
-            case Vector3 vec when vec.x < 0f && vec.y < 0f:
-                while (IsTileAviable(currentPositoin) && currentPositoin.x > targetPosition.x && currentPositoin.y > targetPosition.y)
-                {
-                    currentPositoin += movementDirection;
-                }
-                while (!IsTileAviable(currentPositoin))
-                {
-                    currentPositoin -= movementDirection;
-                }
-                break;
-        }
-        return currentPositoin;
-    }
+    //    switch (movementDirection)
+    //    {
+    //        case Vector3 vec when vec.x > 0f && vec.y > 0f:
+    //            while (IsTileAviable(currentPositoin) && currentPositoin.x < targetPosition.x && currentPositoin.y < targetPosition.y)
+    //            {
+    //                currentPositoin += movementDirection;
+    //            }
+    //            while (!IsTileAviable(currentPositoin))
+    //            {
+    //                currentPositoin -= movementDirection;
+    //            }
+    //            break;
+    //        case Vector3 vec when vec.x < 0f && vec.y < 0f:
+    //            while (IsTileAviable(currentPositoin) && currentPositoin.x > targetPosition.x && currentPositoin.y > targetPosition.y)
+    //            {
+    //                currentPositoin += movementDirection;
+    //            }
+    //            while (!IsTileAviable(currentPositoin))
+    //            {
+    //                currentPositoin -= movementDirection;
+    //            }
+    //            break;
+    //    }
+    //    return currentPositoin;
+    //}
 
     #endregion
 
@@ -399,18 +406,59 @@ public class Base_Enemy : MonoBehaviour
         EnemAnimator.SetBool("IsMoving", false);
     }
 
-    //protected virtual IEnumerator LerpPositionToTarget(Vector3 FinalVector, Vector3 initialPos, Vector3 targetPos, float lerpDuration, AnimationCurve animationCurve)
-    //{
-    //    float TimeElapsed;
-    //    TimeElapsed = 0f;
-    //    while (TimeElapsed < lerpDuration)
-    //    {
-    //        FinalVector = Vector3.Lerp(initialPos, targetPos, animationCurve.Evaluate(TimeElapsed / lerpDuration));
-    //        TimeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    FinalVector = targetPos;
-    //}
+    public IEnumerator MoveForward(float movementTime, float times)
+    {
+        Vector3 initalPos = transform.position;
+        Vector3 finalPos = initalPos + Vector3.left * times;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < movementTime)
+        {
+            transform.position = Vector3.Lerp(initalPos, finalPos, timeElapsed / movementTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = finalPos;
+    }
+
+    public IEnumerator MoveForward(float movementTime, float yOffset, float times)
+    {
+        Vector3 initalPos = transform.position;
+        Vector3 finalPos = initalPos + Vector3.left * times + new Vector3(0, yOffset, 0);
+        float timeElapsed = 0f;
+
+        while (timeElapsed < movementTime)
+        {
+            transform.position = Vector3.Lerp(initalPos, finalPos, timeElapsed / movementTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = finalPos;
+    }
+
+    #endregion
+
+    #region Animation Events
+
+    public void InstantiateExplosion()
+    {
+        Vector3 sizeMult = new Vector3(0.5f, 0.5f, 0f);
+        if(explosionSizeMult != null && explosionSizeMult != Vector3.zero)
+        {
+            sizeMult = explosionSizeMult;
+        }
+
+        if (deathExplosion != null)
+        {
+            var explosion = Instantiate(deathExplosion, transform);
+            explosion.transform.localScale += sizeMult;
+        }
+    }
+
+    public void DestroyExplosion()
+    {
+
+    }
 
     #endregion
 

@@ -100,7 +100,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        for (int x = 0; x < width; x++)
+        for (int x = -1; x < width + 1; x++)
         {
             SpawnTile(BarrierTilePF, new Vector3(x, height, 0));
 
@@ -109,7 +109,7 @@ public class GridManager : MonoBehaviour
 
         for (int y = 0; y < height; y++)
         {
-            SpawnTile(FinishTilePF, new Vector3(-1, y, 0));
+            SpawnTile(FinishTilePF.GetComponent<ExitTile>(), new Vector3(-1, y, 0), - y);
 
             SpawnTile(EnemySpawnTilePF, new Vector3(width, y, 0));
         }
@@ -120,6 +120,14 @@ public class GridManager : MonoBehaviour
         var SpawnedTile = Instantiate(TilePrefab, gridCompnent.transform.position + (gridCompnent.cellSize / 2) + SpawnPosition, Quaternion.identity);
         SpawnedTile.transform.parent = transform;
         SpawnedTile.name = $"{SpawnedTile.name} : {SpawnPosition.x}, {SpawnPosition.y}";
+    }
+
+    void SpawnTile(ExitTile TilePrefab, Vector3 SpawnPosition, float offsetValue)
+    {
+        ExitTile SpawnedTile = Instantiate(TilePrefab, gridCompnent.transform.position + (gridCompnent.cellSize / 2) + SpawnPosition, Quaternion.identity);
+        SpawnedTile.transform.parent = transform;
+        SpawnedTile.name = $"{SpawnedTile.name} : {SpawnPosition.x}, {SpawnPosition.y}";
+        SpawnedTile.finishOffset = offsetValue;
     }
 
     #endregion

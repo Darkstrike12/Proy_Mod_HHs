@@ -15,12 +15,72 @@ PrefabInstance:
       propertyPath: weaponDataSO
       value: 
       objectReference: {fileID: 11400000, guid: 844e5e49db927b04596dd18e2bb7d754, type: 2}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: landingRotation.w
+      value: -0.7372773
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: landingRotation.z
+      value: 0.6755902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: fixedLandingRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: landPositionOffset.x
+      value: -0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: landPositionOffset.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179184, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: <EffectDuration>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b64676fa0d76be743bcc7400c8f425ca, type: 3}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
       value: PicoRecolectorDeBasura
       objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.5952381
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.11904762
+      objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}

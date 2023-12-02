@@ -15,13 +15,18 @@ public class Base_Weapon : MonoBehaviour
 
     [Header("Weapon Behaviour Variables")]
     [SerializeField] protected bool isInstantKill;
-    //public bool isInstaKill { get { return IsInstantKill; } }
     [SerializeField] protected bool useSpecialEffect;
-    [SerializeField] protected float destroyDelay;
+    public State wpState;
+    [field: SerializeField] public float EffectDuration {  get; protected set; }
     [SerializeField] DamageType damageType;
+    [SerializeField] protected bool fixedLandingRotation;
+    [SerializeField] protected Quaternion landingRotation;
+    [SerializeField] protected Vector3 landPositionOffset;
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
+    public ParticleSystem Particles {  get; protected set; }
+    protected Animator animator;
 
     //Internal Variables
     protected Vector3 HitPosition;
@@ -31,6 +36,10 @@ public class Base_Weapon : MonoBehaviour
     protected virtual void Start()
     {
         RigidBody = GetComponent<Rigidbody2D>();
+        Particles = GetComponentInChildren<ParticleSystem>();
+        animator = GetComponent<Animator>();
+
+        wpState = State.Standby;
     }
 
     private void OnDrawGizmos()
@@ -41,10 +50,23 @@ public class Base_Weapon : MonoBehaviour
 
     #endregion
 
-    protected void DestroyWeapon()
+    protected virtual void DisableWeapon()
     {
-        Destroy(gameObject);
+        animator.SetTrigger("Finish");
+        wpState = State.Recharging;
+        Invoke("SetToStandBy", weaponDataSO.BaseReloadTime);
+        gameObject.SetActive(false);
     }
+
+    public void SetToStandBy()
+    {
+        wpState = State.Standby;
+    }
+
+    //public IEnumerator Recharge()
+    //{
+    //    yield return new WaitForSeconds(weaponDataSO.BaseReloadTime);
+    //}
 
     #region Weapon Hit
 
@@ -61,20 +83,22 @@ public class Base_Weapon : MonoBehaviour
     public virtual void HitOnPosition(Vector3 hitPoint)
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
-        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint + landPositionOffset, 5f);
+        if(fixedLandingRotation) transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
+        animator.SetTrigger("Hit");
         switch (damageType)
         {
             case DamageType.Instant:
                 DamageOnce(hitPoint); 
                 break;
             case DamageType.Overtime: 
-                DamageOvertime(hitPoint, destroyDelay); 
+                DamageOvertime(hitPoint, EffectDuration); 
                 break;
             default:
                 DamageOnce(hitPoint);
                 break;
         }
-        Destroy(gameObject, destroyDelay);
+        Invoke("DisableWeapon", EffectDuration);
     }
 
     protected virtual void DamageOnce(Vector3 hitPoint)
@@ -102,19 +126,18 @@ public class Base_Weapon : MonoBehaviour
             while (currentDmgTime < damageTime)
             {
                 Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AttackRange, 0f);
+                HitPosition = hitPoint;
                 foreach (Collider2D col in Colliders)
                 {
                     if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
                     {
                         if (weaponDataSO.BaseDamage > 0) Enem.TakeDamage(weaponDataSO.BaseDamage, isInstantKill);
                         if (useSpecialEffect) SpecialEffect(Enem);
-                        print("Enemy Found");
                     }
                 }
                 currentDmgTime += Time.deltaTime;
                 yield return new WaitForSeconds(0.5f);
             }
-            HitPosition = hitPoint;
         }
     }
 
@@ -148,5 +171,12 @@ public class Base_Weapon : MonoBehaviour
         None,
         Instant,
         Overtime
+    }
+
+    public enum State
+    {
+        Standby,
+        Active,
+        Recharging
     }
 }

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edadb7d4dac285146879042a1688a01b, type: 3}
   m_Name: Iman
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   WeaponID: 2
   DisplayName: "Im\xE1n"
   DisplayImage: {fileID: 0}
@@ -25,3 +24,5 @@ MonoBehaviour:
   AffectedEnemyMaterials: 02000000
   AffectAllCategories: 0
   AffectedEnemyCategories: 010000000200000003000000
+  HitSound: {fileID: 11400000, guid: 8fad7ca96ba43c94a8778b6cb5ef309b, type: 2}
+  EffectSound: {fileID: 11400000, guid: 171fac98f46fa7742a9c99483cfb8e29, type: 2}
