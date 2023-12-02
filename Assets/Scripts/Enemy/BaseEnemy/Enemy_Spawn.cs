@@ -8,10 +8,14 @@ public class Enemy_Spawn : StateMachineBehaviour
     Base_Enemy enemy;
     Collider2D collider;
 
+    //Vector2 originalOffset;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.GetComponent<Base_Enemy>();
         collider = animator.GetComponent<Collider2D>();
+
+        //originalOffset = collider.offset;
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySound(enemy.EnemyData.MainSound.Event);
         //enemy.StartCoroutine(enemy.MoveForward(2f, 1f));
         //enemy.StartCoroutine(enemy.MoveForward(animator.GetCurrentAnimatorClipInfo(0).Length, 1f));
@@ -34,6 +38,7 @@ public class Enemy_Spawn : StateMachineBehaviour
         if (useMoveForward)
         {
             collider.offset = Vector2.zero;
+            //collider.offset = originalOffset;
         }
     }
 

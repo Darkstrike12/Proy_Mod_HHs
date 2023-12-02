@@ -11,6 +11,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] FmodEvent ambienceEvent;
     [SerializeField] float ambienceIntensity;
 
+    //Buses
+    private Bus MasterBus;
+    private Bus MusicBus;
+    private Bus SFXBus;
+
     //Event Instances
     EventInstance MainBGM;
     EventInstance AmbienceSound;
@@ -30,6 +35,10 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        MasterBus = RuntimeManager.GetBus("bus:/");
+        MusicBus = RuntimeManager.GetBus("bus:/Music");
+        SFXBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
     void Start()
@@ -44,6 +53,25 @@ public class AudioManager : MonoBehaviour
     {
         StopBGM();
         StopAmbienceSound();
+    }
+
+    #endregion
+
+    #region Bus Control
+
+    public void SetMasterVolume(float volume)
+    {
+        MasterBus.setVolume(volume);
+    }
+
+    public void SetMuteMusicBus(bool mute)
+    {
+        MusicBus.setMute(mute);
+    }
+
+    public void SetMuteSfxBus(bool mute)
+    {
+        SFXBus.setMute(mute);
     }
 
     #endregion

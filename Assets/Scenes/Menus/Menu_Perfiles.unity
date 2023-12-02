@@ -1940,6 +1940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NombreEscena: Menu_Pricipal
+  MenuSfx: {fileID: 11400000, guid: a7979b2255358cb4a9a22f938d95b40c, type: 2}
 --- !u!114 &873814642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1984,6 +1985,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 873814641}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 873814641}
         m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
         m_MethodName: SceneLoader
@@ -2655,6 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NombreEscena: Menu_Pricipal
+  MenuSfx: {fileID: 11400000, guid: e46919156037bf04a9c393f6e45bcd20, type: 2}
 --- !u!114 &1447265225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2699,6 +2713,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1447265224}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1447265224}
         m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
         m_MethodName: SceneLoader
@@ -2968,7 +2994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmEvent: {fileID: 11400000, guid: fe9f1f25a8241004394b0854a99e91b9, type: 2}
-  AmbienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
+  ambienceEvent: {fileID: 0}
+  ambienceIntensity: 0
 --- !u!1 &1735311320
 GameObject:
   m_ObjectHideFlags: 0

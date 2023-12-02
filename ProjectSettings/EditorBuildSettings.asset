@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Menu_Perfiles.unity
     guid: 0cc5ae829355f2344a21f3fb3187f43c
   - enabled: 1
-    path: Assets/Scenes/Test/TstScene1.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Levels/Nivel_1.unity
+    guid: e5d9d854140e1fc438fc929c8c01e22d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Nivel_2.unity
+    guid: f26aca1bbf3d95e49b0e6b4f6a995734
+  - enabled: 1
+    path: Assets/Scenes/Levels/Nivel_3.unity
+    guid: 025a8562d91c2414c8469541b9510bc9
   m_configObjects: {}

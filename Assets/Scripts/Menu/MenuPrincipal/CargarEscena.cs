@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CargarEscena : MonoBehaviour
 {
     public string NombreEscena;
+    public FmodEvent MenuSfx;
 
     public void SceneLoader()
     {
@@ -15,6 +16,24 @@ public class CargarEscena : MonoBehaviour
         //    AudioManager.Instance.StopAmbienceSound();
         //}
         SceneManager.LoadScene(NombreEscena);
+    }
+
+    public void PlayButtonSFX()
+    {
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound(MenuSfx);
+        }
+    }
+
+    public void QuitGameDelay(float delay)
+    {
+        Invoke("QuitGame", delay);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     //public void LoadLevel(Scene Level)

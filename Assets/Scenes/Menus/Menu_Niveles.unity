@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreEscena: TstScene1
+  NombreEscena: Nivel_3
+  MenuSfx: {fileID: 11400000, guid: e46919156037bf04a9c393f6e45bcd20, type: 2}
 --- !u!114 &72117460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +230,18 @@ MonoBehaviour:
       - m_Target: {fileID: 72117459}
         m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
         m_MethodName: SceneLoader
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 72117459}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -409,7 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreEscena: TstScene1
+  NombreEscena: Nivel_2
+  MenuSfx: {fileID: 11400000, guid: e46919156037bf04a9c393f6e45bcd20, type: 2}
 --- !u!114 &475675471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +471,18 @@ MonoBehaviour:
       - m_Target: {fileID: 475675470}
         m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
         m_MethodName: SceneLoader
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 475675470}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -738,6 +764,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1159598016}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1159598014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreEscena: TstScene1
+  NombreEscena: Nivel_1
+  MenuSfx: {fileID: 11400000, guid: e46919156037bf04a9c393f6e45bcd20, type: 2}
 --- !u!1 &1403397931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NombreEscena: Menu_Pricipal
+  MenuSfx: {fileID: 11400000, guid: a7979b2255358cb4a9a22f938d95b40c, type: 2}
 --- !u!114 &1722806529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1608,6 +1648,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1722806528}
         m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
         m_MethodName: SceneLoader
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1722806528}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: PlayButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

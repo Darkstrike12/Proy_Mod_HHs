@@ -40,7 +40,7 @@ public class Base_Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
 
         wpState = State.Standby;
-        Invoke("DisableWeapon", 25f);
+        Invoke("DisableWeapon", 10f);
     }
 
     private void OnDrawGizmos()

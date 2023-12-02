@@ -196,7 +196,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638370723879104959
+  lastModified: 638371187277366626
   FileSizes:
   - Name: Desktop
     Value: 2492896
@@ -299,7 +299,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Ambeince.bank
   Name: Ambeince
   StudioPath: bank:/Ambeince
-  lastModified: 638370723878844902
+  lastModified: 638371187266476810
   FileSizes:
   - Name: Desktop
     Value: 2246944
@@ -435,7 +435,7 @@ MonoBehaviour:
   - {fileID: 226946602215389451}
   StringsBanks:
   - {fileID: 3152585704290878307}
-  cacheTime: 638370723879104959
+  cacheTime: 638371187277366626
   cacheVersion: 131608
 --- !u!114 &226946602215389451
 MonoBehaviour:
@@ -452,10 +452,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638369650941841224
+  lastModified: 638371187266616841
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1340
   Exists: 1
 --- !u!114 &320376148979565315
 MonoBehaviour:
@@ -580,7 +580,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638370723878964923
+  lastModified: 638371187270867871
   FileSizes:
   - Name: Desktop
     Value: 2063968
@@ -764,10 +764,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638370723878854906
+  lastModified: 638371187266646846
   FileSizes:
   - Name: Desktop
-    Value: 2130
+    Value: 2200
   Exists: 1
 --- !u!114 &3190100273871329106
 MonoBehaviour:

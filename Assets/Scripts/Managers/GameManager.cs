@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI recyclePointsCounter;
     [SerializeField] GameObject levelFinished;
     [SerializeField] TextMeshProUGUI defeatedEnemyCounter;
-    [SerializeField] TextMeshProUGUI endingType;
+    [SerializeField] GameObject endingContainer;
 
     //Public Variables
     [field: SerializeField]  public int RemainingEnemies {  get; private set; }
@@ -78,11 +78,10 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.ChangeAmbienceIntensity(0.6f);
 
             levelFinished.SetActive(true);
-            GameObject endingImg = Instantiate(selectedEnding.EndingObject, levelFinished.transform);
+            GameObject endingImg = Instantiate(selectedEnding.EndingObject, endingContainer.transform);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
-            endingType.text = levelEnginds.SelectEnding(TotalEnemiesOnLevel, EnemySpawner.Instance.DefeatedEnemyCount).endingType.ToString();
             print(selectedEnding.endingType.ToString());
-            print("Completition " + TotalEnemiesOnLevel / EnemySpawner.Instance.DefeatedEnemyCount * 100);
+            print("Completition " + EnemySpawner.Instance.DefeatedEnemyCount / TotalEnemiesOnLevel * 100);
         }
     }
 
