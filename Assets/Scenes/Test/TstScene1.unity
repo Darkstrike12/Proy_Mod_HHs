@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 146611800}
   - component: {fileID: 146611799}
   - component: {fileID: 146611798}
+  - component: {fileID: 146611801}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -344,9 +345,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1990297130}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ReloadLevel
+      - m_Target: {fileID: 146611801}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: SceneLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -394,6 +395,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146611796}
   m_CullTransparentMesh: 1
+--- !u!114 &146611801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146611796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NombreEscena: TstScene1
 --- !u!1 &192759380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,6 +2163,7 @@ GameObject:
   - component: {fileID: 1619223120}
   - component: {fileID: 1619223119}
   - component: {fileID: 1619223118}
+  - component: {fileID: 1619223121}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -2221,9 +2236,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1990297130}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloseGame
+      - m_Target: {fileID: 1619223121}
+        m_TargetAssemblyTypeName: CargarEscena, Assembly-CSharp
+        m_MethodName: SceneLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2271,6 +2286,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619223116}
   m_CullTransparentMesh: 1
+--- !u!114 &1619223121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619223116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee0cf15055346a42b7adb4d96d0486f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NombreEscena: Menu_Niveles
 --- !u!1 &1671509128
 GameObject:
   m_ObjectHideFlags: 0
