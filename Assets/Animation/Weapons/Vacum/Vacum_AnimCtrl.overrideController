@@ -8,4 +8,6 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Vacum_AnimCtrl
   m_Controller: {fileID: 9100000, guid: 8aef558aa132f3641bae34fee3a1c045, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6982d33da655b9544a7a36d7d5d137e6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 78f137965d6e99d43be256295c442f04, type: 2}

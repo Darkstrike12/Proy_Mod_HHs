@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &284959966946932288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4174482361786696899}
+  - component: {fileID: 1672589714096699883}
+  m_Layer: 0
+  m_Name: Aspiradora_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4174482361786696899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284959966946932288}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.649, y: -0.124, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8472379070399519650}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1672589714096699883
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284959966946932288}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1338405897
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: fd7a85ba9023d2f48af761dba4b65b8f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28125, y: 0.8125}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &4329168088825714772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,9 +91,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4803930280776101501, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 6181c82bc5aa1714686f2ebcbf3975ec, type: 2}
+    - target: {fileID: 5298384427808179185, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 218eca316b279b341abdb82f7bb952af, type: 3}
     - target: {fileID: 5298384427808179187, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_Name
       value: Aspiradora
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.59375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298384427808179188, guid: e460d379a7b85c14785e704579812f08, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.875
       objectReference: {fileID: 0}
     - target: {fileID: 5298384427808179190, guid: e460d379a7b85c14785e704579812f08, type: 3}
       propertyPath: m_RootOrder
@@ -83,9 +195,12 @@ MonoBehaviour:
   weaponDataSO: {fileID: 11400000, guid: 66e683ca0bedea1419e6261993eb90a2, type: 2}
   isInstantKill: 1
   useSpecialEffect: 1
+  wpState: 0
   <EffectDuration>k__BackingField: 3
   damageType: 2
+  fixedLandingRotation: 0
   landingRotation: {x: 0, y: 0, z: 0, w: 1}
+  landPositionOffset: {x: 0, y: 0, z: 0}
   particleEffect: {fileID: 6085615290412420532}
 --- !u!1001 &8765022302477791671
 PrefabInstance:
@@ -163,6 +278,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed589e982c63e2044abef43000f5a914, type: 3}
+    - target: {fileID: 3303372207470115869, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
       propertyPath: InitialModule.randomizeRotationDirection
       value: 0.49
       objectReference: {fileID: 0}
@@ -172,11 +291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.953
       objectReference: {fileID: 0}
     - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.455
       objectReference: {fileID: 0}
     - target: {fileID: 3303372207470115870, guid: 9c1c71369f8db8743bd7d30cdb1a54c3, type: 3}
       propertyPath: m_LocalPosition.z
