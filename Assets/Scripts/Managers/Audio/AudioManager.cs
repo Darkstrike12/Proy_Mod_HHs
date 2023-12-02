@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Fmod Events")]
     [SerializeField] FmodEvent bgmEvent;
-    [SerializeField] FmodEvent AmbienceEvent;
+    [SerializeField] FmodEvent ambienceEvent;
+    [SerializeField] float ambienceIntensity;
 
     //Event Instances
     EventInstance MainBGM;
@@ -34,7 +35,15 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         InitializeBMG(bgmEvent.Event);
-        InitializeAmbience(AmbienceEvent.Event);
+        InitializeAmbience(ambienceEvent.Event);
+
+        ChangeAmbienceIntensity(ambienceIntensity);
+    }
+
+    private void OnDestroy()
+    {
+        StopBGM();
+        StopAmbienceSound();
     }
 
     #endregion
