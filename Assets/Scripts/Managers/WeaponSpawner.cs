@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
@@ -23,8 +24,8 @@ public class WeaponSpawner : MonoBehaviour
     [SerializeField] float LaunchSpeed = 1f;
 
     //Internal Variables
-    Base_Weapon CurrentWeapon;
-    bool IsWeaponSelected;
+    [SerializeField] Base_Weapon CurrentWeapon;
+    public bool IsWeaponSelected;
     Player player;
     public bool AllowLaunch;
 
@@ -78,6 +79,7 @@ public class WeaponSpawner : MonoBehaviour
     {
         if (CurrentWeapon != null && CurrentWeapon.wpState != Base_Weapon.State.Active)
         {
+            //CurrentWeapon.transform.rotation = Quaternion.identity;
             CurrentWeapon.gameObject.SetActive(false);
         }
         CurrentWeapon = null;
@@ -85,6 +87,8 @@ public class WeaponSpawner : MonoBehaviour
         if(CurrentWeapon.wpState == Base_Weapon.State.Standby)
         {
             CurrentWeapon.transform.position = spawnPosition.transform.position;
+            CurrentWeapon.transform.SetParent(spawnPosition);
+            //CurrentWeapon.transform.rotation = Quaternion.identity;
             CurrentWeapon.gameObject.SetActive(true);
             IsWeaponSelected = true;
             weaponAreaDisplay.SetActive(true);
@@ -92,6 +96,7 @@ public class WeaponSpawner : MonoBehaviour
         } 
         else
         {
+            //CurrentWeapon.transform.rotation = Quaternion.identity;
             CurrentWeapon = null;
             IsWeaponSelected = false;
             weaponAreaDisplay.SetActive(false);
@@ -160,6 +165,10 @@ public class WeaponSpawner : MonoBehaviour
                 AllowLaunch = false;
             }
         }
+        else
+        {
+            AllowLaunch = false;
+        }
     }
 
     public void LaunchWeapon()
@@ -167,6 +176,7 @@ public class WeaponSpawner : MonoBehaviour
         if (AllowLaunch)
         {
             IsWeaponSelected = false;
+            CurrentWeapon.transform.SetParent(null);
             weaponAreaDisplay.SetActive(false);
             mousePosition.SetSelectedTile();
             CurrentWeapon.wpState = Base_Weapon.State.Active;
@@ -174,6 +184,7 @@ public class WeaponSpawner : MonoBehaviour
             CurrentWeapon.RigidBody.velocity = new Vector2(CurrentWeapon.RigidBody.velocity.x + LaunchSpeed, CurrentWeapon.RigidBody.velocity.y + LaunchSpeed) * CurrentWeapon.transform.right;
             GameManager.Instance.UpdateCurrentRecyclePoints(-CurrentWeapon.WeaponDataSO.BaseUseCost);
             playerFaceToMouse.transform.rotation = Quaternion.identity;
+            CurrentWeapon = null;
         }
 
         //if (CurrentWeapon != null && CurrentWeapon.wpState == Base_Weapon.State.Standby)

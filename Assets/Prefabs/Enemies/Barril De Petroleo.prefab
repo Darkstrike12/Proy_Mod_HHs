@@ -158,7 +158,7 @@ MonoBehaviour:
   MovementDuration: {x: 2, y: 0.5}
   RandomMoveInX: 0
   RandomMoveInY: 0
-  JitterX: 1
+  JitterX: 0
   JitterY: 1
   MovementCurves:
   - serializedVersion: 2

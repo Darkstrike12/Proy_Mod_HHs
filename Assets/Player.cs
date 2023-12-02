@@ -15,17 +15,19 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         wpSpawner = GetComponent<WeaponSpawner>();
         State = ChrState.Idle;
+
+        //wpSpawner.SetLaunchAviability();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        wpSpawner.SetLaunchAviability();
     }
 
     public void SetState(ChrState newState)
     {
-        wpSpawner.SetLaunchAviability();
+        //wpSpawner.SetLaunchAviability();
         State = newState;
         switch (State)
         {
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
 
     public void SetState(int StateFloat)
     {
-        wpSpawner.SetLaunchAviability();
+        //wpSpawner.SetLaunchAviability();
         switch (StateFloat)
         {
             case 0:

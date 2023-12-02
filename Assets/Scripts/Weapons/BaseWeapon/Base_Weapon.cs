@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ public class Base_Weapon : MonoBehaviour
 
     //Internal Variables
     protected Vector3 HitPosition;
+    public EventInstance EffectSound;
 
     #region Unity Functions
 
@@ -40,7 +42,23 @@ public class Base_Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
 
         wpState = State.Standby;
-        Invoke("DisableWeapon", 10f);
+    }
+
+    private void Update()
+    {
+        switch (wpState)
+        {
+            case State.Standby:
+                //transform.rotation = Quaternion.identity;
+                CancelInvoke("DisableWeapon");
+                break;
+            case State.Active:
+                Invoke("DisableWeapon", 10f);
+                break;
+            case State.Recharging:
+                //transform.rotation = new Quaternion(0f,0f,0f,0f);
+                break;
+        }
     }
 
     private void OnDrawGizmos()
@@ -51,10 +69,18 @@ public class Base_Weapon : MonoBehaviour
 
     #endregion
 
+    public void ResetTransform()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+    }
+
     protected virtual void DisableWeapon()
     {
         animator.SetTrigger("Finish");
         wpState = State.Recharging;
+        EffectSound.stop(STOP_MODE.ALLOWFADEOUT);
+        EffectSound.release();
         Invoke("SetToStandBy", weaponDataSO.BaseReloadTime);
         gameObject.SetActive(false);
     }
@@ -62,6 +88,8 @@ public class Base_Weapon : MonoBehaviour
     public void SetToStandBy()
     {
         wpState = State.Standby;
+        animator.ResetTrigger("Finish");
+        transform.rotation = Quaternion.identity;
     }
 
     //public IEnumerator Recharge()
