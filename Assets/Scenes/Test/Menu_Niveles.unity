@@ -568,8 +568,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282534080
-  m_fontColor: {r: 0.753, g: 0.28237498, b: 0.25808465, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -1527,10 +1527,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6415094, g: 0.48718402, b: 0.48718402, a: 1}
-    m_HighlightedColor: {r: 0.877, g: 0.76299, b: 0.76299, a: 1}
-    m_PressedColor: {r: 0.6431373, g: 0.31449413, b: 0.31449413, a: 1}
-    m_SelectedColor: {r: 0.6415094, g: 0.48718402, b: 0.48718402, a: 1}
+    m_NormalColor: {r: 0.6431373, g: 0.32864314, b: 0.32864314, a: 1}
+    m_HighlightedColor: {r: 0.83699995, g: 0.61100996, b: 0.61100996, a: 1}
+    m_PressedColor: {r: 0.447, g: 0.142593, b: 0.142593, a: 1}
+    m_SelectedColor: {r: 0.6431373, g: 0.32864314, b: 0.32864314, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
