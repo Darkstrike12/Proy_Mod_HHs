@@ -4998,7 +4998,7 @@ MonoBehaviour:
   sceneCamera: {fileID: 519420031}
   mousePosition: {fileID: 2117758657}
   aviableWeapons:
-  - {fileID: 1508147618502575822, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
+  - {fileID: 8246117246493100071, guid: 8a83a3ff3fa951f4e821068140b8b9e3, type: 3}
   - {fileID: 532227187, guid: 0b6de6b7058ed7d43a882a788cae0248, type: 3}
   - {fileID: 1377803341541870412, guid: fc0f50afff7addd4a915811277174bb0, type: 3}
   - {fileID: 7432911847591063489, guid: cf1fad53fab1ff541a46dce24873c406, type: 3}

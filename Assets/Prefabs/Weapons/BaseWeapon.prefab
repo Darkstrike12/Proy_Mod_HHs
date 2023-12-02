@@ -4974,8 +4974,12 @@ MonoBehaviour:
   weaponDataSO: {fileID: 0}
   isInstantKill: 0
   useSpecialEffect: 0
+  wpState: 0
   <EffectDuration>k__BackingField: 0
   damageType: 0
+  fixedLandingRotation: 1
+  landingRotation: {x: 0, y: 0, z: 0, w: 0}
+  landPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!50 &5298384427808179191
 Rigidbody2D:
   serializedVersion: 4

@@ -19,7 +19,9 @@ public class Base_Weapon : MonoBehaviour
     public State wpState;
     [field: SerializeField] public float EffectDuration {  get; protected set; }
     [SerializeField] DamageType damageType;
+    [SerializeField] protected bool fixedLandingRotation;
     [SerializeField] protected Quaternion landingRotation;
+    [SerializeField] protected Vector3 landPositionOffset;
 
     //Internal Referemces
     public Rigidbody2D RigidBody { get; protected set; }
@@ -81,8 +83,8 @@ public class Base_Weapon : MonoBehaviour
     public virtual void HitOnPosition(Vector3 hitPoint)
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
-        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint + landPositionOffset, 5f);
+        if(fixedLandingRotation) transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
         animator.SetTrigger("Hit");
         switch (damageType)
         {

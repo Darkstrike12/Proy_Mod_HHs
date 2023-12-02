@@ -36,7 +36,7 @@ public class ColadorDePlastico : Base_Weapon
     public override void HitOnPosition(Vector3 hitPoint)
     {
         RigidBody.velocity = Vector3.Lerp(RigidBody.velocity, Vector3.zero, 5f);
-        transform.position = Vector3.Lerp(transform.position, hitPoint, 5f);
+        transform.position = Vector3.Lerp(transform.position, hitPoint + landPositionOffset, 5f);
         transform.rotation = Quaternion.Lerp(transform.rotation, landingRotation, 5f);
         StartCoroutine(MoveForward(hitPoint));
         
