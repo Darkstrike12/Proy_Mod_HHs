@@ -126,6 +126,7 @@ public class Base_Weapon : MonoBehaviour
             while (currentDmgTime < damageTime)
             {
                 Collider2D[] Colliders = Physics2D.OverlapBoxAll(hitPoint, weaponDataSO.AttackRange, 0f);
+                HitPosition = hitPoint;
                 foreach (Collider2D col in Colliders)
                 {
                     if (col.gameObject.TryGetComponent(out Base_Enemy Enem))
@@ -137,7 +138,6 @@ public class Base_Weapon : MonoBehaviour
                 currentDmgTime += Time.deltaTime;
                 yield return new WaitForSeconds(0.5f);
             }
-            HitPosition = hitPoint;
         }
     }
 
