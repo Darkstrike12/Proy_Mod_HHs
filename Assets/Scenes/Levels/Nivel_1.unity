@@ -1328,7 +1328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 268.18585, y: -75}
+  m_AnchoredPosition: {x: 268.1875, y: -75}
   m_SizeDelta: {x: 216.4695, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333640660
@@ -2743,7 +2743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 0.85
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -8581,7 +8581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmEvent: {fileID: 11400000, guid: 26e15d50e3bb1934f97749603f62a2eb, type: 2}
   ambienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
-  ambienceIntensity: 0
+  ambienceIntensity: 0.2
 --- !u!1 &1867778968
 GameObject:
   m_ObjectHideFlags: 0
@@ -9660,7 +9660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRecyclePoints: 100
-  <TotalEnemiesOnLevel>k__BackingField: 6
+  <TotalEnemiesOnLevel>k__BackingField: 1
   SoftThreshold: 10
   MediumThreshold: 50
   HardThreshold: 100

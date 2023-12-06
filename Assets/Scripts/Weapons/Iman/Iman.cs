@@ -13,7 +13,7 @@ public class Iman : Base_Weapon
         if(particleEffect != null) particleEffect.particles.Play();
     }
 
-    protected override void DisableWeapon()
+    public override void DisableWeapon()
     {
         if (particleEffect != null) particleEffect.particles.Stop();
         base.DisableWeapon();

@@ -18,7 +18,7 @@ MonoBehaviour:
   DisplayDescription: Arama Basica
   BaseDamage: 5
   BaseUseCost: 2
-  BaseReloadTime: 3
+  BaseReloadTime: 2
   attackRange: {x: 1, y: 1}
   AffectAllMaterials: 1
   AffectedEnemyMaterials: 

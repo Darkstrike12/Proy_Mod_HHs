@@ -2,45 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SesionManager : MonoBehaviour
+public static class SesionManager
 {
-    public static SesionManager Instance;
+    //public static SesionManager Instance;
 
-    public string CurrentSesion;
+    public static string CurrentSesion = null;
 
-    public float MasterVolume;
-    public bool MusicMute;
-    public bool SFXMute;
+    public static float MasterVolume = 1f;
+    public static bool MusicAllowed = true;
+    public static bool SFXAllowed = true;
 
-    private void Awake()
-    {
-        //MasterVolume = 1.0f;
-        //MusicMute = true;
-        //SFXMute = true;
+    //private void Awake()
+    //{
+    //    //MasterVolume = 1.0f;
+    //    //MusicMute = true;
+    //    //SFXMute = true;
 
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(Instance);
-            Destroy(Instance.gameObject);
-        }
+    //    if (Instance != null && Instance != this)
+    //    {
+    //        Destroy(Instance);
+    //        Destroy(Instance.gameObject);
+    //    }
+    //    else
+    //    {
+    //        Instance = this;
+            
+    //    }
 
-        DontDestroyOnLoad(gameObject);
+    //    DontDestroyOnLoad(gameObject);
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //}
 }

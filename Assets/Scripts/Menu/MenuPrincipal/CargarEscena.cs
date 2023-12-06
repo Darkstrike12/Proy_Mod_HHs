@@ -18,6 +18,18 @@ public class CargarEscena : MonoBehaviour
         SceneManager.LoadScene(NombreEscena);
     }
 
+    public void SceneLoader(bool CheckProfile)
+    {
+        if (SesionManager.CurrentSesion == null)
+        {
+            SceneManager.LoadScene("Menu_Perfiles");
+        }
+        else
+        {
+            SceneManager.LoadScene(NombreEscena);
+        }
+    }
+
     public void PlayButtonSFX()
     {
         if(AudioManager.Instance != null)
@@ -35,9 +47,4 @@ public class CargarEscena : MonoBehaviour
     {
         Application.Quit();
     }
-
-    //public void LoadLevel(Scene Level)
-    //{
-    //    SceneManager.LoadScene(Level.name);
-    //}
 }

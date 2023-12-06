@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
@@ -54,6 +53,11 @@ public class WeaponSpawner : MonoBehaviour
         {
             weaponButtons[i].AssignedWeapon = weaponPool[i];
         }
+
+        //for (int i = weaponPool.Count; i < weaponButtons.Count; i++)
+        //{
+        //    weaponButtons[i].gameObject.SetActive(false);
+        //}
     }
 
     void Update()
@@ -63,7 +67,7 @@ public class WeaponSpawner : MonoBehaviour
             WeaponFaceToMouse();
             DisplayWeaponAreaIndicator();
         }
-        if (Input.GetMouseButtonDown(0) && IsWeaponSelected)
+        if (Input.GetMouseButtonDown(0) && IsWeaponSelected && mousePosition.IsMousePointerOverGameGrid())
         {
             OnWeaponUsed.Invoke();
         }
@@ -86,8 +90,8 @@ public class WeaponSpawner : MonoBehaviour
         CurrentWeapon = weaponPool[weaponIndex];
         if(CurrentWeapon.wpState == Base_Weapon.State.Standby)
         {
-            CurrentWeapon.transform.position = spawnPosition.transform.position;
             CurrentWeapon.transform.SetParent(spawnPosition);
+            CurrentWeapon.transform.position = spawnPosition.transform.position;
             //CurrentWeapon.transform.rotation = Quaternion.identity;
             CurrentWeapon.gameObject.SetActive(true);
             IsWeaponSelected = true;
@@ -151,7 +155,7 @@ public class WeaponSpawner : MonoBehaviour
     {
         CurrentWeapon.transform.right = Pointer.transform.position - CurrentWeapon.transform.position;
     }
-
+    
     public void SetLaunchAviability()
     {
         if (CurrentWeapon != null && CurrentWeapon.wpState == Base_Weapon.State.Standby)
@@ -177,6 +181,7 @@ public class WeaponSpawner : MonoBehaviour
         {
             IsWeaponSelected = false;
             CurrentWeapon.transform.SetParent(null);
+            CurrentWeapon.SpawnProtection = StartCoroutine(CurrentWeapon.SpawnProtectionCR(8f));
             weaponAreaDisplay.SetActive(false);
             mousePosition.SetSelectedTile();
             CurrentWeapon.wpState = Base_Weapon.State.Active;

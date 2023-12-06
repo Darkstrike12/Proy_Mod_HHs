@@ -36,10 +36,15 @@ public class Player : MonoBehaviour
                 animator.ResetTrigger("Launch");
                 break;
             case ChrState.Point:
+                animator.SetTrigger("Idle");
                 animator.SetTrigger("Point");
                 break;
             case ChrState.Launch:
-                if(wpSpawner.AllowLaunch == true) animator.SetTrigger("Launch");
+                if(wpSpawner.AllowLaunch == true)
+                {
+                    animator.ResetTrigger("Point");
+                    animator.SetTrigger("Launch");
+                }
                 break;
         }
     }
@@ -56,6 +61,7 @@ public class Player : MonoBehaviour
                 break;
             case 1:
                 State = ChrState.Point;
+                animator.SetTrigger("Idle");
                 animator.SetTrigger("Point");
                 break;
             case 2:

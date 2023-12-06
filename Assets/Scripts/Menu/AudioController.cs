@@ -12,19 +12,22 @@ public class AudioController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SesionManager.Instance != null)
-        {
-            OnMasterChange(SesionManager.Instance.MasterVolume);
-            OnMusicToggle(SesionManager.Instance.MusicMute);
-            OnSfxToggle(SesionManager.Instance.MusicMute);
-        }
-        else
-        {
-            OnMasterChange();
-            OnMusicToggle();
-            OnSfxToggle();
-        }
-        
+        //if (SesionManager.Instance != null)
+        //{
+        //    OnMasterChange(SesionManager.Instance.MasterVolume);
+        //    OnMusicToggle(SesionManager.Instance.MusicMute);
+        //    OnSfxToggle(SesionManager.Instance.MusicMute);
+        //}
+        //else
+        //{
+        //    OnMasterChange();
+        //    OnMusicToggle();
+        //    OnSfxToggle();
+        //}
+
+        OnMasterChange(SesionManager.MasterVolume);
+        OnMusicToggle(SesionManager.MusicAllowed);
+        OnSfxToggle(SesionManager.SFXAllowed);
     }
 
     // Update is called once per frame
@@ -36,10 +39,7 @@ public class AudioController : MonoBehaviour
     public void OnMasterChange()
     {
         AudioManager.Instance.SetMasterVolume(masterSlider.value/100);
-        if (SesionManager.Instance != null)
-        {
-            SesionManager.Instance.MasterVolume = masterSlider.value / 100;
-        }
+        SesionManager.MasterVolume = masterSlider.value / 100;
     }
 
     public void OnMasterChange(float val)
@@ -51,10 +51,7 @@ public class AudioController : MonoBehaviour
     public void OnMusicToggle()
     {
         AudioManager.Instance.SetMuteMusicBus(!toggleMusic.isOn);
-        if (SesionManager.Instance != null)
-        {
-            SesionManager.Instance.MusicMute = toggleMusic.isOn;
-        }
+        SesionManager.MusicAllowed = toggleMusic.isOn;
     }
 
     public void OnMusicToggle(bool toggle)
@@ -66,10 +63,7 @@ public class AudioController : MonoBehaviour
     public void OnSfxToggle()
     {
         AudioManager.Instance.SetMuteSfxBus(!toggleSfx.isOn);
-        if (SesionManager.Instance != null)
-        {
-            SesionManager.Instance.SFXMute = toggleSfx.isOn;
-        }
+        SesionManager.SFXAllowed = toggleSfx.isOn;
     }
 
     public void OnSfxToggle(bool toggle)
