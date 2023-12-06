@@ -2215,7 +2215,7 @@ GameObject:
   - component: {fileID: 611388689}
   - component: {fileID: 611388688}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: OptionController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3188,6 +3188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1103365310}
   - component: {fileID: 1103365311}
+  - component: {fileID: 1103365312}
   m_Layer: 5
   m_Name: Copy
   m_TagString: Untagged
@@ -3231,6 +3232,20 @@ MonoBehaviour:
   bgmEvent: {fileID: 11400000, guid: fe9f1f25a8241004394b0854a99e91b9, type: 2}
   ambienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
   ambienceIntensity: 0.5
+--- !u!114 &1103365312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103365309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3e51796919a6e4a9bc6d1acc30a805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScreen: 2
+  audioController: {fileID: 611388688}
 --- !u!1 &1127446180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4643,7 +4658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Volver
+  m_text: Restablecer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0cee9abdbb1d4514c955067bffebe521, type: 2}
   m_sharedMaterial: {fileID: -5515830689717586928, guid: 0cee9abdbb1d4514c955067bffebe521, type: 2}

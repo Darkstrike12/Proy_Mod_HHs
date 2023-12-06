@@ -718,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661933084}
   - component: {fileID: 661933085}
+  - component: {fileID: 661933086}
   m_Layer: 5
   m_Name: Copy
   m_TagString: Untagged
@@ -761,6 +762,19 @@ MonoBehaviour:
   bgmEvent: {fileID: 11400000, guid: fe9f1f25a8241004394b0854a99e91b9, type: 2}
   ambienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
   ambienceIntensity: 0.5
+--- !u!114 &661933086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661933083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3e51796919a6e4a9bc6d1acc30a805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScreen: 1
 --- !u!1 &759716046
 GameObject:
   m_ObjectHideFlags: 0
