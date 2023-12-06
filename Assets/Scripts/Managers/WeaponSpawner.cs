@@ -92,7 +92,7 @@ public class WeaponSpawner : MonoBehaviour
         {
             CurrentWeapon.transform.SetParent(spawnPosition);
             CurrentWeapon.transform.position = spawnPosition.transform.position;
-            //CurrentWeapon.transform.rotation = Quaternion.identity;
+            CurrentWeapon.transform.rotation = new Quaternion(0f,0f,0f,0f);
             CurrentWeapon.gameObject.SetActive(true);
             IsWeaponSelected = true;
             weaponAreaDisplay.SetActive(true);

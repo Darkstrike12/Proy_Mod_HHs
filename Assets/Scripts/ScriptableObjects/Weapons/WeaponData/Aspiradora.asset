@@ -17,7 +17,7 @@ MonoBehaviour:
   DisplayImage: {fileID: 0}
   DisplayDescription: 
   BaseDamage: 0
-  BaseUseCost: 15
+  BaseUseCost: 10
   BaseReloadTime: 10
   attackRange: {x: 2, y: 1}
   AffectAllMaterials: 0

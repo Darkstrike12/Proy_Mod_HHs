@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static string RootDataPath = Application.dataPath;
+    public static string RootDataPath = Application.persistentDataPath;
 
     public static void NewSave(string profileName)
     {

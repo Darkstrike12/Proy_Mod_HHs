@@ -29,10 +29,4 @@ public class ProfileController : MonoBehaviour
             Debug.LogWarning("No Profiles Exist");
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

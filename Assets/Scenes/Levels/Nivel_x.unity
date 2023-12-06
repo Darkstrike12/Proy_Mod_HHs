@@ -9195,8 +9195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed131c5c80605df41b7ba9290bac690c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialRecyclePoints: 35
-  <TotalEnemiesOnLevel>k__BackingField: 30
+  initialRecyclePoints: 100
+  <TotalEnemiesOnLevel>k__BackingField: 50
   SoftThreshold: 10
   MediumThreshold: 50
   HardThreshold: 100

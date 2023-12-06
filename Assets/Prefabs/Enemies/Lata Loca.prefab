@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478231810919298007, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
       propertyPath: m_Name
-      value: Lata Loca Variant
+      value: Lata Loca
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f7db95513c5dc40a4ea840117914f6, type: 3}
