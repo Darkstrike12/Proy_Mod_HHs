@@ -244,7 +244,12 @@ public class EnemySpawner : MonoBehaviour
                 NormalSpawn((int)GameManager.Instance.CurrentLevelState);
                 break;
         }
-        
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.UpdateStatsOnEnemySpawned();
+        }
+
         CurrentEnemyCount++;
 
         void NormalSpawn(int trashcanVisualIndex)

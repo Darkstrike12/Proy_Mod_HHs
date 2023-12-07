@@ -2018,18 +2018,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1990297130}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateStatsOnEnemySpawned
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1990297130}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: UpdateLevelState
         m_Mode: 1
         m_Arguments:
@@ -9836,6 +9824,10 @@ PrefabInstance:
       propertyPath: weaponButtons.Array.data[3]
       value: 
       objectReference: {fileID: 1424033381}
+    - target: {fileID: 8273880983528771106, guid: 8dc3ee89f6d98aa42921408bf38be458, type: 3}
+      propertyPath: aviableWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1508147618502575822, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
     - target: {fileID: 8273880983528771109, guid: 8dc3ee89f6d98aa42921408bf38be458, type: 3}
       propertyPath: m_RootOrder
       value: 4
