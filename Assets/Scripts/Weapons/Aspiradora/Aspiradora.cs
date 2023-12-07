@@ -13,6 +13,11 @@ public class Aspiradora : Base_Weapon
         if (particleEffect != null) particleEffect.particles.Play();
     }
 
+    //protected override void DamageOnce(Vector3 hitPoint)
+    //{
+    //    base.DamageOnce(hitPoint + Vector3.right);
+    //}
+
     public override void DisableWeapon()
     {
         if (particleEffect != null) particleEffect.particles.Stop();
