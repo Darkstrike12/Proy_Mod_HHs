@@ -23,8 +23,6 @@ public class ColadorDePlastico : Base_Weapon
         Gizmos.DrawWireSphere(posChecker, 0.25f);
     }
 
-
-
     protected override void SpecialEffect(Base_Enemy enemy)
     {
         if(IsWeaponEffective(enemy))

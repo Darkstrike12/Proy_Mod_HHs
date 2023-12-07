@@ -9827,7 +9827,7 @@ PrefabInstance:
     - target: {fileID: 8273880983528771106, guid: 8dc3ee89f6d98aa42921408bf38be458, type: 3}
       propertyPath: aviableWeapons.Array.data[0]
       value: 
-      objectReference: {fileID: 1508147618502575822, guid: 6b5fa0060d66c2c438001e950e6070d7, type: 3}
+      objectReference: {fileID: 8246117246493100071, guid: 8a83a3ff3fa951f4e821068140b8b9e3, type: 3}
     - target: {fileID: 8273880983528771109, guid: 8dc3ee89f6d98aa42921408bf38be458, type: 3}
       propertyPath: m_RootOrder
       value: 4
