@@ -13,6 +13,7 @@ public class WeaponSpawner : MonoBehaviour
     [SerializeField] Camera sceneCamera;
     [SerializeField] MousePosition2D mousePosition;
     [SerializeField] GameObject playerFaceToMouse;
+    [SerializeField] PauseMenu pauseMenu;
 
     [Header("Weapons")]
     [SerializeField] List<Base_Weapon> aviableWeapons;
@@ -62,6 +63,11 @@ public class WeaponSpawner : MonoBehaviour
 
     void Update()
     {
+        if(pauseMenu.state == PauseMenu.PauseState.OnPause)
+        {
+            return;
+        }
+
         if (IsWeaponSelected)
         {
             WeaponFaceToMouse();

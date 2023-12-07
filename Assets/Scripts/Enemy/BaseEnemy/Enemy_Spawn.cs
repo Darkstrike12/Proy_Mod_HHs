@@ -15,7 +15,7 @@ public class Enemy_Spawn : StateMachineBehaviour
         enemy = animator.GetComponent<Base_Enemy>();
         collider = animator.GetComponent<Collider2D>();
 
-        //originalOffset = collider.offset;
+        enemy.SetAllowDamage(false);
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySound(enemy.EnemyData.MainSound.Event);
         //enemy.StartCoroutine(enemy.MoveForward(2f, 1f));
         //enemy.StartCoroutine(enemy.MoveForward(animator.GetCurrentAnimatorClipInfo(0).Length, 1f));
@@ -35,6 +35,7 @@ public class Enemy_Spawn : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        enemy.SetAllowDamage(true);
         if (useMoveForward)
         {
             collider.offset = Vector2.zero;

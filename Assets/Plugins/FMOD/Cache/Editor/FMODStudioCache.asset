@@ -299,7 +299,7 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Ambeince.bank
   Name: Ambeince
   StudioPath: bank:/Ambeince
-  lastModified: 638371187266476810
+  lastModified: 638375055822069174
   FileSizes:
   - Name: Desktop
     Value: 2246944
@@ -430,12 +430,13 @@ MonoBehaviour:
   - {fileID: 3190100273871329106}
   - {fileID: -274031828003132857}
   - {fileID: 3023314755298808399}
+  - {fileID: 3674825863069661427}
   EditorParameters: []
   MasterBanks:
   - {fileID: 226946602215389451}
   StringsBanks:
   - {fileID: 3152585704290878307}
-  cacheTime: 638371187277366626
+  cacheTime: 638375055822219204
   cacheVersion: 131608
 --- !u!114 &226946602215389451
 MonoBehaviour:
@@ -452,10 +453,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638371187266616841
+  lastModified: 638375055822199203
   FileSizes:
   - Name: Desktop
-    Value: 1340
+    Value: 3668
   Exists: 1
 --- !u!114 &320376148979565315
 MonoBehaviour:
@@ -764,10 +765,10 @@ MonoBehaviour:
   Path: Proy_Mod_HHs_AudioSystem/Audio_System/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638371187266646846
+  lastModified: 638375055822219204
   FileSizes:
   - Name: Desktop
-    Value: 2200
+    Value: 2292
   Exists: 1
 --- !u!114 &3190100273871329106
 MonoBehaviour:
@@ -795,6 +796,33 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+  Length: 0
+--- !u!114 &3674825863069661427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/GamePused
+  m_EditorClassIdentifier: 
+  Path: snapshot:/GamePused
+  Guid:
+    Data1: 1229942472
+    Data2: 1153351216
+    Data3: 492573874
+    Data4: 1934912679
+  Banks:
+  - {fileID: 226946602215389451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &3721713619533809748
 MonoBehaviour:

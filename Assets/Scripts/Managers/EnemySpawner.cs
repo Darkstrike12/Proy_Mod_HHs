@@ -118,12 +118,12 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case GameManager.LevelState.Medium:
                 SpawnDelay = (float)Random.Range(3, 5);
-                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 3;
+                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 4;
                 selectedEnemy = SelectEnemyBasedOnPorcentage(15, 50, 30, 0);
                 break;
             case GameManager.LevelState.Hard:
                 SpawnDelay = (float)Random.Range(1, 3);
-                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 2;
+                EnemyCap = GameManager.Instance.TotalEnemiesOnLevel / 3;
                 selectedEnemy = SelectEnemyBasedOnPorcentage(30, 50, 35, 0);
                 break;
             case GameManager.LevelState.Finish:

@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
             GameObject endingImg = Instantiate(selectedEnding.EndingObject, endingContainer.transform);
             defeatedEnemyCounter.text = EnemySpawner.Instance.DefeatedEnemyCount.ToString();
             print(selectedEnding.endingType.ToString());
-            print("Completition " + EnemySpawner.Instance.DefeatedEnemyCount / TotalEnemiesOnLevel * 100);
+            print("Completition " + (float)(EnemySpawner.Instance.DefeatedEnemyCount / TotalEnemiesOnLevel * 100));
             print("Enemies Ran Out");
 
             SaveData(selectedEnding);
