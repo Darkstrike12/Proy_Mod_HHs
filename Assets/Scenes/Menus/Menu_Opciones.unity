@@ -2412,7 +2412,7 @@ MonoBehaviour:
   masterSlider: {fileID: 728208508}
   toggleMusic: {fileID: 1560571012}
   toggleSfx: {fileID: 2004125102}
-  toggleFullscreen: {fileID: 0}
+  toggleFullscreen: {fileID: 148507684}
 --- !u!4 &611388689
 Transform:
   m_ObjectHideFlags: 0
@@ -3409,6 +3409,7 @@ MonoBehaviour:
   bgmEvent: {fileID: 11400000, guid: fe9f1f25a8241004394b0854a99e91b9, type: 2}
   ambienceEvent: {fileID: 11400000, guid: 914f553fd24357f409435c2e6445bcd4, type: 2}
   ambienceIntensity: 0.5
+  gamePausedSnapshot: {fileID: 0}
 --- !u!114 &1103365312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3423,6 +3424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameScreen: 2
   audioController: {fileID: 611388688}
+  pauseMenu: {fileID: 0}
+  tutorialVisual: {fileID: 0}
 --- !u!1 &1127446180
 GameObject:
   m_ObjectHideFlags: 0
