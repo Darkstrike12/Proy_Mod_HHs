@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDataSO: {fileID: 11400000, guid: 5d5569d96d499d546891f535c66d129a, type: 2}
-  isInstantKill: 0
+  isInstantKill: 1
   useSpecialEffect: 1
   wpState: 0
   <EffectDuration>k__BackingField: 1

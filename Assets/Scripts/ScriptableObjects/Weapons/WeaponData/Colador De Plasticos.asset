@@ -18,7 +18,7 @@ MonoBehaviour:
   DisplayDescription: "Elimina al instante a los enemigos de Pl\xE1stico excepto
     a los de \rcategor\xEDa Consiente o superior, si se encuentra con un enemigo
     que no puede \reliminar se romper\xE1 dejando 3 puntos de reciclaje."
-  BaseDamage: 0
+  BaseDamage: 1
   BaseUseCost: 12
   BaseReloadTime: 14
   attackRange: {x: 2, y: 0.8}

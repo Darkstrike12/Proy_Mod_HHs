@@ -11,6 +11,7 @@ public static class SesionManager
     public static float MasterVolume = 1f;
     public static bool MusicAllowed = true;
     public static bool SFXAllowed = true;
+    public static bool FullscreenEnabled = true;
 
     //private void Awake()
     //{

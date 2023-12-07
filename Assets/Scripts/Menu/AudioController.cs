@@ -8,6 +8,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] Slider masterSlider;
     [SerializeField] Toggle toggleMusic;
     [SerializeField] Toggle toggleSfx;
+    [SerializeField] Toggle toggleFullscreen;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class AudioController : MonoBehaviour
         OnMasterChange(SesionManager.MasterVolume);
         OnMusicToggle(SesionManager.MusicAllowed);
         OnSfxToggle(SesionManager.SFXAllowed);
+        OnFullscreenToggle(SesionManager.FullscreenEnabled);
     }
 
     // Update is called once per frame
@@ -70,5 +72,17 @@ public class AudioController : MonoBehaviour
     {
         AudioManager.Instance.SetMuteSfxBus(!toggle);
         toggleSfx.isOn = toggle;
+    }
+
+    public void OnFullscreenToggle()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+        SesionManager.FullscreenEnabled = toggleFullscreen.isOn;
+    }
+
+    public void OnFullscreenToggle(bool toggle)
+    {
+        Screen.fullScreen = toggle;
+        toggleFullscreen.isOn = toggle;
     }
 }

@@ -7,6 +7,7 @@ public class InputChecker : MonoBehaviour
 {
     [SerializeField] GameScreen gameScreen;
     [SerializeField] AudioController audioController;
+    [SerializeField] PauseMenu pauseMenu;
 
     public static InputChecker Instance { get; private set; }
 
@@ -44,7 +45,19 @@ public class InputChecker : MonoBehaviour
                     SceneManager.LoadScene("Menu_Pricipal");
                     break;
                 case GameScreen.Level:
-                    SceneManager.LoadScene("Menu_Niveles");
+                    if(pauseMenu != null)
+                    {
+                        switch(pauseMenu.state)
+                        {
+                            case PauseMenu.PauseState.OnPause:
+                                pauseMenu.OnExitConfirmWindow();
+                                pauseMenu.OnPauseExit();
+                                break;
+                            case PauseMenu.PauseState.NoPause:
+                                pauseMenu.OnPauseEnter();
+                                break;
+                        }
+                    }
                     break;
             }
         }
