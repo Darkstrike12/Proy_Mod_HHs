@@ -111,3 +111,10 @@
 [LOG] SoundI::release                          :     TNOTLW - Button Fx 5 (000001D49DBF97D8)
 [LOG] SoundI::release                          :  (000001D79B0AC368)
 [LOG] SoundI::release                          :     TNOTLW - Button Fx 1 (000001D661F840B8)
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.

@@ -40,6 +40,7 @@ public class InputChecker : MonoBehaviour
                         audioController.OnMasterChange(1f);
                         audioController.OnMusicToggle(true);
                         audioController.OnSfxToggle(true);
+                        //audioController.OnFullscreenToggle(true);
                     }
                     break;
                 case GameScreen.Menu:
